@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    <div class="card">
+        <div class="card-body">
+          <h1>JSON Editor</h1>
+          <p class="lead">Paste a JSON string into the text box and use the buttons to minify or pretty-print the text</p>
+          <div class="form-group">
+            <div id="editorWrapper">
+              <textarea id="editor"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <a id="minify" class="btn">Minify</a>
+            </div>
+            <div class="col-md-6">
+              <a id="beautify" class="btn">Beautify</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="js/create.js"></script>
+
+</body>
+</html>
