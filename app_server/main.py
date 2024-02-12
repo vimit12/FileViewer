@@ -1,10 +1,12 @@
 from urllib import request
-
+from utility.file_read import FileRead
+import os
+import sys
 from fastapi import FastAPI, Request, File, UploadFile
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
-from ModalClass.modal import FileUpload, UploadFileResponse
+from utility.modal import FileUpload, UploadFileResponse
 from fastapi.middleware.cors import CORSMiddleware  # Add this line
 
 app = FastAPI()
@@ -36,11 +38,20 @@ def create_element(request: Request):
 @app.post("/upload/")
 async def upload_file(request: Request, file: UploadFile = File(...)):
     contents = await file.read()
-    file_path = f"uploads/{file.filename}"
+
+    file_name = file.filename
+    
+    file_path = f"uploads/{file_name}"
+
+    absolute_path = os.path.abspath(file_path)
+
     with open(file_path, "wb") as f:
         f.write(contents)
 
-    return UploadFileResponse(status_code=200, message="File uploaded successfully")
+    fl_obj = FileRead(file, absolute_path)
+    data = fl_obj.render_read_file()
+
+    return {"status_code": 200, "message":"File read successfully", "data":data, "file_type":fl_obj.file_type(), "file_name":file_name}
 
 @app.get("/view/{file_name}/")
 async def view_file(request: Request, file_name: str):

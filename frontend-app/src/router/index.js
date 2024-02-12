@@ -6,6 +6,11 @@ const routes = [
     name: 'home',
     component: () => import(/* webpackChunkName: "about" */ '../views/HomeView.vue')
   },
+  {
+    path: '/',
+    name: 'json',
+    component: () => import(/* webpackChunkName: "about" */ '../views/JsonDataView.vue')
+  },
   
 ]
 
