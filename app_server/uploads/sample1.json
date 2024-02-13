@@ -1,5 +1,6 @@
 {
     "fruit": "Apple",
     "size": "Large",
-    "color": "Red"
+    "color": "Red",
+    "sample": [ [1, 2, 3], { "id": 1, "name": "AADS" }, "APPLE", 5, true ]
 }
