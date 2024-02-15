@@ -2,100 +2,61 @@
 
     <div>
         <div>
-            <!-- <v-data-table :headers="headersData" :items="jsonData" :sort-by="[{ key: 'calories', order: 'asc' }]"> -->
-            <v-data-table :headers="headersData" :items="jsonData" >
-                
-
-                
+            <v-data-table :headers="headersData" :items="jsonData" :items-per-page="itemPerPage" :sort-by="sortBy" :fixed-header="true" class="custom-table">  
                 <template v-slot:top>
-                    <v-toolbar flat color="black">
-                        <v-toolbar-title> {{file_name}} </v-toolbar-title>
+                    <v-toolbar flat v-bind:color="colorcode">
+                        <v-toolbar-title>
+                            <v-row>
+                                <v-col cols="2" justify="end">
+                                    <v-icon @click="go_back">mdi-backburger</v-icon>
+                                    <v-icon @click="pick_color" :color="blue">mdi-palette</v-icon>
+                                </v-col>
+                                <v-col justify="end">
+                                    {{ file_name }}
+                                </v-col>
+                            </v-row>  </v-toolbar-title>
                         <v-divider class="mx-4" inset vertical></v-divider>
                         <v-spacer></v-spacer>
                         <v-dialog v-model="dialog" max-width="500px">
                             <template v-slot:activator="{ props }">
-                                <v-btn color="primary" dark class="mb-2" v-bind="props">
-                                    New Item
+                               
+                                <v-btn light v-bind="props" @click="change_view()">
+                                    Change View
                                 </v-btn>
+                                
                             </template>
-                            <v-card>
-                                <v-card-title>
-                                    <span class="text-h5">{{ formTitle }}</span>
-                                </v-card-title>
-
-                                <v-card-text>
-                                    <v-container>
-                                        <v-row>
-                                            <v-col cols="12" sm="6" md="4">
-                                                <v-text-field v-model="editedItem.name" label="Dessert name"></v-text-field>
-                                            </v-col>
-                                            <v-col cols="12" sm="6" md="4">
-                                                <v-text-field v-model="editedItem.calories" label="Calories"></v-text-field>
-                                            </v-col>
-                                            <v-col cols="12" sm="6" md="4">
-                                                <v-text-field v-model="editedItem.fat" label="Fat (g)"></v-text-field>
-                                            </v-col>
-                                            <v-col cols="12" sm="6" md="4">
-                                                <v-text-field v-model="editedItem.carbs" label="Carbs (g)"></v-text-field>
-                                            </v-col>
-                                            <v-col cols="12" sm="6" md="4">
-                                                <v-text-field v-model="editedItem.protein" label="Protein (g)"></v-text-field>
-                                            </v-col>
-                                        </v-row>
-                                    </v-container>
-                                </v-card-text>
-
-                                <v-card-actions>
-                                    <v-spacer></v-spacer>
-                                    <v-btn color="blue-darken-1" variant="text" @click="close">
-                                        Cancel
-                                    </v-btn>
-                                    <v-btn color="blue-darken-1" variant="text" @click="save">
-                                        Save
-                                    </v-btn>
-                                </v-card-actions>
-                            </v-card>
+                            
                         </v-dialog>
-                        <v-dialog v-model="dialogDelete" max-width="500px">
-                            <v-card>
-                                <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
-                                <v-card-actions>
-                                    <v-spacer></v-spacer>
-                                    <v-btn color="blue-darken-1" variant="text" @click="closeDelete">Cancel</v-btn>
-                                    <v-btn color="blue-darken-1" variant="text" @click="deleteItemConfirm">OK</v-btn>
-                                    <v-spacer></v-spacer>
-                                </v-card-actions>
-                            </v-card>
-                        </v-dialog>
+                        
                     </v-toolbar>
                 </template>
 
                 <template v-slot:item="{ item }">
-                <tr>
-                    <td v-for="key in dynamicKeys" :key="key">
-                        <template v-if="Array.isArray(item[key])">
-                        
-                            <v-btn variant="tonal" prepend-icon="mdi-unfold-more-vertical" append-icon="mdi-dots-horizontal-circle-outline" @click="handleButtonClick(item[key], key)">view</v-btn>
-                        </template>
-
-                        <template v-else>{{ item[key] }}</template>
-                    </td>
-                </tr>
+                    <tr>
+                        <td v-for="key in dynamicKeys" :key="key">
+                            <template v-if="Array.isArray(item[key])">
+                                <v-btn variant="tonal" prepend-icon="mdi-unfold-more-vertical" append-icon="mdi-dots-horizontal-circle-outline" @click="handleButtonClick(item[key], key)">view</v-btn>
+                            </template>
+                            <template v-else-if="typeof item[key] === 'object'">
+                                <v-btn variant="tonal" prepend-icon="mdi-unfold-more-vertical" append-icon="mdi-dots-horizontal-circle-outline" @click="handleButtonClick(item[key], key)">View</v-btn>
+                            </template>
+                            <template v-else>{{ item[key] }}</template>
+                        </td>
+                    </tr>
                 </template>
-                
-                
-                
-                <!-- <template v-slot:[`item.actions`]="{ item }">
-                    
-                    <v-icon size="small" class="me-2" @click="editItem(item)">
-                        mdi-pencil
-                    </v-icon>
-                    <v-icon size="small" @click="deleteItem(item)">
-                        mdi-delete
-                    </v-icon>
-                </template> -->
+                <!-- eslint-disable -->
+                <template v-slot:tfoot="{ item }">
+                    <!-- Footer row with text fields -->
+                    <tr>
+                        <td v-for="key in dynamicKeys" :key="key">
+                            <v-text-field v-model="searchText[key]"
+                            @input="handleSearch(key, searchText[key])" hide-details :placeholder="`Search ${key}`" variant="underlined" clearable></v-text-field>
+                        </td>
+                    </tr>   
 
-                
+                    
+                </template>
+                <!-- eslint-enable -->
             </v-data-table>
         </div>
 
@@ -107,7 +68,7 @@
                 
                     <template v-slot:default="{ isActive }">
                       <v-card>
-                        <v-toolbar color="black" >
+                        <v-toolbar v-bind:color="colorcode" >
                             <v-toolbar-title style="padding: 1em;">Data for column : {{ keyColumn }}   </v-toolbar-title>
 
                         </v-toolbar>
@@ -147,6 +108,34 @@
                 
             </v-row>
         </div>
+
+        <div>
+            <v-dialog v-model="colorDialog" transition="dialog-top-transition" width="auto">
+                
+                        <template v-slot:default="{ isActive }">
+                          <v-card>
+                            <v-toolbar color="black" >
+                                <v-toolbar-title style="padding: 1em;">Color Picker</v-toolbar-title>
+
+                            </v-toolbar>
+                            <v-card-text>
+                              <div class="">
+                                    <v-color-picker show-swatches v-model="colorcode"></v-color-picker>
+                              </div>
+                            </v-card-text>
+                            <v-card-actions class="justify-end">
+                                <!-- <v-btn variant="text" @click="handleColorPick">Pick</v-btn> -->
+                              <v-btn variant="text" @click="isActive.value = false">Close</v-btn>
+                            </v-card-actions>
+                          </v-card>
+                        </template>
+                </v-dialog>
+        </div>
+
+        <div>
+            <vue-json-editor v-model="json" :show-btns="true" :expandedOnStart="true" @json-change="onJsonChange" v-if="jsonEdit" @click="change_view"></vue-json-editor>
+
+        </div>
     </div>
     
 </template>
@@ -155,6 +144,7 @@
 
 
 /* eslint-disable */
+import vueJsonEditor from 'vue-json-editor'
 import axios from 'axios';
 import { createToast } from "mosha-vue-toastify";
 import {
@@ -166,16 +156,23 @@ import {
 export default {
     name: 'JsonDataView',
     components: {
+        vueJsonEditor,
         VDataTable,
         VDataTableServer,
         VDataTableVirtual,
+        
     },
     data() {
         return {
+            colorDialog: false,
+            colorcode: "black",
+            itemPerPage:10,
+            sortBy: null,
             columnArrayObj: false,
             columnArrayArr: false,
             previewDialogVisible:false,
             dialog: false,
+            jsonEdit: false,
             dialogDelete: false,
             headersData: [],
             editedIndex: -1,
@@ -196,21 +193,19 @@ export default {
             file_name : "",
             file_type: "",
             jsonData: null,
-            keyColumn: null
+            keyColumn: null,
+            searchText: {}
         }
     },
     computed: {
-        formTitle() {
-            return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
-        },
         dynamicKeys() {
             this.keys = Array()
 
-            if (Array.isArray(this.jsonData)) {
+            if (Array.isArray(this.rawJsonData)) {
 
-                this.keys = Object.keys(this.jsonData[0]).map(head => (head));
+                this.keys = Object.keys(this.rawJsonData[0]).map(head => (head));
             } else {
-                this.keys  = Object.keys(this.jsonData).map(head => (head));
+                this.keys  = Object.keys(this.rawJsonData).map(head => (head));
             }
             return this.keys
         }
@@ -229,6 +224,59 @@ export default {
 
     },
     methods: {
+        pick_color(){
+            this.colorDialog = true;
+            
+        }, 
+        handleColorPick() {
+            // Access the picked color from the 'colorcode' variable
+            console.log('Picked Color:', this.colorcode);
+            // You can perform any additional logic with the picked color here
+        },
+        searchByKey(array, key, searchText) {
+            // Convert searchText to lowercase for case-insensitive search
+            const search = searchText.toLowerCase();
+
+            // Filter the array based on the key and searchText
+            return array.filter(item => {
+                // Convert item[key] to lowercase for case-insensitive search
+                const value = String(item[key]).toLowerCase();
+                // Check if the value contains the searchText
+                return value.includes(search);
+            });
+        },
+        handleSearch(key, text) {
+            // Perform search/filtering based on the key and search text
+            console.log(`Search for '${text}' in '${key}'`);
+            // Implement your search logic here
+            // Example usage
+            this.data_prep(this.rawJsonData)
+            // if (text == ""){
+            //     console.log("CALL")
+            //     this.data_prep(this.rawJsonData)
+            // }
+            
+            this.filteredData = this.searchByKey(this.jsonData, key, text);
+            if (this.filteredData){
+                this.jsonData = this.filteredData;
+            } else {
+                this.jsonData = []
+            }
+            console.log(this.jsonData);
+
+        },
+        go_back() {
+            this.$router.push(
+                {
+                    name: 'home'
+                })
+        },
+        change_view(){
+            this.$router.push(
+                {
+                    name: 'jsonedit'
+                })
+        },
         identifyArrayType(arr) {
             if (!Array.isArray(arr)) {
                 return "Not an array";
@@ -286,6 +334,8 @@ export default {
             this.keyColumn = key;
             this.previewDialogVisible = true
             // Access and process the array data here
+
+            console.log(columnArray, key)
             let type_of_array = this.identifyArrayType(columnArray)
             console.log(type_of_array)
             if (type_of_array == 'Array of objects'){
@@ -299,28 +349,33 @@ export default {
             }
             
         },
-        data_prep(){
+        data_prep(data){
+            
+            this.jsonData = data
             this.previewDialogVisible = false
             if (Array.isArray(this.jsonData)) {
                 
                 this.headersData = Object.keys(this.jsonData[0]).map(head => ({
                     title: head,
                     align: 'start',
-                    sortable: false,
+                    sortable: true,
                     key: head,
                 }));
+                
             } else {
                 this.headersData = Object.keys(this.jsonData).map(head => ({
                     title: head,
                     align: 'start',
-                    sortable: false,
+                    sortable: true,
                     key: head,
                 }));
                 this.jsonData = Array(this.jsonData)
             }
             // this.headersData.push({ title: 'Actions', align: "end", sortable: false, key: 'actions' },)
+            //[{ key: 'calories', order: 'asc' }]
+            this.sortBy = [{ key: Object.keys(this.jsonData[0])[0], order: 'asc' }]
 
-
+            console.log(this.jsonData)
         },
 
         editItem(item) {
@@ -371,17 +426,42 @@ export default {
 
         localStorage.setItem('jsonData', this.$route.query.data);
 
-        this.jsonData = JSON.parse(this.$route.query.data);
+        this.rawJsonData = JSON.parse(this.$route.query.data);
+
+        // this.jsonData = this.rawJsonData
         this.file_name = this.$route.query.file_name;
         this.file_type = this.$route.query.file_type;
-        this.data_prep()
+        this.data_prep(this.rawJsonData)
 
     }
 }
 </script>
 
 <style>
-span {
-    font-weight: 600;
-}
+    span {
+        font-weight: 600;
+    }
+
+    .custom-table {
+    border-collapse: collapse;
+    width: 100%;
+    }
+
+    .custom-table th,
+    .custom-table td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: left;
+    }
+
+    /* Define column widths */
+    .custom-table th:nth-child(1),
+    .custom-table td:nth-child(1) {
+    width: 20%;
+    }
+
+    .custom-table th:nth-child(2),
+    .custom-table td:nth-child(2) {
+    width: 30%;
+    }
 </style>

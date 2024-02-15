@@ -12,9 +12,12 @@ import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 
+import JsonEditor from 'vue-json-edit'
+
+
 const vuetify = createVuetify({
     components,
     directives,
 })
 
-createApp(App).use(router).use(vuetify).use(VueAxios, axios).mount('#app')
+createApp(App).use(router).use(vuetify).use(VueAxios, axios).use(JsonEditor).mount('#app')

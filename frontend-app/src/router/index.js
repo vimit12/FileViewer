@@ -11,6 +11,11 @@ const routes = [
     name: 'json',
     component: () => import(/* webpackChunkName: "about" */ '../views/JsonDataView.vue')
   },
+  {
+    path: '/',
+    name: 'jsonedit',
+    component: () => import(/* webpackChunkName: "about" */ '../views/JsonEditView.vue')
+  },
   
 ]
 
