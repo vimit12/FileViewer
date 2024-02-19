@@ -44,12 +44,13 @@ async def upload_file(request: Request, file: UploadFile = File(...)):
     file_path = f"uploads/{file_name}"
 
     absolute_path = os.path.abspath(file_path)
-
+    print(f"ABS PATH {absolute_path}")
     with open(file_path, "wb") as f:
         f.write(contents)
 
     fl_obj = FileRead(file, absolute_path)
     data = fl_obj.render_read_file()
+    print(data)
 
     return {"status_code": 200, "message":"File read successfully", "data":data, "file_type":fl_obj.file_type(), "file_name":file_name}
 

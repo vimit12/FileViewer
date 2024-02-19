@@ -114,7 +114,7 @@
                 
                         <template v-slot:default="{ isActive }">
                           <v-card>
-                            <v-toolbar color="black" >
+                            <v-toolbar v-bind:color="colorcode" >
                                 <v-toolbar-title style="padding: 1em;">Color Picker</v-toolbar-title>
 
                             </v-toolbar>
@@ -132,10 +132,7 @@
                 </v-dialog>
         </div>
 
-        <div>
-            <vue-json-editor v-model="json" :show-btns="true" :expandedOnStart="true" @json-change="onJsonChange" v-if="jsonEdit" @click="change_view"></vue-json-editor>
-
-        </div>
+        
     </div>
     
 </template>
@@ -144,7 +141,6 @@
 
 
 /* eslint-disable */
-import vueJsonEditor from 'vue-json-editor'
 import axios from 'axios';
 import { createToast } from "mosha-vue-toastify";
 import {
@@ -156,7 +152,6 @@ import {
 export default {
     name: 'JsonDataView',
     components: {
-        vueJsonEditor,
         VDataTable,
         VDataTableServer,
         VDataTableVirtual,
@@ -219,6 +214,9 @@ export default {
         },
     },
     mounted() {
+        document.title = "View";
+        // Change the icon
+        this.newIcon = "mdi-new-icon";
     },
     beforeUnmount() {
 
@@ -274,7 +272,13 @@ export default {
         change_view(){
             this.$router.push(
                 {
-                    name: 'jsonedit'
+                    name: 'jsonedit',
+                    query:
+                    {
+                        data: this.rawJsonData,
+                        file_name: this.file_name,
+                        file_type: this.file_type
+                    }
                 })
         },
         identifyArrayType(arr) {

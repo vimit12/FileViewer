@@ -74,7 +74,7 @@ export default {
         }
     },
     mounted() {
-        
+        document.title = "Action";
     },
     beforeUnmount() {
         
@@ -104,7 +104,7 @@ export default {
                     // Handle API response data
                     var resp = response.data;
                     if (resp.status_code == 200) {
-                        if (resp.file_type == 'json'){
+                        if (resp.file_type == 'json' || resp.file_type == 'xlsx'){
                             this.$router.push(
                               { name: 'json' , 
                                 query: 

@@ -14,10 +14,11 @@ class FileRead:
 
     def render_read_file(self):
         data = None
+        print(f"FILE TYPE ===> {self.file_type()}")
         if self.file_type() == 'json':
             data = self.__json_file_read()
         elif self.file_type() in ['xlsx', 'xls']:
-            ...
+            data = self.__excel_file_read()
         else:
             ...
         
@@ -28,3 +29,8 @@ class FileRead:
         with open(self._abs_path, 'r') as file:
             data = file.read()
         return data
+    
+
+    def __excel_file_read(self):
+        excel_df = pd.read_excel(self._abs_path)
+        return excel_df.to_json()

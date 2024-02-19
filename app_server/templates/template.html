@@ -1,12 +1,60 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>File Viewer</title>
+    <!-- when using the mode "code", it's important to specify charset utf-8 -->
+    <meta charset="utf-8">
+
+    <!-- <link href="jsoneditor/dist/jsoneditor.min.css" rel="stylesheet" type="text/css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/10.0.1/jsoneditor.min.css"
+        integrity="sha512-8G+Vb2+10BSrSo+wupdzJIylDLpGtEYniQhp0rsbTigPG7Onn2S08Ai/KEGlxN2Ncx9fGqVHtRehMuOjPb9f8g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <script src="jsoneditor/dist/jsoneditor.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/10.0.1/jsoneditor.min.js"
+        integrity="sha512-bcBrdzrs/vzIDUvJLDTcWCYlHqoup9V6NTopRV1xRZYVIy+IoXu71spBq+TBHGKuEo76e6SIpfd02VqxNscEyw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
+
 <body>
-    <h1>Uploaded File Contents</h1>
-    <pre>{{ file_content }}</pre>
+    <div id="jsoneditor" style="width: 100vw; height: 100vh;"></div>
+
+    <script>
+        // create the editor
+        const container = document.getElementById("jsoneditor")
+        const options = {}
+        const editor = new JSONEditor(container, options)
+
+        // set json
+        const initialJson = {
+  "people" : [
+    {
+       "firstName": "Joe",
+       "lastName": "Jackson",
+       "gender": "male",
+       "age": 28,
+       "number": "7349282382"
+    },
+    {
+       "firstName": "James",
+       "lastName": "Smith",
+       "gender": "male",
+       "age": 32,
+       "number": "5678568567"
+    },
+    {
+       "firstName": "Emily",
+       "lastName": "Jones",
+       "gender": "female",
+       "age": 24,
+       "number": "456754675"
+    }
+  ]
+}
+        editor.set(initialJson)
+
+        // get json
+        const updatedJson = editor.get()
+    </script>
 </body>
+
 </html>
