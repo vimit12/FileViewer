@@ -1,0 +1,726 @@
+[
+  {
+    "Account ID": "492382312729",
+    "AWS Region": "us-east-1",
+    "Stack Name": "NVSGISEXSBX49-KMS",
+    "Drift Status": "INSync",
+    "Resources": [
+      {
+        "ResourceType": "AWS::KMS::Key",
+        "LogicalResourceId": "CloudTrailKMS",
+        "PhysicalResourceId": "005d9c04-c014-4efc-b8f8-737464d464f4",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": "492382312669",
+    "AWS Region": "us-east-1",
+    "Stack Name": "NVSGISEXSBX49-CONFIG",
+    "Drift Status": "Modified",
+    "Resources": [
+      {
+        "ResourceType": "AWS::Config::ConfigurationRecorder",
+        "LogicalResourceId": "ConfigRecorder",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for ConfigRecorder. Skipping."
+      },
+      {
+        "ResourceType": "AWS::Config::DeliveryChannel",
+        "LogicalResourceId": "DeliveryChannel",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for DeliveryChannel. Skipping."
+      },
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:us-east-1:492382312729:NVSGISEXSBX49-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          {
+            "Property Path": "/Subscription",
+            "Difference Type": "REMOVE",
+            "Expected value": "[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}]",
+            "Actual value": "null"
+          }
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": "492382552729",
+    "AWS Region": "us-east-1",
+    "Stack Name": "NVSGISEXSBX049-EXSBXADM-IAM",
+    "Drift Status": "Modified",
+    "Resources": [
+      {
+        "ResourceType": "AWS::IAM::Role",
+        "LogicalResourceId": "RootRole",
+        "PhysicalResourceId": "RRCC_AWS_EXSBXADM",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"AssumeRolePolicyDocument\":{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"arn:aws:iam::304512965277:role/RRCC_AWS_EXSBXADM\"}}],\"Version\":\"2012-10-17\"},\"Path\":\"/\",\"Policies\":[{\"PolicyDocument\":{\"Statement\":[{\"Action\":[\"iam:SetDefaultPolicyVersion\",\"iam:CreatePolicyVersion\",\"cloudtrail:LookupEvents\",\"logs:Create*\",\"rds:CreateDBClusterParameterGroup\",\"iam:Get*\",\"s3:AbortMultipartUpload\",\"iam:CreatePolicy\",\"rds:CreateDBSecurityGroup\",\"rds:DeleteDBClusterParameterGroup\",\"config:StopConfigurationRecorder\",\"cloudwatch:List*\",\"rds:List*\",\"config:DeleteConfigRule\",\"s3:DeleteBucketPolicy\",\"ec2:Enable*\",\"ec2:UpdateSecurityGroupRuleDescriptionsIngress\",\"ec2:ReplaceRoute\",\"rds:DeleteDBParameterGroup\",\"cloudformation:UpdateTerminationProtection\",\"kms:Generate*\",\"iam:UpdateAccountPasswordPolicy\",\"sns:Create*\",\"kms:Delete*\",\"rds:Modify*\",\"ec2:Cancel*\",\"rds:DeleteDBSecurityGroup\",\"config:DeleteConfigurationRecorder\",\"config:StartConfigRulesEvaluation\",\"ec2:AuthorizeSecurityGroupEgress\",\"rds:DeleteOptionGroup\",\"iam:RemoveRoleFromInstanceProfile\",\"kms:PutKeyPolicy\",\"cloudformation:ValidateTemplate\",\"iam:AttachRolePolicy\",\"sns:Unsubscribe\",\"cloudtrail:DeleteTrail\",\"ec2:RevokeSecurityGroupIngress\",\"kms:Get*\",\"iam:List*\",\"ec2:AttachNetworkInterface\",\"cloudwatch:Get*\",\"iam:DeleteRole\",\"logs:UntagLogGroup\",\"ec2:Describe*\",\"config:List*\",\"iam:DeletePolicy\",\"cloudformation:SetStackPolicy\",\"cloudwatch:DeleteAlarms\",\"sns:Get*\",\"ec2:ReplaceRouteTableAssociation\",\"rds:DeleteDBSubnetGroup\",\"ec2:AssignPrivateIpAddresses\",\"ec2:AcceptVpcPeeringConnection\",\"iam:CreateSAMLProvider\",\"kms:UntagResource\",\"cloudwatch:Put*\",\"rds:CopyDBParameterGroup\",\"sns:Set*\",\"cloudtrail:StartLogging\",\"rds:Describe*\",\"logs:ListTagsLogGroup\",\"ec2:Modify*\",\"ec2:AssociateSubnetCidrBlock\",\"sns:RemovePermission\",\"cloudformation:DeleteStack\",\"cloudtrail:UpdateTrail\",\"sns:Subscribe\",\"logs:AssociateKmsKey\",\"cloudformation:SignalResource\",\"ec2:AttachVpnGateway\",\"cloudtrail:RemoveTags\",\"logs:TestMetricFilter\",\"config:Put*\",\"config:Describe*\",\"ec2:AssociateAddress\",\"cloudwatch:Set*\",\"config:DeliverConfigSnapshot\",\"ec2:CopySnapshot\",\"ec2:AcceptVpcEndpointConnections\",\"iam:PassRole\",\"cloudformation:EstimateTemplateCost\",\"ec2:RevokeSecurityGroupEgress\",\"ec2:AssociateDhcpOptions\",\"cloudtrail:AddTags\",\"kms:CancelKeyDeletion\",\"kms:EnableKeyRotation\",\"cloudtrail:List*\",\"kms:List*\",\"rds:Create*\",\"cloudformation:PreviewStackUpdate\",\"cloudformation:Get*\",\"cloudformation:List*\",\"iam:UpdateAssumeRolePolicy\",\"tag:*\",\"logs:Describe*\",\"cloudformation:Describe*\",\"iam:Update*\",\"s3:Put*\",\"ec2:AttachInternetGateway\",\"logs:TagLogGroup\",\"config:Get*\",\"cloudformation:Create*\",\"ec2:AssociateVpcCidrBlock\",\"cloudwatch:EnableAlarmActions\",\"config:DeleteDeliveryChannel\",\"s3:DeleteBucket\",\"s3:HeadBucket\",\"config:StartConfigurationRecorder\",\"iam:DeletePolicyVersion\",\"ec2:AllocateAddress\",\"config:*\",\"logs:FilterLogEvents\",\"s3:DeleteBucketWebsite\",\"kms:Create*\",\"cloudformation:DeleteChangeSet\",\"cloudtrail:Describe*\",\"sns:Delete*\",\"ec2:Get*\",\"iam:CreateInstanceProfile\",\"cloudformation:ContinueUpdateRollback\",\"iam:PutRolePolicy\",\"s3:ReplicateTags\",\"ec2:UnassignPrivateIpAddresses\",\"s3:Get*\",\"ec2:AuthorizeSecurityGroupIngress\",\"kms:Tag*\",\"logs:GetLogEvents\",\"logs:Put*\",\"config:DeleteEvaluationResults\",\"cloudtrail:Get*\",\"rds:AuthorizeDBSecurityGroupIngress\",\"iam:DetachRolePolicy\",\"ec2:Create*\",\"cloudformation:ExecuteChangeSet\",\"cloudformation:CancelUpdateStack\",\"s3:CreateBucket\",\"iam:DeleteRolePolicy\",\"s3:List*\",\"iam:DeleteInstanceProfile\",\"ec2:CopyImage\",\"rds:CreateOptionGroup\",\"ec2:ImportKeyPair\",\"cloudwatch:Describe*\",\"rds:CopyOptionGroup\",\"cloudtrail:Put*\",\"iam:AddRoleToInstanceProfile\",\"cloudtrail:CreateTrail\",\"iam:GenerateCredentialReport\",\"cloudformation:UpdateStack\",\"ec2:Detach*\",\"iam:CreateRole\",\"sns:Publish\",\"rds:CreateDBSubnetGroup\",\"logs:Delete*\",\"sns:List*\",\"kms:Describe*\",\"sns:ConfirmSubscription\",\"iam:DeleteAccountPasswordPolicy\",\"rds:AddTagsToResource\",\"cloudtrail:StopLogging\",\"kms:UpdateAlias\",\"ec2:AssociateRouteTable\",\"ec2:UpdateSecurityGroupRuleDescriptionsEgress\",\"iam:DeleteSAMLProvider\",\"logs:CancelExportTask\",\"ec2:Delete*\"],\"Effect\":\"Allow\",\"Resource\":\"*\",\"Sid\":\"Stmt1521651706124\"}],\"Version\":\"2012-10-17\"},\"PolicyName\":\"PRCCAWSEXSBXADM\"}],\"RoleName\":\"RRCC_AWS_EXSBXADM\"}",
+        "ActualProperties": "{\"AssumeRolePolicyDocument\":{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"arn:aws:iam::304512965277:role/RRCC_AWS_EXSBXADM\"}}],\"Version\":\"2012-10-17\"},\"Path\":\"/\",\"Policies\":[{\"PolicyDocument\":{\"Statement\":[{\"Action\":[\"iam:SetDefaultPolicyVersion\",\"iam:CreatePolicyVersion\",\"cloudtrail:LookupEvents\",\"logs:Create*\",\"rds:CreateDBClusterParameterGroup\",\"iam:Get*\",\"s3:AbortMultipartUpload\",\"iam:CreatePolicy\",\"rds:CreateDBSecurityGroup\",\"rds:DeleteDBClusterParameterGroup\",\"config:StopConfigurationRecorder\",\"cloudwatch:List*\",\"rds:List*\",\"config:DeleteConfigRule\",\"s3:DeleteBucketPolicy\",\"ec2:Enable*\",\"ec2:UpdateSecurityGroupRuleDescriptionsIngress\",\"ec2:ReplaceRoute\",\"rds:DeleteDBParameterGroup\",\"cloudformation:UpdateTerminationProtection\",\"kms:Generate*\",\"iam:UpdateAccountPasswordPolicy\",\"sns:Create*\",\"kms:Delete*\",\"rds:Modify*\",\"ec2:Cancel*\",\"rds:DeleteDBSecurityGroup\",\"config:DeleteConfigurationRecorder\",\"config:StartConfigRulesEvaluation\",\"ec2:AuthorizeSecurityGroupEgress\",\"rds:DeleteOptionGroup\",\"iam:RemoveRoleFromInstanceProfile\",\"kms:PutKeyPolicy\",\"cloudformation:ValidateTemplate\",\"iam:AttachRolePolicy\",\"sns:Unsubscribe\",\"cloudtrail:DeleteTrail\",\"ec2:RevokeSecurityGroupIngress\",\"kms:Get*\",\"iam:List*\",\"ec2:AttachNetworkInterface\",\"cloudwatch:Get*\",\"iam:DeleteRole\",\"logs:UntagLogGroup\",\"ec2:Describe*\",\"config:List*\",\"iam:DeletePolicy\",\"cloudformation:SetStackPolicy\",\"cloudwatch:DeleteAlarms\",\"sns:Get*\",\"ec2:ReplaceRouteTableAssociation\",\"rds:DeleteDBSubnetGroup\",\"ec2:AssignPrivateIpAddresses\",\"ec2:AcceptVpcPeeringConnection\",\"iam:CreateSAMLProvider\",\"kms:UntagResource\",\"cloudwatch:Put*\",\"rds:CopyDBParameterGroup\",\"sns:Set*\",\"cloudtrail:StartLogging\",\"rds:Describe*\",\"logs:ListTagsLogGroup\",\"ec2:Modify*\",\"ec2:AssociateSubnetCidrBlock\",\"sns:RemovePermission\",\"cloudformation:DeleteStack\",\"cloudtrail:UpdateTrail\",\"sns:Subscribe\",\"logs:AssociateKmsKey\",\"cloudformation:SignalResource\",\"ec2:AttachVpnGateway\",\"cloudtrail:RemoveTags\",\"logs:TestMetricFilter\",\"config:Put*\",\"config:Describe*\",\"ec2:AssociateAddress\",\"cloudwatch:Set*\",\"config:DeliverConfigSnapshot\",\"ec2:CopySnapshot\",\"ec2:AcceptVpcEndpointConnections\",\"iam:PassRole\",\"cloudformation:EstimateTemplateCost\",\"ec2:RevokeSecurityGroupEgress\",\"ec2:AssociateDhcpOptions\",\"cloudtrail:AddTags\",\"kms:CancelKeyDeletion\",\"kms:EnableKeyRotation\",\"cloudtrail:List*\",\"kms:List*\",\"rds:Create*\",\"cloudformation:PreviewStackUpdate\",\"cloudformation:Get*\",\"cloudformation:List*\",\"iam:UpdateAssumeRolePolicy\",\"tag:*\",\"logs:Describe*\",\"cloudformation:Describe*\",\"iam:Update*\",\"s3:Put*\",\"ec2:AttachInternetGateway\",\"logs:TagLogGroup\",\"config:Get*\",\"cloudformation:Create*\",\"ec2:AssociateVpcCidrBlock\",\"cloudwatch:EnableAlarmActions\",\"config:DeleteDeliveryChannel\",\"s3:DeleteBucket\",\"s3:HeadBucket\",\"config:StartConfigurationRecorder\",\"iam:DeletePolicyVersion\",\"ec2:AllocateAddress\",\"config:*\",\"logs:FilterLogEvents\",\"s3:DeleteBucketWebsite\",\"kms:Create*\",\"cloudformation:DeleteChangeSet\",\"cloudtrail:Describe*\",\"sns:Delete*\",\"ec2:Get*\",\"iam:CreateInstanceProfile\",\"cloudformation:ContinueUpdateRollback\",\"iam:PutRolePolicy\",\"s3:ReplicateTags\",\"ec2:UnassignPrivateIpAddresses\",\"s3:Get*\",\"ec2:AuthorizeSecurityGroupIngress\",\"kms:Tag*\",\"logs:GetLogEvents\",\"logs:Put*\",\"config:DeleteEvaluationResults\",\"cloudtrail:Get*\",\"rds:AuthorizeDBSecurityGroupIngress\",\"iam:DetachRolePolicy\",\"ec2:Create*\",\"cloudformation:ExecuteChangeSet\",\"cloudformation:CancelUpdateStack\",\"s3:CreateBucket\",\"iam:DeleteRolePolicy\",\"s3:List*\",\"iam:DeleteInstanceProfile\",\"ec2:CopyImage\",\"rds:CreateOptionGroup\",\"ec2:ImportKeyPair\",\"cloudwatch:Describe*\",\"rds:CopyOptionGroup\",\"cloudtrail:Put*\",\"iam:AddRoleToInstanceProfile\",\"cloudtrail:CreateTrail\",\"iam:GenerateCredentialReport\",\"cloudformation:UpdateStack\",\"ec2:Detach*\",\"iam:CreateRole\",\"sns:Publish\",\"rds:CreateDBSubnetGroup\",\"logs:Delete*\",\"sns:List*\",\"kms:Describe*\",\"sns:ConfirmSubscription\",\"iam:DeleteAccountPasswordPolicy\",\"rds:AddTagsToResource\",\"cloudtrail:StopLogging\",\"kms:UpdateAlias\",\"ec2:AssociateRouteTable\",\"ec2:UpdateSecurityGroupRuleDescriptionsEgress\",\"iam:DeleteSAMLProvider\",\"logs:CancelExportTask\",\"ec2:Delete*\",\"lambda:*\"],\"Effect\":\"Allow\",\"Resource\":\"*\",\"Sid\":\"VisualEditor0\"}],\"Version\":\"2012-10-17\"},\"PolicyName\":\"PRCCAWSEXSBXADM\"}],\"RoleName\":\"RRCC_AWS_EXSBXADM\"}",
+        "PropertyDifferences": [
+          {
+            "Property Path": "/Policies/0/PolicyDocument/Statement/0/Sid",
+            "Difference Type": "NOT_EQUAL",
+            "Expected value": "Stmt1521651706124",
+            "Actual value": "VisualEditor0"
+          },
+          {
+            "Property Path": "/Policies/0/PolicyDocument/Statement/0/Action/167",
+            "Difference Type": "ADD",
+            "Expected value": "null",
+            "Actual value": "lambda:*"
+          }
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": "492311112729",
+    "AWS Region": "us-east-2",
+    "Stack Name": "NVSGISEXSBX49-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::Config::ConfigurationRecorder",
+        "LogicalResourceId": "ConfigRecorder",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for ConfigRecorder. Skipping."
+      },
+      {
+        "ResourceType": "AWS::Config::DeliveryChannel",
+        "LogicalResourceId": "DeliveryChannel",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for DeliveryChannel. Skipping."
+      },
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:us-east-2:492382312729:NVSGISEXSBX49-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          {
+            "Property Path": "/Subscription",
+            "Difference Type": "REMOVE",
+            "Expected value": "[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}]",
+            "Actual value": "null"
+          }
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": "492311312729",
+    "AWS Region": "us-west-1",
+    "Stack Name": "NVSGISEXSBX49-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::Config::ConfigurationRecorder",
+        "LogicalResourceId": "ConfigRecorder",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for ConfigRecorder. Skipping."
+      },
+      {
+        "ResourceType": "AWS::Config::DeliveryChannel",
+        "LogicalResourceId": "DeliveryChannel",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for DeliveryChannel. Skipping."
+      },
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:us-west-1:492382312729:NVSGISEXSBX49-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          {
+            "Property Path": "/Subscription",
+            "Difference Type": "REMOVE",
+            "Expected value": "[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}]",
+            "Actual value": "null"
+          }
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": "492282312729",
+    "AWS Region": "us-west-2",
+    "Stack Name": "NVSGISEXSBX49-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::Config::ConfigurationRecorder",
+        "LogicalResourceId": "ConfigRecorder",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for ConfigRecorder. Skipping."
+      },
+      {
+        "ResourceType": "AWS::Config::DeliveryChannel",
+        "LogicalResourceId": "DeliveryChannel",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for DeliveryChannel. Skipping."
+      },
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:us-west-2:492382312729:NVSGISEXSBX49-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          {
+            "Property Path": "/Subscription",
+            "Difference Type": "REMOVE",
+            "Expected value": "[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}]",
+            "Actual value": "null"
+          }
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": "492382312729",
+    "AWS Region": "ap-south-1",
+    "Stack Name": "NVSGISEXSBX49-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::Config::ConfigurationRecorder",
+        "LogicalResourceId": "ConfigRecorder",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for ConfigRecorder. Skipping."
+      },
+      {
+        "ResourceType": "AWS::Config::DeliveryChannel",
+        "LogicalResourceId": "DeliveryChannel",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for DeliveryChannel. Skipping."
+      },
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:ap-south-1:492382312729:NVSGISEXSBX49-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          {
+            "Property Path": "/Subscription",
+            "Difference Type": "REMOVE",
+            "Expected value": "[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}]",
+            "Actual value": "null"
+          }
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": "492382312729",
+    "AWS Region": "ap-northeast-3",
+    "Stack Name": "NVSGISEXSBX49-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::Config::ConfigurationRecorder",
+        "LogicalResourceId": "ConfigRecorder",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for ConfigRecorder. Skipping."
+      },
+      {
+        "ResourceType": "AWS::Config::DeliveryChannel",
+        "LogicalResourceId": "DeliveryChannel",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for DeliveryChannel. Skipping."
+      },
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:ap-northeast-3:492382312729:NVSGISEXSBX49-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          {
+            "Property Path": "/Subscription",
+            "Difference Type": "REMOVE",
+            "Expected value": "[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}]",
+            "Actual value": "null"
+          }
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": "492382312729",
+    "AWS Region": "ap-northeast-2",
+    "Stack Name": "NVSGISEXSBX49-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::Config::ConfigurationRecorder",
+        "LogicalResourceId": "ConfigRecorder",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for ConfigRecorder. Skipping."
+      },
+      {
+        "ResourceType": "AWS::Config::DeliveryChannel",
+        "LogicalResourceId": "DeliveryChannel",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for DeliveryChannel. Skipping."
+      },
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:ap-northeast-2:492382312729:NVSGISEXSBX49-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          {
+            "Property Path": "/Subscription",
+            "Difference Type": "REMOVE",
+            "Expected value": "[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}]",
+            "Actual value": "null"
+          }
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": "492382312729",
+    "AWS Region": "ap-southeast-1",
+    "Stack Name": "NVSGISEXSBX49-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::Config::ConfigurationRecorder",
+        "LogicalResourceId": "ConfigRecorder",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for ConfigRecorder. Skipping."
+      },
+      {
+        "ResourceType": "AWS::Config::DeliveryChannel",
+        "LogicalResourceId": "DeliveryChannel",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for DeliveryChannel. Skipping."
+      },
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:ap-southeast-1:492382312729:NVSGISEXSBX49-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          {
+            "Property Path": "/Subscription",
+            "Difference Type": "REMOVE",
+            "Expected value": "[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}]",
+            "Actual value": "null"
+          }
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": "492382312729",
+    "AWS Region": "ap-southeast-2",
+    "Stack Name": "NVSGISEXSBX49-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::Config::ConfigurationRecorder",
+        "LogicalResourceId": "ConfigRecorder",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for ConfigRecorder. Skipping."
+      },
+      {
+        "ResourceType": "AWS::Config::DeliveryChannel",
+        "LogicalResourceId": "DeliveryChannel",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for DeliveryChannel. Skipping."
+      },
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:ap-southeast-2:492382312729:NVSGISEXSBX49-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          {
+            "Property Path": "/Subscription",
+            "Difference Type": "REMOVE",
+            "Expected value": "[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}]",
+            "Actual value": "null"
+          }
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": "492382312729",
+    "AWS Region": "ca-central-1",
+    "Stack Name": "NVSGISEXSBX49-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::Config::ConfigurationRecorder",
+        "LogicalResourceId": "ConfigRecorder",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for ConfigRecorder. Skipping."
+      },
+      {
+        "ResourceType": "AWS::Config::DeliveryChannel",
+        "LogicalResourceId": "DeliveryChannel",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for DeliveryChannel. Skipping."
+      },
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:ca-central-1:492382312729:NVSGISEXSBX49-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          {
+            "Property Path": "/Subscription",
+            "Difference Type": "REMOVE",
+            "Expected value": "[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}]",
+            "Actual value": "null"
+          }
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": "492382312729",
+    "AWS Region": "eu-central-1",
+    "Stack Name": "NVSGISEXSBX49-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::Config::ConfigurationRecorder",
+        "LogicalResourceId": "ConfigRecorder",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for ConfigRecorder. Skipping."
+      },
+      {
+        "ResourceType": "AWS::Config::DeliveryChannel",
+        "LogicalResourceId": "DeliveryChannel",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for DeliveryChannel. Skipping."
+      },
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:eu-central-1:492382312729:NVSGISEXSBX49-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          {
+            "Property Path": "/Subscription",
+            "Difference Type": "REMOVE",
+            "Expected value": "[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}]",
+            "Actual value": "null"
+          }
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": "492382312729",
+    "AWS Region": "eu-west-2",
+    "Stack Name": "NVSGISEXSBX49-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::Config::ConfigurationRecorder",
+        "LogicalResourceId": "ConfigRecorder",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for ConfigRecorder. Skipping."
+      },
+      {
+        "ResourceType": "AWS::Config::DeliveryChannel",
+        "LogicalResourceId": "DeliveryChannel",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for DeliveryChannel. Skipping."
+      },
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:eu-west-2:492382312729:NVSGISEXSBX49-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          {
+            "Property Path": "/Subscription",
+            "Difference Type": "REMOVE",
+            "Expected value": "[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}]",
+            "Actual value": "null"
+          }
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": "492382312729",
+    "AWS Region": "eu-west-3",
+    "Stack Name": "NVSGISEXSBX49-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::Config::ConfigurationRecorder",
+        "LogicalResourceId": "ConfigRecorder",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for ConfigRecorder. Skipping."
+      },
+      {
+        "ResourceType": "AWS::Config::DeliveryChannel",
+        "LogicalResourceId": "DeliveryChannel",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for DeliveryChannel. Skipping."
+      },
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:eu-west-3:492382312729:NVSGISEXSBX49-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          {
+            "Property Path": "/Subscription",
+            "Difference Type": "REMOVE",
+            "Expected value": "[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}]",
+            "Actual value": "null"
+          }
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": "492382312729",
+    "AWS Region": "eu-north-1",
+    "Stack Name": "NVSGISEXSBX49-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::Config::ConfigurationRecorder",
+        "LogicalResourceId": "ConfigRecorder",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for ConfigRecorder. Skipping."
+      },
+      {
+        "ResourceType": "AWS::Config::DeliveryChannel",
+        "LogicalResourceId": "DeliveryChannel",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for DeliveryChannel. Skipping."
+      },
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:eu-north-1:492382312729:NVSGISEXSBX49-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          {
+            "Property Path": "/Subscription",
+            "Difference Type": "REMOVE",
+            "Expected value": "[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}]",
+            "Actual value": "null"
+          }
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": "492382312729",
+    "AWS Region": "sa-east-1",
+    "Stack Name": "NVSGISEXSBX49-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::Config::ConfigurationRecorder",
+        "LogicalResourceId": "ConfigRecorder",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for ConfigRecorder. Skipping."
+      },
+      {
+        "ResourceType": "AWS::Config::DeliveryChannel",
+        "LogicalResourceId": "DeliveryChannel",
+        "PhysicalResourceId": "default",
+        "StackResourceDriftStatus": "NOT_CHECKED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for DeliveryChannel. Skipping."
+      },
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:sa-east-1:492382312729:NVSGISEXSBX49-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX49-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX49-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          {
+            "Property Path": "/Subscription",
+            "Difference Type": "REMOVE",
+            "Expected value": "[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}]",
+            "Actual value": "null"
+          }
+        ],
+        "Message": null
+      }
+    ]
+  }
+]
