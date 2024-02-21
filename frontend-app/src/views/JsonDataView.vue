@@ -37,13 +37,26 @@
                             <template v-if="Array.isArray(item[key])">
                                 <v-btn variant="tonal" prepend-icon="mdi-unfold-more-vertical" append-icon="mdi-dots-horizontal-circle-outline" @click="handleButtonClick(item[key], key)">view</v-btn>
                             </template>
+                            <template v-else-if="typeof item[key] === 'object' && Object.keys(item[key]).length === 0">
+                                    <!-- Handle null case -->
+                                    -
+                                </template>
                             <template v-else-if="typeof item[key] === 'object'">
                                 <v-btn variant="tonal" prepend-icon="mdi-unfold-more-vertical" append-icon="mdi-dots-horizontal-circle-outline" @click="handleButtonClick(item[key], key)">View</v-btn>
                             </template>
+                            
                             <template v-else>{{ item[key] }}</template>
+                                <v-icon size="small" class="me-2" @click="editItem(item)" v-if="key=='Action'">mdi-pencil</v-icon>
+                                <v-icon size="small" class="me-2" @click="deleteItem(item)" v-if="key == 'Action'">mdi-delete</v-icon>
                         </td>
                     </tr>
                 </template>
+
+                <!-- <template v-slot:[`item.actions`]="{ item }">
+                        <v-icon size="small" class="me-2" @click="editItem(item)">mdi-pencil</v-icon>
+                        <v-icon size="small" @click="send(item)">mdi-send</v-icon>
+                    </template> -->
+
                 <!-- eslint-disable -->
                 <template v-slot:tfoot="{ item }">
                     <!-- Footer row with text fields -->
@@ -74,10 +87,10 @@
                                     <v-toolbar-title style="padding: 2em;">Data for column : {{ keyColumn }}   </v-toolbar-title>
                                 </v-col>
 
-                                <v-col>
+                                <!-- <v-col>
                                     <v-text-field clearable placeholder="Search" prepend-icon="mdi-magnify" variant="underlined"
                                     style="padding: 1em;" v-model="searchInputValue" @input="handleInputChange"></v-text-field>
-                                </v-col>
+                                </v-col> -->
                             </v-row>
                             
 
@@ -99,16 +112,9 @@
 
                                 
 
-                                <v-data-table v-if="columnArrayObj" :headers="recursiveHeadersData" :items="recursiveJsonData" :items-per-page="itemPerPage" :sort-by="sortColumnDataBy" :fixed-header="true" class="custom-table">  
+                                <v-data-table v-if="columnArrayObj" :headers="recursiveHeadersData" :items="recursiveJsonData" :items-per-page="itemPerPageRec" :sort-by="sortColumnDataBy" :fixed-header="true" class="custom-table">  
                                         
-                                    </v-data-table>
-
-
-
-
-
-
-
+                                </v-data-table>
 
                                 <v-table fixed-header v-if="columnArrayArr">
                                     
@@ -185,6 +191,7 @@ export default {
             colorDialog: false,
             colorcode: "black",
             itemPerPage:10,
+            itemPerPageRec:3,
             sortBy: null,
             sortColumnDataBy: null,
             columnArrayObj: false,
@@ -227,6 +234,7 @@ export default {
             } else {
                 this.keys  = Object.keys(this.rawJsonData).map(head => (head));
             }
+            this.keys.push("Action")
             return this.keys
         }
     },
@@ -430,11 +438,19 @@ export default {
             let type_of_array = this.identifyArrayType(columnArray)
             console.log(type_of_array)
 
+            if (type_of_array == 'Not an array' && (typeof columnArray == "object") && columnArray){
+                this.recursive_data_prep(Array(columnArray))
+                this.columnArrayObj = true
+                this.columnArrayArr = false
+                return
+            }
+
             if (type_of_array == 'Array of objects'){
                 // this.recursiveJsonData = columnArray
                 // this.recursiveHeadersData = this.columnDataPopulate(columnArray)
                 this.recursive_data_prep(columnArray)
                 this.columnArrayObj = true
+                this.columnArrayArr = false
             } else {
                 this.recursiveJsonData = columnArray
                 this.columnArrayArr = true
@@ -466,15 +482,16 @@ export default {
                 }));
                 this.jsonData = Array(this.jsonData)
             }
-            
+            this.headersData.push({ title: 'Actions', key: 'actions', sortable: false },)
             this.sortBy = [{ key: Object.keys(this.jsonData[0])[0], order: 'asc' }]
 
         },
 
         editItem(item) {
-            this.editedIndex = this.desserts.indexOf(item)
-            this.editedItem = Object.assign({}, item)
-            this.dialog = true
+            alert(JSON.stringify(item))
+            // this.editedIndex = this.desserts.indexOf(item)
+            // this.editedItem = Object.assign({}, item)
+            // this.dialog = true
         },
 
         deleteItem(item) {
