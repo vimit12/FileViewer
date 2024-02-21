@@ -69,12 +69,22 @@
                     <template v-slot:default="{ isActive }">
                       <v-card>
                         <v-toolbar v-bind:color="colorcode" >
-                            <v-toolbar-title style="padding: 1em;">Data for column : {{ keyColumn }}   </v-toolbar-title>
+                            <v-row>
+                                <v-col cols="8">
+                                    <v-toolbar-title style="padding: 2em;">Data for column : {{ keyColumn }}   </v-toolbar-title>
+                                </v-col>
+
+                                <v-col>
+                                    <v-text-field clearable placeholder="Search" prepend-icon="mdi-magnify" variant="underlined"
+                                    style="padding: 1em;" v-model="searchInputValue" @input="handleInputChange"></v-text-field>
+                                </v-col>
+                            </v-row>
+                            
 
                         </v-toolbar>
                         <v-card-text>
                           <div class="">
-                                <v-table fixed-header v-if="columnArrayObj">
+                                <!-- <v-table fixed-header v-if="columnArrayObj">
                                     <thead>
                                         <tr>
                                             <th v-for="header in recursiveHeadersData" :key="header" class="text-left" style="font-weight: 600;">{{ header }}</th>
@@ -85,7 +95,20 @@
                                         <td v-for="(value, key) in item" :key="key">{{ value }}</td>
                                     </tr>
                                     </tbody>
-                                </v-table>
+                                </v-table> -->
+
+                                
+
+                                <v-data-table v-if="columnArrayObj" :headers="recursiveHeadersData" :items="recursiveJsonData" :items-per-page="itemPerPage" :sort-by="sortColumnDataBy" :fixed-header="true" class="custom-table">  
+                                        
+                                    </v-data-table>
+
+
+
+
+
+
+
 
                                 <v-table fixed-header v-if="columnArrayArr">
                                     
@@ -163,6 +186,7 @@ export default {
             colorcode: "black",
             itemPerPage:10,
             sortBy: null,
+            sortColumnDataBy: null,
             columnArrayObj: false,
             columnArrayArr: false,
             previewDialogVisible:false,
@@ -189,7 +213,8 @@ export default {
             file_type: "",
             jsonData: null,
             keyColumn: null,
-            searchText: {}
+            searchText: {},
+            filteredData: []
         }
     },
     computed: {
@@ -211,7 +236,7 @@ export default {
         },
         dialogDelete(val) {
             val || this.closeDelete()
-        },
+        }
     },
     mounted() {
         document.title = "View";
@@ -222,6 +247,52 @@ export default {
 
     },
     methods: {
+        handleInputChange() {
+            console.log('Input value changed:', this.searchInputValue);
+            // Call your function here
+
+            this.call_search(this.recursiveJsonData, this.searchInputValue)
+            
+        },
+        call_search(data, input_value) {
+
+            const requestBody = {
+                "input_value": input_value,
+                "data_search": data
+            }
+
+            axios.post(`${process.env.BASE_API_URL}search_data/`, requestBody)
+                .then(response => {
+                    // Handle API response data
+                    var resp = response.data;
+                    if (resp.status_code == 200) {
+                        // this.filteredData = resp.data
+                        this.handleButtonClick(resp.data, this.keyColumn)
+                    } else {
+                        createToast(JSON.stringify(resp.error),
+                            {
+                                showIcon: 'true',
+                                hideProgressBar: 'false',
+                                type: 'danger',
+                                showCloseButton: 'true',
+                                transition: 'slide',
+                                position: 'bottom-center',
+                            })
+                    }
+                })
+                .catch(error => {
+                    // Handle API error
+                    createToast(JSON.stringify(error),
+                        {
+                            showIcon: 'true',
+                            hideProgressBar: 'false',
+                            type: 'danger',
+                            showCloseButton: 'true',
+                            transition: 'slide',
+                            position: 'bottom-center',
+                        })
+                });
+        },
         pick_color(){
             this.colorDialog = true;
             
@@ -249,10 +320,6 @@ export default {
             // Implement your search logic here
             // Example usage
             this.data_prep(this.rawJsonData)
-            // if (text == ""){
-            //     console.log("CALL")
-            //     this.data_prep(this.rawJsonData)
-            // }
             
             this.filteredData = this.searchByKey(this.jsonData, key, text);
             if (this.filteredData){
@@ -320,37 +387,61 @@ export default {
                 // Check if arr is an array of objects
                 if (typeof arr[0] === 'object' && arr[0] !== null) {
                     this.recursiveHeadersData = Object.keys(arr[0]);
-                    // this.recursiveJsonData = arr;
                 } else {
                     // Treat arr as a single object
                     this.recursiveHeadersData = Object.keys(arr);
-                    // this.recursiveJsonData = [arr];
                 }
             } else {
                 // Handle case when arr is empty or not an array
                 this.recursiveHeadersData = [];
-                // this.recursiveJsonData = [];
             }
             return this.recursiveHeadersData;
         },
+        recursive_data_prep(data) {
 
+            this.recursiveJsonData = data
+            if (Array.isArray(this.recursiveJsonData)) {
+
+                this.recursiveHeadersData = Object.keys(this.recursiveJsonData[0]).map(head => ({
+                    title: head,
+                    align: 'start',
+                    sortable: true,
+                    key: head,
+                }));
+
+            } else {
+                this.recursiveHeadersData = Object.keys(this.recursiveJsonData).map(head => ({
+                    title: head,
+                    align: 'start',
+                    sortable: true,
+                    key: head,
+                }));
+                this.recursiveJsonData = Array(this.recursiveJsonData)
+            }
+
+            this.sortColumnDataBy = [{ key: Object.keys(this.recursiveJsonData[0])[0], order: 'asc' }]
+
+        },
         handleButtonClick(columnArray, key) {
-            this.keyColumn = key;
+            this.keyColumn = key
             this.previewDialogVisible = true
             // Access and process the array data here
 
-            console.log(columnArray, key)
             let type_of_array = this.identifyArrayType(columnArray)
             console.log(type_of_array)
+
             if (type_of_array == 'Array of objects'){
-                this.recursiveJsonData = columnArray
-                this.recursiveHeadersData = this.columnDataPopulate(columnArray)
+                // this.recursiveJsonData = columnArray
+                // this.recursiveHeadersData = this.columnDataPopulate(columnArray)
+                this.recursive_data_prep(columnArray)
                 this.columnArrayObj = true
-                console.log("Clicked on people array:", this.recursiveJsonData, this.recursiveJsonData);
             } else {
                 this.recursiveJsonData = columnArray
                 this.columnArrayArr = true
             }
+
+            console.log(this.recursiveJsonData)
+            console.log(this.recursiveHeadersData)
             
         },
         data_prep(data){
@@ -375,11 +466,9 @@ export default {
                 }));
                 this.jsonData = Array(this.jsonData)
             }
-            // this.headersData.push({ title: 'Actions', align: "end", sortable: false, key: 'actions' },)
-            //[{ key: 'calories', order: 'asc' }]
+            
             this.sortBy = [{ key: Object.keys(this.jsonData[0])[0], order: 'asc' }]
 
-            console.log(this.jsonData)
         },
 
         editItem(item) {
