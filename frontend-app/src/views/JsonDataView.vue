@@ -17,30 +17,62 @@
                             </v-row>  </v-toolbar-title>
                         <v-divider class="mx-4" inset vertical></v-divider>
                         <v-spacer></v-spacer>
-                        <v-dialog v-model="dialog" max-width="500px">
+                        <v-dialog v-model="dialog" persistent width="auto">
                             <template v-slot:activator="{ props }">
                                
                                 <v-btn light v-bind="props" @click="change_view()">
-                                    Change View
+                                    Export Data
+                                </v-btn>
+                                <v-btn light v-bind="props" @click="dialog = true">
+                                    Add New
                                 </v-btn>
                                 
                             </template>
+
+
+                            <v-card>
+                                
+                                <v-card-title v-bind:color="colorcode">
+                                    <span class="text-h5">{{ formTitle }}</span>
+                                    <v-divider></v-divider>
+                                </v-card-title>
+
+                                <v-card-text>
+                                    <v-container>
+                                        <v-row>
+                                            <v-col  cols="12" sm="6" md="4" v-for="key in dynamicKeys" :key="key" >
+                                                <v-textarea v-if="key !== 'Action'" clearable :label="key" prepend-icon="mdi-ruler-square-compass" variant="outlined" v-model="formData[key]"></v-textarea>
+                                            </v-col>
+                                        </v-row>
+                                    </v-container>
+                                </v-card-text>
+
+                                <v-card-actions>
+                                    <v-spacer></v-spacer>
+                                    <v-btn color="blue-darken-1" variant="text" @click="close">Cancel</v-btn>
+                                    <v-btn color="blue-darken-1" variant="text" @click="save()">Save</v-btn>
+                                </v-card-actions>
+                            </v-card>
                             
+   
                         </v-dialog>
                         
                     </v-toolbar>
                 </template>
 
                 <template v-slot:item="{ item }">
+                    
                     <tr>
                         <td v-for="key in dynamicKeys" :key="key">
-                            <template v-if="Array.isArray(item[key])">
+                            <template v-if="Array.isArray(item[key]) && item[key].length !== 0">
                                 <v-btn variant="tonal" prepend-icon="mdi-unfold-more-vertical" append-icon="mdi-dots-horizontal-circle-outline" @click="handleButtonClick(item[key], key)">view</v-btn>
                             </template>
                             <template v-else-if="typeof item[key] === 'object' && Object.keys(item[key]).length === 0">
-                                    <!-- Handle null case -->
-                                    -
-                                </template>
+                                    {{ item[key] }}
+                            </template>
+                            <template v-else-if="Array.isArray(item[key]) && item[key].length === 0">
+                                {{ item[key] }}
+                            </template>
                             <template v-else-if="typeof item[key] === 'object'">
                                 <v-btn variant="tonal" prepend-icon="mdi-unfold-more-vertical" append-icon="mdi-dots-horizontal-circle-outline" @click="handleButtonClick(item[key], key)">View</v-btn>
                             </template>
@@ -50,19 +82,18 @@
                                 <v-icon size="small" class="me-2" @click="deleteItem(item)" v-if="key == 'Action'">mdi-delete</v-icon>
                         </td>
                     </tr>
+
+                    
                 </template>
 
-                <!-- <template v-slot:[`item.actions`]="{ item }">
-                        <v-icon size="small" class="me-2" @click="editItem(item)">mdi-pencil</v-icon>
-                        <v-icon size="small" @click="send(item)">mdi-send</v-icon>
-                    </template> -->
+                
 
                 <!-- eslint-disable -->
                 <template v-slot:tfoot="{ item }">
                     <!-- Footer row with text fields -->
                     <tr>
                         <td v-for="key in dynamicKeys" :key="key">
-                            <v-text-field v-model="searchText[key]"
+                            <v-text-field v-model="searchText[key]" v-if="key != 'Action'"
                             @input="handleSearch(key, searchText[key])" hide-details :placeholder="`Search ${key}`" variant="underlined" clearable></v-text-field>
                         </td>
                     </tr>   
@@ -87,30 +118,12 @@
                                     <v-toolbar-title style="padding: 2em;">Data for column : {{ keyColumn }}   </v-toolbar-title>
                                 </v-col>
 
-                                <!-- <v-col>
-                                    <v-text-field clearable placeholder="Search" prepend-icon="mdi-magnify" variant="underlined"
-                                    style="padding: 1em;" v-model="searchInputValue" @input="handleInputChange"></v-text-field>
-                                </v-col> -->
                             </v-row>
                             
 
                         </v-toolbar>
                         <v-card-text>
                           <div class="">
-                                <!-- <v-table fixed-header v-if="columnArrayObj">
-                                    <thead>
-                                        <tr>
-                                            <th v-for="header in recursiveHeadersData" :key="header" class="text-left" style="font-weight: 600;">{{ header }}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr v-for="(item, index) in recursiveJsonData" :key="index">
-                                        <td v-for="(value, key) in item" :key="key">{{ value }}</td>
-                                    </tr>
-                                    </tbody>
-                                </v-table> -->
-
-                                
 
                                 <v-data-table v-if="columnArrayObj" :headers="recursiveHeadersData" :items="recursiveJsonData" :items-per-page="itemPerPageRec" :sort-by="sortColumnDataBy" :fixed-header="true" class="custom-table">  
                                         
@@ -161,6 +174,55 @@
                 </v-dialog>
         </div>
 
+        <div>
+
+            <v-row justify="center">
+                <v-dialog
+                v-model="jsonEditdialog"
+                persistent
+                width="1024"
+                >
+                
+                <v-card>
+                    <v-card-title>
+                    <span class="text-h5">Edit Item</span>
+                    </v-card-title>
+                    <v-card-text>
+                    <v-container>
+                        <v-textarea
+                            v-model="jsonEditPerData"
+                            label="JSON Data"
+                            prepend-icon="mdi-json"
+                            solo-inverted
+                            rows="10"
+                        ></v-textarea>
+                    </v-container>
+                    
+                    </v-card-text>
+                    <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="blue-darken-1" variant="text" @click="jsonEditdialog = false">Close</v-btn>
+                    <v-btn color="blue-darken-1" variant="text" @click="saveEditJson">Save</v-btn>
+                    </v-card-actions>
+                </v-card>
+                </v-dialog>
+            </v-row>
+
+        </div>
+
+        <div>
+            <v-dialog v-model="dialogDelete" max-width="500px">
+                <v-card>
+                    <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
+                    <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="blue-darken-1" variant="text" @click="closeDelete">Cancel</v-btn>
+                    <v-btn color="blue-darken-1" variant="text" @click="deleteItemConfirm">OK</v-btn>
+                    <v-spacer></v-spacer>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
+        </div>
         
     </div>
     
@@ -171,7 +233,6 @@
 
 /* eslint-disable */
 import axios from 'axios';
-import { createToast } from "mosha-vue-toastify";
 import {
     VDataTable,
     VDataTableServer,
@@ -198,30 +259,21 @@ export default {
             columnArrayArr: false,
             previewDialogVisible:false,
             dialog: false,
+            jsonEditdialog:false,
             jsonEdit: false,
             dialogDelete: false,
+            // formTitle: "New Item",
             headersData: [],
             editedIndex: -1,
-            editedItem: {
-                name: '',
-                calories: 0,
-                fat: 0,
-                carbs: 0,
-                protein: 0,
-            },
-            defaultItem: {
-                name: '',
-                calories: 0,
-                fat: 0,
-                carbs: 0,
-                protein: 0,
-            },
+            editedItem: {},
+            defaultItem: {},
             file_name : "",
             file_type: "",
             jsonData: null,
             keyColumn: null,
             searchText: {},
-            filteredData: []
+            filteredData: [],
+            formData: {},
         }
     },
     computed: {
@@ -236,7 +288,10 @@ export default {
             }
             this.keys.push("Action")
             return this.keys
-        }
+        },
+        formTitle() {
+            return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+        },
     },
     watch: {
         dialog(val) {
@@ -488,20 +543,42 @@ export default {
         },
 
         editItem(item) {
-            alert(JSON.stringify(item))
-            // this.editedIndex = this.desserts.indexOf(item)
-            // this.editedItem = Object.assign({}, item)
-            // this.dialog = true
+            this.jsonEditdialog = true
+            this.jsonEditPerData = JSON.stringify(item, null, 4);
+            this.editedIndex = this.findIndex(this.rawJsonData, item)
+            
+        },
+        findIndex(array, item) {
+            for (let i = 0; i < array.length; i++) {
+                if (JSON.stringify(array[i]) === JSON.stringify(item)) {
+                    return i;
+                }
+            }
+            return -1; // Return -1 if item is not found
+        },
+        saveEditJson(item){
+            
+            this.editedItem = Object.assign({}, JSON.parse(this.jsonEditPerData))
+            console.log(this.editedItem)
+            
+            if (this.editedIndex != -1){
+                this.rawJsonData[this.editedIndex] = this.editedItem;
+                this.data_prep(this.rawJsonData)
+                
+            } else {
+                
+            }
+            this.jsonEditdialog = false
         },
 
         deleteItem(item) {
-            this.editedIndex = this.desserts.indexOf(item)
-            this.editedItem = Object.assign({}, item)
+            this.deletedIndex = this.findIndex(this.rawJsonData, item)
+            this.deleteItemData = Object.assign({}, item)
             this.dialogDelete = true
         },
 
         deleteItemConfirm() {
-            this.desserts.splice(this.editedIndex, 1)
+            this.jsonData.splice(this.deletedIndex, 1)
             this.closeDelete()
         },
 
@@ -522,11 +599,8 @@ export default {
         },
 
         save() {
-            if (this.editedIndex > -1) {
-                Object.assign(this.desserts[this.editedIndex], this.editedItem)
-            } else {
-                this.desserts.push(this.editedItem)
-            }
+            console.log("Form Data:", this.formData);
+            this.jsonData.push(this.formData);
             this.close()
         },
     
@@ -537,7 +611,7 @@ export default {
         localStorage.setItem('jsonData', this.$route.query.data);
 
         this.rawJsonData = JSON.parse(this.$route.query.data);
-
+        console.log(this.rawJsonData)
         // this.jsonData = this.rawJsonData
         this.file_name = this.$route.query.file_name;
         this.file_type = this.$route.query.file_type;
