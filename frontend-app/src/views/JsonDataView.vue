@@ -105,6 +105,7 @@
         </div>
 
         <div>
+            <!-- This section is to view recursive data -->
             <v-row justify="space-around">
 
                 <v-col cols="auto">
@@ -152,6 +153,7 @@
         </div>
 
         <div>
+            <!-- This section is for Color Picket -->
             <v-dialog v-model="colorDialog" transition="dialog-top-transition" width="auto">
                 
                         <template v-slot:default="{ isActive }">
@@ -171,11 +173,11 @@
                             </v-card-actions>
                           </v-card>
                         </template>
-                </v-dialog>
+            </v-dialog>
         </div>
 
         <div>
-
+            <!-- This section is for Edit JSON Object -->
             <v-row justify="center">
                 <v-dialog
                 v-model="jsonEditdialog"
@@ -211,6 +213,7 @@
         </div>
 
         <div>
+            <!-- This section is for Delete Object Dailog box -->
             <v-dialog v-model="dialogDelete" max-width="500px">
                 <v-card>
                     <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
@@ -223,6 +226,8 @@
                 </v-card>
             </v-dialog>
         </div>
+
+        <div id="toast"><v-icon id="img">{{ iconImage }}</v-icon><div id="desc"></div></div>
         
     </div>
     
@@ -249,6 +254,7 @@ export default {
     },
     data() {
         return {
+            iconImage: "",
             colorDialog: false,
             colorcode: "black",
             itemPerPage:10,
@@ -556,7 +562,7 @@ export default {
             }
             return -1; // Return -1 if item is not found
         },
-        saveEditJson(item){
+        saveEditJson(){
             
             this.editedItem = Object.assign({}, JSON.parse(this.jsonEditPerData))
             console.log(this.editedItem)
@@ -564,6 +570,8 @@ export default {
             if (this.editedIndex != -1){
                 this.rawJsonData[this.editedIndex] = this.editedItem;
                 this.data_prep(this.rawJsonData)
+                this.iconImage = "mdi-check-bold"
+                this.launch_toast("The following item as been updated.", "#07d90e", "#07d90e")
                 
             } else {
                 
@@ -579,6 +587,8 @@ export default {
 
         deleteItemConfirm() {
             this.jsonData.splice(this.deletedIndex, 1)
+            this.iconImage = "mdi-delete"
+            this.launch_toast("The following item as been deletd.", "#fc1c03", "#fc1c03")
             this.closeDelete()
         },
 
@@ -603,7 +613,19 @@ export default {
             this.jsonData.push(this.formData);
             this.close()
         },
-    
+        launch_toast(msg, toastColor, iconColor) {
+            var x = document.getElementById("toast")
+            x.className = "show";
+            x.style.backgroundColor = toastColor;
+            
+            var div = document.getElementById("desc")
+            div.innerHTML = msg
+            
+            
+            var imgIcon = document.getElementById("img")
+            imgIcon.style.backgroundColor = iconColor;
+            setTimeout(function () { x.className = x.className.replace("show", ""); }, 5000);
+        }
 
     },
     created() {
@@ -648,4 +670,102 @@ export default {
     .custom-table td:nth-child(2) {
     width: 30%;
     }
+
+    #toast {
+    visibility: hidden;
+    max-width: 50px;
+    height: 50px;
+    /*margin-left: -125px;*/
+    margin: auto;
+    background-color: #333;
+    color: #231f1f;
+    text-align: center;
+    border-radius: 2px;
+
+    position: fixed;
+    z-index: 1;
+    left: 0;right:0;
+    bottom: 30px;
+    font-size: 17px;
+    white-space: nowrap;
+}
+#toast #img{
+	width: 50px;
+	height: 50px;
+    
+    float: left;
+    
+    padding-top: 16px;
+    padding-bottom: 16px;
+    
+    box-sizing: border-box;
+
+    
+    /* background-color: #111; */
+    color: #1b1919;
+}
+#toast #desc{
+
+    
+    color: #1d1c1c;
+   
+    padding: 16px;
+    
+    overflow: hidden;
+	white-space: nowrap;
+}
+
+#toast.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, expand 0.5s 0.5s,stay 3s 1s, shrink 0.5s 2s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, expand 0.5s 0.5s,stay 3s 1s, shrink 0.5s 4s, fadeout 0.5s 4.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes expand {
+    from {min-width: 50px} 
+    to {min-width: 350px}
+}
+
+@keyframes expand {
+    from {min-width: 50px}
+    to {min-width: 350px}
+}
+@-webkit-keyframes stay {
+    from {min-width: 350px} 
+    to {min-width: 350px}
+}
+
+@keyframes stay {
+    from {min-width: 350px}
+    to {min-width: 350px}
+}
+@-webkit-keyframes shrink {
+    from {min-width: 350px;} 
+    to {min-width: 50px;}
+}
+
+@keyframes shrink {
+    from {min-width: 350px;} 
+    to {min-width: 50px;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 60px; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 60px; opacity: 0;}
+}
 </style>
