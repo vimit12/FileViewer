@@ -1,0 +1,1616 @@
+[
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-east-1",
+    "Stack Name": "sdad",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "WizLogsNotficationTopic",
+        "PhysicalResourceId": "arn:aws:sns:us-east-1:199971209548:wiz-cloudtrail-logs-topic",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-east-1",
+    "Stack Name": "WIZ-IO-SCANNER",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::IAM::Role",
+        "LogicalResourceId": "Role",
+        "PhysicalResourceId": "WizScannerRole-",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"AssumeRolePolicyDocument\":{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Condition\":{\"StringEquals\":{\"sts:ExternalId\":728299233685}},\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"arn:aws:iam::728299233685:root\"}}],\"Version\":\"2012-10-17\"},\"ManagedPolicyArns\":[\"arn:aws:iam::aws:policy/job-function/ViewOnlyAccess\"],\"Policies\":[{\"PolicyDocument\":{\"Statement\":[{\"Action\":\"kms:CreateAlias\",\"Effect\":\"Allow\",\"Resource\":[\"arn:aws:kms:*:*:key/*\",\"arn:aws:kms:*:*:alias/wizKey\"]},{\"Action\":\"ec2:CreateTags\",\"Effect\":\"Allow\",\"Resource\":\"arn:aws:ec2:*::snapshot/*\"},{\"Action\":[\"ecr-public:DescribeImages\",\"ecr-public:GetAuthorizationToken\",\"ecr:BatchGetImage\",\"ecr:DescribeImages\",\"ecr:ListTagsForResource\",\"ecr:GetRegistryPolicy\",\"ecr:GetAuthorizationToken\",\"ecr:GetDownloadUrlForLayer\",\"ecr-public:ListTagsForResource\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"kms:CreateGrant\",\"kms:ReEncryptFrom\"],\"Condition\":{\"StringLike\":{\"kms:ViaService\":\"ec2.*.amazonaws.com\"}},\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"kms:PutKeyPolicy\",\"kms:GetKeyPolicy\"],\"Condition\":{\"StringEquals\":{\"aws:ResourceTag/wiz\":\"auto-gen-cmk\"}},\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"ec2:GetEbsEncryptionByDefault\",\"ec2:DescribeSnapshots\",\"ec2:CreateSnapshot\",\"ec2:CopySnapshot\",\"kms:DescribeKey\",\"kms:CreateKey\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"ec2:DeleteSnapshot\",\"ec2:ModifySnapshotAttribute\"],\"Condition\":{\"StringEquals\":{\"ec2:ResourceTag/wiz\":\"auto-gen-snapshot\"}},\"Effect\":\"Allow\",\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"},\"PolicyName\":\"WizScannerPolicy\"},{\"PolicyDocument\":{\"Statement\":[{\"Action\":[\"ecr-public:GetAuthorizationToken\",\"ecr:BatchGetImage\",\"lambda:GetFunction\",\"ecr:GetAuthorizationToken\",\"lambda:GetLayerVersion\",\"ecr:GetDownloadUrlForLayer\"],\"Effect\":\"Allow\",\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"},\"PolicyName\":\"WizServerlessScanningPolicy\"}],\"RoleName\":\"WizScannerRole-\"}",
+        "ActualProperties": "{\"AssumeRolePolicyDocument\":{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Condition\":{\"StringEquals\":{\"sts:ExternalId\":\"52093525-fa19-488f-a5e1-501ce011af19\"}},\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"arn:aws:iam::199971209548:root\"}}],\"Version\":\"2012-10-17\"},\"ManagedPolicyArns\":[\"arn:aws:iam::aws:policy/job-function/ViewOnlyAccess\",\"arn:aws:iam::aws:policy/AWSDenyAll\"],\"Policies\":[{\"PolicyDocument\":{\"Statement\":[{\"Action\":\"kms:CreateAlias\",\"Effect\":\"Allow\",\"Resource\":[\"arn:aws:kms:*:*:key/*\",\"arn:aws:kms:*:*:alias/wizKey\"]},{\"Action\":\"ec2:CreateTags\",\"Effect\":\"Allow\",\"Resource\":\"arn:aws:ec2:*::snapshot/*\"},{\"Action\":[\"ecr-public:DescribeImages\",\"ecr-public:GetAuthorizationToken\",\"ecr:BatchGetImage\",\"ecr:DescribeImages\",\"ecr:ListTagsForResource\",\"ecr:GetRegistryPolicy\",\"ecr:GetAuthorizationToken\",\"ecr:GetDownloadUrlForLayer\",\"ecr-public:ListTagsForResource\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"kms:CreateGrant\",\"kms:ReEncryptFrom\"],\"Condition\":{\"StringLike\":{\"kms:ViaService\":\"ec2.*.amazonaws.com\"}},\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"kms:PutKeyPolicy\",\"kms:GetKeyPolicy\"],\"Condition\":{\"StringEquals\":{\"aws:ResourceTag/wiz\":\"auto-gen-cmk\"}},\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"ec2:GetEbsEncryptionByDefault\",\"ec2:DescribeSnapshots\",\"ec2:CreateSnapshot\",\"ec2:CopySnapshot\",\"kms:DescribeKey\",\"kms:CreateKey\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"ec2:DeleteSnapshot\",\"ec2:ModifySnapshotAttribute\"],\"Condition\":{\"StringEquals\":{\"ec2:ResourceTag/wiz\":\"auto-gen-snapshot\"}},\"Effect\":\"Allow\",\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"},\"PolicyName\":\"WizScannerPolicy\"},{\"PolicyDocument\":{\"Statement\":[{\"Action\":[\"ecr-public:GetAuthorizationToken\",\"ecr:BatchGetImage\",\"lambda:GetFunction\",\"ecr:GetAuthorizationToken\",\"lambda:GetLayerVersion\",\"ecr:GetDownloadUrlForLayer\"],\"Effect\":\"Allow\",\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"},\"PolicyName\":\"WizServerlessScanningPolicy\"}],\"RoleName\":\"WizScannerRole-\"}",
+        "PropertyDifferences": [
+          "/AssumeRolePolicyDocument/Statement/0/Condition/StringEquals/sts:ExternalId",
+          "/AssumeRolePolicyDocument/Statement/0/Principal/AWS",
+          "/ManagedPolicyArns/1"
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-east-1",
+    "Stack Name": "WIZ-IO-READONLY",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::IAM::Role",
+        "LogicalResourceId": "Role",
+        "PhysicalResourceId": "WizAccess-Role",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"AssumeRolePolicyDocument\":{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Condition\":{\"StringEquals\":{\"sts:ExternalId\":728299233685}},\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"arn:aws:iam::728299233685:root\"}}],\"Version\":\"2012-10-17\"},\"ManagedPolicyArns\":[\"arn:aws:iam::aws:policy/job-function/ViewOnlyAccess\",\"arn:aws:iam::aws:policy/SecurityAudit\"],\"Policies\":[{\"PolicyDocument\":{\"Statement\":[{\"Action\":[\"s3:GetBucketLocation\",\"s3:GetObjectTagging\",\"s3:ListBucket\",\"s3:GetObject\"],\"Effect\":\"Allow\",\"Resource\":[\"arn:aws:s3:::*cloudtrail*\",\"arn:aws:s3:::*terraform*\",\"arn:aws:s3:::*tf?state*\",\"arn:aws:s3:::elasticbeanstalk-*\",\"arn:aws:s3:::*tfstate*\"],\"Sid\":\"WizAccessS3\"},{\"Action\":[\"connect:ListInstances\",\"connect:ListInstanceAttributes\",\"sso-directory:ListMembersInGroup\",\"ec2:GetEbsEncryptionByDefault\",\"ses:ListReceiptFilters\",\"cloudtrail:GetInsightSelectors\",\"health:DescribeEventTypes\",\"dynamodb:ListExports\",\"kendra:ListTagsForResource\",\"kinesisanalytics:ListApplications\",\"wafv2:GetWebACLForResource\",\"glue:GetSecurityConfiguration\",\"kendra:ListDataSources\",\"glacier:GetDataRetrievalPolicy\",\"codebuild:ListProjects\",\"acm:GetCertificate\",\"ses:GetAccount\",\"wisdom:GetAssistant\",\"connect:ListIntegrationAssociations\",\"ses:ListDedicatedIpPools\",\"elasticmapreduce:GetAutoTerminationPolicy\",\"connect:ListApprovedOrigins\",\"health:DescribeHealthServiceStatusForOrganization\",\"cognito-identity:DescribeIdentityPool\",\"ses:GetEmailIdentity\",\"backup:GetBackupVaultAccessPolicy\",\"backup:ListBackupVaults\",\"glue:GetConnection\",\"identitystore:Describe*\",\"codebuild:BatchGetProjects\",\"eks:ListTagsForResource\",\"ses:DescribeActiveReceiptRuleSet\",\"elasticmapreduce:GetManagedScalingPolicy\",\"ecr:BatchGetImage\",\"health:DescribeAffectedEntities\",\"kafka:ListClusters\",\"kinesisvideo:ListStreams\",\"codebuild:GetResourcePolicy\",\"health:DescribeEventDetails\",\"health:DescribeEventDetailsForOrganization\",\"identitystore:List*\",\"sso-directory:Describe*\",\"kinesisvideo:GetDataEndpoint\",\"health:DescribeEntityAggregates\",\"connect:ListLexBots\",\"health:DescribeAffectedEntitiesForOrganization\",\"lambda:GetFunction\",\"kendra:DescribeDataSource\",\"ses:GetDedicatedIps\",\"s3:GetMultiRegionAccessPointPolicy\",\"logs:ListTagsForResource\",\"wafv2:GetLoggingConfiguration\",\"ec2:SearchTransitGatewayRoutes\",\"elasticfilesystem:DescribeAccessPoints\",\"ses:GetConfigurationSetEventDestinations\",\"s3:GetBucketNotification\",\"apigateway:GET\",\"health:DescribeEventAggregates\",\"kendra:DescribeIndex\",\"kendra:ListIndices\",\"kinesisanalytics:ListTagsForResource\",\"backup:ListTags\",\"ecr:GetRegistryPolicy\",\"elasticfilesystem:DescribeFileSystemPolicy\",\"health:DescribeEvents\",\"ses:ListConfigurationSets\",\"connect:ListLambdaFunctions\",\"profile:ListIntegrations\",\"ecr:GetAuthorizationToken\",\"kinesisanalytics:DescribeApplication\",\"profile:ListDomains\",\"cloudtrail:ListTrails\",\"glue:GetTags\",\"glacier:GetVaultLock\",\"ses:GetConfigurationSet\",\"lambda:GetLayerVersion\",\"voiceid:DescribeDomain\",\"dynamodb:DescribeExport\",\"backup:DescribeGlobalSettings\",\"dynamodb:DescribeKinesisStreamingDestination\",\"kinesisvideo:ListTagsForStream\",\"ecr:GetDownloadUrlForLayer\",\"s3:ListMultiRegionAccessPoints\",\"connect:ListSecurityKeys\",\"health:DescribeAffectedAccountsForOrganization\",\"health:DescribeEventsForOrganization\",\"kms:GetKeyRotationStatus\",\"kms:ListResourceTags\",\"backup:GetBackupVaultNotifications\",\"ecr-public:ListTagsForResource\",\"connect:ListInstanceStorageConfigs\",\"profile:GetDomain\"],\"Effect\":\"Allow\",\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"},\"PolicyName\":\"WizFullPolicy\"}],\"RoleName\":\"WizAccess-Role\"}",
+        "ActualProperties": "{\"AssumeRolePolicyDocument\":{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Condition\":{\"StringEquals\":{\"sts:ExternalId\":\"52093525-fa19-488f-a5e1-501ce011af19\"}},\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"arn:aws:iam::197171649850:role/prod-eu4-AssumeRoleDelegator\"}}],\"Version\":\"2012-10-17\"},\"ManagedPolicyArns\":[\"arn:aws:iam::aws:policy/job-function/ViewOnlyAccess\",\"arn:aws:iam::aws:policy/SecurityAudit\",\"arn:aws:iam::aws:policy/AWSDenyAll\"],\"Policies\":[{\"PolicyDocument\":{\"Statement\":[{\"Action\":[\"s3:GetBucketLocation\",\"s3:GetObjectTagging\",\"s3:ListBucket\",\"s3:GetObject\"],\"Effect\":\"Allow\",\"Resource\":[\"arn:aws:s3:::*cloudtrail*\",\"arn:aws:s3:::*terraform*\",\"arn:aws:s3:::*tf?state*\",\"arn:aws:s3:::elasticbeanstalk-*\",\"arn:aws:s3:::*tfstate*\"],\"Sid\":\"WizAccessS3\"},{\"Action\":[\"connect:ListInstances\",\"connect:ListInstanceAttributes\",\"sso-directory:ListMembersInGroup\",\"ec2:GetEbsEncryptionByDefault\",\"ses:ListReceiptFilters\",\"cloudtrail:GetInsightSelectors\",\"health:DescribeEventTypes\",\"dynamodb:ListExports\",\"kendra:ListTagsForResource\",\"kinesisanalytics:ListApplications\",\"wafv2:GetWebACLForResource\",\"glue:GetSecurityConfiguration\",\"kendra:ListDataSources\",\"glacier:GetDataRetrievalPolicy\",\"codebuild:ListProjects\",\"acm:GetCertificate\",\"ses:GetAccount\",\"wisdom:GetAssistant\",\"connect:ListIntegrationAssociations\",\"ses:ListDedicatedIpPools\",\"elasticmapreduce:GetAutoTerminationPolicy\",\"connect:ListApprovedOrigins\",\"health:DescribeHealthServiceStatusForOrganization\",\"cognito-identity:DescribeIdentityPool\",\"ses:GetEmailIdentity\",\"backup:GetBackupVaultAccessPolicy\",\"backup:ListBackupVaults\",\"glue:GetConnection\",\"identitystore:Describe*\",\"codebuild:BatchGetProjects\",\"eks:ListTagsForResource\",\"ses:DescribeActiveReceiptRuleSet\",\"elasticmapreduce:GetManagedScalingPolicy\",\"ecr:BatchGetImage\",\"health:DescribeAffectedEntities\",\"kafka:ListClusters\",\"kinesisvideo:ListStreams\",\"codebuild:GetResourcePolicy\",\"health:DescribeEventDetails\",\"health:DescribeEventDetailsForOrganization\",\"identitystore:List*\",\"sso-directory:Describe*\",\"kinesisvideo:GetDataEndpoint\",\"health:DescribeEntityAggregates\",\"connect:ListLexBots\",\"health:DescribeAffectedEntitiesForOrganization\",\"lambda:GetFunction\",\"kendra:DescribeDataSource\",\"ses:GetDedicatedIps\",\"s3:GetMultiRegionAccessPointPolicy\",\"logs:ListTagsForResource\",\"wafv2:GetLoggingConfiguration\",\"ec2:SearchTransitGatewayRoutes\",\"elasticfilesystem:DescribeAccessPoints\",\"ses:GetConfigurationSetEventDestinations\",\"s3:GetBucketNotification\",\"apigateway:GET\",\"health:DescribeEventAggregates\",\"kendra:DescribeIndex\",\"kendra:ListIndices\",\"kinesisanalytics:ListTagsForResource\",\"backup:ListTags\",\"ecr:GetRegistryPolicy\",\"elasticfilesystem:DescribeFileSystemPolicy\",\"health:DescribeEvents\",\"ses:ListConfigurationSets\",\"connect:ListLambdaFunctions\",\"profile:ListIntegrations\",\"ecr:GetAuthorizationToken\",\"kinesisanalytics:DescribeApplication\",\"profile:ListDomains\",\"cloudtrail:ListTrails\",\"glue:GetTags\",\"glacier:GetVaultLock\",\"ses:GetConfigurationSet\",\"lambda:GetLayerVersion\",\"voiceid:DescribeDomain\",\"dynamodb:DescribeExport\",\"backup:DescribeGlobalSettings\",\"dynamodb:DescribeKinesisStreamingDestination\",\"kinesisvideo:ListTagsForStream\",\"ecr:GetDownloadUrlForLayer\",\"s3:ListMultiRegionAccessPoints\",\"connect:ListSecurityKeys\",\"health:DescribeAffectedAccountsForOrganization\",\"health:DescribeEventsForOrganization\",\"kms:GetKeyRotationStatus\",\"kms:ListResourceTags\",\"backup:GetBackupVaultNotifications\",\"ecr-public:ListTagsForResource\",\"connect:ListInstanceStorageConfigs\",\"profile:GetDomain\"],\"Effect\":\"Allow\",\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"},\"PolicyName\":\"WizFullPolicy\"}],\"RoleName\":\"WizAccess-Role\"}",
+        "PropertyDifferences": [
+          "/ManagedPolicyArns/2",
+          "/AssumeRolePolicyDocument/Statement/0/Condition/StringEquals/sts:ExternalId",
+          "/AssumeRolePolicyDocument/Statement/0/Principal/AWS"
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-east-1",
+    "Stack Name": "SecretsManagerRDSMySQLRotationSingleUserc2f-SecretRotationScheduleHostedRotationLambda-VC36FNUGTPXN",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::Lambda::Permission",
+        "LogicalResourceId": "LambdaPermission",
+        "PhysicalResourceId": "SecretsManagerRDSMySQLRotationSingleUserc2f-SecretRotationScheduleHos-LambdaPermission-1H9H6XJ7FFRE9",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-east-1",
+    "Stack Name": "CreateSecret-test",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::SecretsManager::Secret",
+        "LogicalResourceId": "CloudFormationCreatedSecret",
+        "PhysicalResourceId": "arn:aws:secretsmanager:us-east-1:199971209548:secret:CloudFormationCreatedSecret-UUrmf9reKMXG-OqUQ49",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-east-1",
+    "Stack Name": "test-bt",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::EC2::Instance",
+        "LogicalResourceId": "BOTTesting",
+        "PhysicalResourceId": "i-0d3d98edfeedde12e",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-east-1",
+    "Stack Name": "No-Compliance-BOT",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::EC2::Instance",
+        "LogicalResourceId": "BOTTesting",
+        "PhysicalResourceId": "i-0f4ea7c98b4a3e150",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-east-1",
+    "Stack Name": "testBT",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::EC2::Instance",
+        "LogicalResourceId": "BOTTesting",
+        "PhysicalResourceId": "i-0ddcd819aa31754fb",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-east-1",
+    "Stack Name": "Compliance-BOT-Test",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::EC2::Instance",
+        "LogicalResourceId": "BOTTesting",
+        "PhysicalResourceId": "i-0be07167a679f8c8a",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-east-1",
+    "Stack Name": "Tst-Compliance-Resource",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::EC2::Instance",
+        "LogicalResourceId": "BOTTesting",
+        "PhysicalResourceId": "i-0017c70abb61aa423",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-east-1",
+    "Stack Name": "NON-Compliance-Resource-Test",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::EC2::Instance",
+        "LogicalResourceId": "BOTTesting",
+        "PhysicalResourceId": "i-0f302a97a40b0df8a",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-east-1",
+    "Stack Name": "Non-Compliance-Resource-Test",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::EC2::Instance",
+        "LogicalResourceId": "BOTTesting",
+        "PhysicalResourceId": "i-0dfdaab29a3663221",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-east-1",
+    "Stack Name": "Non-Compliance-Resource-Ng",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::EC2::Instance",
+        "LogicalResourceId": "BOTTesting",
+        "PhysicalResourceId": "i-07c4dc312050fb399",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-east-1",
+    "Stack Name": "NG-Non-Compliance-Resource",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::EC2::Instance",
+        "LogicalResourceId": "BOTTesting",
+        "PhysicalResourceId": "i-090291c7eb0e308cf",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-east-1",
+    "Stack Name": "NG-Compliance-Resource",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::EC2::Instance",
+        "LogicalResourceId": "BOTTesting",
+        "PhysicalResourceId": "i-0fadd973830613ead",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-east-1",
+    "Stack Name": "Test-Non-Compliance-Resource",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::EC2::Instance",
+        "LogicalResourceId": "BOTTesting",
+        "PhysicalResourceId": "i-04337b0b38cbbfa32",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-east-1",
+    "Stack Name": "Non-Compliant-Ec2",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::EC2::Instance",
+        "LogicalResourceId": "BOTTesting",
+        "PhysicalResourceId": "i-00ed6f1dc40828589",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-east-1",
+    "Stack Name": "EC2-Compute-NonCompliant",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::EC2::Instance",
+        "LogicalResourceId": "BOTTesting",
+        "PhysicalResourceId": "i-00ac5d5c82428eef7",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-east-1",
+    "Stack Name": "EC2-Compute-Compliant",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::EC2::Instance",
+        "LogicalResourceId": "BOTTesting",
+        "PhysicalResourceId": "i-0cf0d96697da72f48",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-east-1",
+    "Stack Name": "CFT-SSH-ALLOW",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::EC2::Instance",
+        "LogicalResourceId": "BOTTesting",
+        "PhysicalResourceId": "i-0a15ba586177fc34c",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-east-1",
+    "Stack Name": "novartis-ec2stack",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::EC2::Instance",
+        "LogicalResourceId": "BOTTesting",
+        "PhysicalResourceId": "i-03b321a2f825315be",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-east-1",
+    "Stack Name": "novartis-ec2",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::EC2::Instance",
+        "LogicalResourceId": "BOTTesting",
+        "PhysicalResourceId": "i-07f4895096622de54",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-east-1",
+    "Stack Name": "NOVARTISEXSBX41TSTEC2",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::EC2::Instance",
+        "LogicalResourceId": "BOTTesting",
+        "PhysicalResourceId": "i-08401d1bf3a99a4bc",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-east-1",
+    "Stack Name": "NVSGISEXSBX41-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:us-east-1:199971209548:NVSGISEXSBX41-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          "/Subscription"
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-east-1",
+    "Stack Name": "NVSGISEXSBX041-EXSBXADM-IAM",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::IAM::Role",
+        "LogicalResourceId": "RootRole",
+        "PhysicalResourceId": "RRCC_AWS_EXSBXADM",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"AssumeRolePolicyDocument\":{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"arn:aws:iam::304512965277:role/RRCC_AWS_EXSBXADM\"}}],\"Version\":\"2012-10-17\"},\"Path\":\"/\",\"Policies\":[{\"PolicyDocument\":{\"Statement\":[{\"Action\":[\"iam:SetDefaultPolicyVersion\",\"iam:CreatePolicyVersion\",\"cloudtrail:LookupEvents\",\"logs:Create*\",\"rds:CreateDBClusterParameterGroup\",\"iam:Get*\",\"s3:AbortMultipartUpload\",\"iam:CreatePolicy\",\"rds:CreateDBSecurityGroup\",\"rds:DeleteDBClusterParameterGroup\",\"config:StopConfigurationRecorder\",\"cloudwatch:List*\",\"rds:List*\",\"config:DeleteConfigRule\",\"s3:DeleteBucketPolicy\",\"ec2:Enable*\",\"ec2:UpdateSecurityGroupRuleDescriptionsIngress\",\"ec2:ReplaceRoute\",\"rds:DeleteDBParameterGroup\",\"cloudformation:UpdateTerminationProtection\",\"kms:Generate*\",\"iam:UpdateAccountPasswordPolicy\",\"sns:Create*\",\"kms:Delete*\",\"rds:Modify*\",\"ec2:Cancel*\",\"rds:DeleteDBSecurityGroup\",\"config:DeleteConfigurationRecorder\",\"config:StartConfigRulesEvaluation\",\"ec2:AuthorizeSecurityGroupEgress\",\"rds:DeleteOptionGroup\",\"iam:RemoveRoleFromInstanceProfile\",\"kms:PutKeyPolicy\",\"cloudformation:ValidateTemplate\",\"iam:AttachRolePolicy\",\"sns:Unsubscribe\",\"cloudtrail:DeleteTrail\",\"ec2:RevokeSecurityGroupIngress\",\"kms:Get*\",\"iam:List*\",\"ec2:AttachNetworkInterface\",\"cloudwatch:Get*\",\"iam:DeleteRole\",\"logs:UntagLogGroup\",\"ec2:Describe*\",\"config:List*\",\"iam:DeletePolicy\",\"cloudformation:SetStackPolicy\",\"cloudwatch:DeleteAlarms\",\"sns:Get*\",\"ec2:ReplaceRouteTableAssociation\",\"rds:DeleteDBSubnetGroup\",\"ec2:AssignPrivateIpAddresses\",\"ec2:AcceptVpcPeeringConnection\",\"iam:CreateSAMLProvider\",\"kms:UntagResource\",\"cloudwatch:Put*\",\"rds:CopyDBParameterGroup\",\"sns:Set*\",\"cloudtrail:StartLogging\",\"rds:Describe*\",\"logs:ListTagsLogGroup\",\"ec2:Modify*\",\"ec2:AssociateSubnetCidrBlock\",\"sns:RemovePermission\",\"cloudformation:DeleteStack\",\"cloudtrail:UpdateTrail\",\"sns:Subscribe\",\"logs:AssociateKmsKey\",\"cloudformation:SignalResource\",\"ec2:AttachVpnGateway\",\"cloudtrail:RemoveTags\",\"logs:TestMetricFilter\",\"config:Put*\",\"config:Describe*\",\"ec2:AssociateAddress\",\"cloudwatch:Set*\",\"config:DeliverConfigSnapshot\",\"ec2:CopySnapshot\",\"ec2:AcceptVpcEndpointConnections\",\"iam:PassRole\",\"cloudformation:EstimateTemplateCost\",\"ec2:RevokeSecurityGroupEgress\",\"ec2:AssociateDhcpOptions\",\"cloudtrail:AddTags\",\"kms:CancelKeyDeletion\",\"kms:EnableKeyRotation\",\"cloudtrail:List*\",\"kms:List*\",\"rds:Create*\",\"cloudformation:PreviewStackUpdate\",\"cloudformation:Get*\",\"cloudformation:List*\",\"iam:UpdateAssumeRolePolicy\",\"tag:*\",\"logs:Describe*\",\"cloudformation:Describe*\",\"iam:Update*\",\"s3:Put*\",\"ec2:AttachInternetGateway\",\"logs:TagLogGroup\",\"config:Get*\",\"cloudformation:Create*\",\"ec2:AssociateVpcCidrBlock\",\"cloudwatch:EnableAlarmActions\",\"config:DeleteDeliveryChannel\",\"s3:DeleteBucket\",\"s3:HeadBucket\",\"config:StartConfigurationRecorder\",\"iam:DeletePolicyVersion\",\"ec2:AllocateAddress\",\"config:*\",\"logs:FilterLogEvents\",\"s3:DeleteBucketWebsite\",\"kms:Create*\",\"cloudformation:DeleteChangeSet\",\"cloudtrail:Describe*\",\"sns:Delete*\",\"ec2:Get*\",\"iam:CreateInstanceProfile\",\"cloudformation:ContinueUpdateRollback\",\"iam:PutRolePolicy\",\"s3:ReplicateTags\",\"ec2:UnassignPrivateIpAddresses\",\"s3:Get*\",\"ec2:AuthorizeSecurityGroupIngress\",\"kms:Tag*\",\"logs:GetLogEvents\",\"logs:Put*\",\"config:DeleteEvaluationResults\",\"cloudtrail:Get*\",\"rds:AuthorizeDBSecurityGroupIngress\",\"iam:DetachRolePolicy\",\"ec2:Create*\",\"cloudformation:ExecuteChangeSet\",\"cloudformation:CancelUpdateStack\",\"s3:CreateBucket\",\"iam:DeleteRolePolicy\",\"s3:List*\",\"iam:DeleteInstanceProfile\",\"ec2:CopyImage\",\"rds:CreateOptionGroup\",\"ec2:ImportKeyPair\",\"cloudwatch:Describe*\",\"rds:CopyOptionGroup\",\"cloudtrail:Put*\",\"iam:AddRoleToInstanceProfile\",\"cloudtrail:CreateTrail\",\"iam:GenerateCredentialReport\",\"cloudformation:UpdateStack\",\"ec2:Detach*\",\"iam:CreateRole\",\"sns:Publish\",\"rds:CreateDBSubnetGroup\",\"logs:Delete*\",\"sns:List*\",\"kms:Describe*\",\"sns:ConfirmSubscription\",\"iam:DeleteAccountPasswordPolicy\",\"rds:AddTagsToResource\",\"cloudtrail:StopLogging\",\"kms:UpdateAlias\",\"ec2:AssociateRouteTable\",\"ec2:UpdateSecurityGroupRuleDescriptionsEgress\",\"iam:DeleteSAMLProvider\",\"logs:CancelExportTask\",\"ec2:Delete*\"],\"Effect\":\"Allow\",\"Resource\":\"*\",\"Sid\":\"Stmt1521651706124\"}],\"Version\":\"2012-10-17\"},\"PolicyName\":\"PRCCAWSEXSBXADM\"}],\"RoleName\":\"RRCC_AWS_EXSBXADM\"}",
+        "ActualProperties": "{\"AssumeRolePolicyDocument\":{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"arn:aws:iam::304512965277:role/RRCC_AWS_EXSBXADM\"}}],\"Version\":\"2012-10-17\"},\"Path\":\"/\",\"Policies\":[{\"PolicyDocument\":{\"Statement\":[{\"Action\":[\"iam:SetDefaultPolicyVersion\",\"iam:CreatePolicyVersion\",\"cloudtrail:LookupEvents\",\"logs:Create*\",\"rds:CreateDBClusterParameterGroup\",\"iam:Get*\",\"s3:AbortMultipartUpload\",\"iam:CreatePolicy\",\"rds:CreateDBSecurityGroup\",\"rds:DeleteDBClusterParameterGroup\",\"config:StopConfigurationRecorder\",\"cloudwatch:List*\",\"rds:List*\",\"config:DeleteConfigRule\",\"s3:DeleteBucketPolicy\",\"ec2:Enable*\",\"ec2:UpdateSecurityGroupRuleDescriptionsIngress\",\"ec2:ReplaceRoute\",\"rds:DeleteDBParameterGroup\",\"cloudformation:UpdateTerminationProtection\",\"kms:Generate*\",\"iam:UpdateAccountPasswordPolicy\",\"sns:Create*\",\"kms:Delete*\",\"rds:Modify*\",\"ec2:Cancel*\",\"rds:DeleteDBSecurityGroup\",\"config:DeleteConfigurationRecorder\",\"config:StartConfigRulesEvaluation\",\"ec2:AuthorizeSecurityGroupEgress\",\"rds:DeleteOptionGroup\",\"iam:RemoveRoleFromInstanceProfile\",\"kms:PutKeyPolicy\",\"cloudformation:ValidateTemplate\",\"iam:AttachRolePolicy\",\"sns:Unsubscribe\",\"cloudtrail:DeleteTrail\",\"ec2:RevokeSecurityGroupIngress\",\"kms:Get*\",\"iam:List*\",\"ec2:AttachNetworkInterface\",\"cloudwatch:Get*\",\"iam:DeleteRole\",\"logs:UntagLogGroup\",\"ec2:Describe*\",\"config:List*\",\"iam:DeletePolicy\",\"cloudformation:SetStackPolicy\",\"cloudwatch:DeleteAlarms\",\"sns:Get*\",\"ec2:ReplaceRouteTableAssociation\",\"rds:DeleteDBSubnetGroup\",\"ec2:AssignPrivateIpAddresses\",\"ec2:AcceptVpcPeeringConnection\",\"iam:CreateSAMLProvider\",\"kms:UntagResource\",\"cloudwatch:Put*\",\"rds:CopyDBParameterGroup\",\"sns:Set*\",\"cloudtrail:StartLogging\",\"rds:Describe*\",\"logs:ListTagsLogGroup\",\"ec2:Modify*\",\"ec2:AssociateSubnetCidrBlock\",\"sns:RemovePermission\",\"cloudformation:DeleteStack\",\"cloudtrail:UpdateTrail\",\"sns:Subscribe\",\"logs:AssociateKmsKey\",\"cloudformation:SignalResource\",\"ec2:AttachVpnGateway\",\"cloudtrail:RemoveTags\",\"logs:TestMetricFilter\",\"config:Put*\",\"config:Describe*\",\"ec2:AssociateAddress\",\"cloudwatch:Set*\",\"config:DeliverConfigSnapshot\",\"ec2:CopySnapshot\",\"ec2:AcceptVpcEndpointConnections\",\"iam:PassRole\",\"cloudformation:EstimateTemplateCost\",\"ec2:RevokeSecurityGroupEgress\",\"ec2:AssociateDhcpOptions\",\"cloudtrail:AddTags\",\"kms:CancelKeyDeletion\",\"kms:EnableKeyRotation\",\"cloudtrail:List*\",\"kms:List*\",\"rds:Create*\",\"cloudformation:PreviewStackUpdate\",\"cloudformation:Get*\",\"cloudformation:List*\",\"iam:UpdateAssumeRolePolicy\",\"tag:*\",\"logs:Describe*\",\"cloudformation:Describe*\",\"iam:Update*\",\"s3:Put*\",\"ec2:AttachInternetGateway\",\"logs:TagLogGroup\",\"config:Get*\",\"cloudformation:Create*\",\"ec2:AssociateVpcCidrBlock\",\"cloudwatch:EnableAlarmActions\",\"config:DeleteDeliveryChannel\",\"s3:DeleteBucket\",\"s3:HeadBucket\",\"config:StartConfigurationRecorder\",\"iam:DeletePolicyVersion\",\"ec2:AllocateAddress\",\"config:*\",\"logs:FilterLogEvents\",\"s3:DeleteBucketWebsite\",\"kms:Create*\",\"cloudformation:DeleteChangeSet\",\"cloudtrail:Describe*\",\"sns:Delete*\",\"ec2:Get*\",\"iam:CreateInstanceProfile\",\"cloudformation:ContinueUpdateRollback\",\"iam:PutRolePolicy\",\"s3:ReplicateTags\",\"ec2:UnassignPrivateIpAddresses\",\"s3:Get*\",\"ec2:AuthorizeSecurityGroupIngress\",\"kms:Tag*\",\"logs:GetLogEvents\",\"logs:Put*\",\"config:DeleteEvaluationResults\",\"cloudtrail:Get*\",\"rds:AuthorizeDBSecurityGroupIngress\",\"iam:DetachRolePolicy\",\"ec2:Create*\",\"cloudformation:ExecuteChangeSet\",\"cloudformation:CancelUpdateStack\",\"s3:CreateBucket\",\"iam:DeleteRolePolicy\",\"s3:List*\",\"iam:DeleteInstanceProfile\",\"ec2:CopyImage\",\"rds:CreateOptionGroup\",\"ec2:ImportKeyPair\",\"cloudwatch:Describe*\",\"rds:CopyOptionGroup\",\"cloudtrail:Put*\",\"iam:AddRoleToInstanceProfile\",\"cloudtrail:CreateTrail\",\"iam:GenerateCredentialReport\",\"cloudformation:UpdateStack\",\"ec2:Detach*\",\"iam:CreateRole\",\"sns:Publish\",\"rds:CreateDBSubnetGroup\",\"logs:Delete*\",\"sns:List*\",\"kms:Describe*\",\"sns:ConfirmSubscription\",\"iam:DeleteAccountPasswordPolicy\",\"rds:AddTagsToResource\",\"cloudtrail:StopLogging\",\"kms:UpdateAlias\",\"ec2:AssociateRouteTable\",\"ec2:UpdateSecurityGroupRuleDescriptionsEgress\",\"iam:DeleteSAMLProvider\",\"logs:CancelExportTask\",\"ec2:Delete*\",\"support:*\"],\"Effect\":\"Allow\",\"Resource\":\"*\",\"Sid\":\"Stmt1521651706124\"}],\"Version\":\"2012-10-17\"},\"PolicyName\":\"PRCCAWSEXSBXADM\"}],\"RoleName\":\"RRCC_AWS_EXSBXADM\"}",
+        "PropertyDifferences": [
+          "/Policies/0/PolicyDocument/Statement/0/Action/167"
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-east-2",
+    "Stack Name": "wiz-remediation-infra-stack",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::IAM::Role",
+        "LogicalResourceId": "LambdaRole",
+        "PhysicalResourceId": "Wiz-Test-Remediation-Stack-Role",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"AssumeRolePolicyDocument\":{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"lambda.amazonaws.com\"},\"Sid\":\"WizRemediationLambda\"}],\"Version\":\"2012-10-17\"},\"ManagedPolicyArns\":[\"arn:aws:iam::aws:policy/service-role/AWSLambdaSQSQueueExecutionRole\"],\"Policies\":[{\"PolicyDocument\":{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"},\"PolicyName\":\"AssumeRole\"},{\"PolicyDocument\":{\"Statement\":[{\"Action\":[\"ssm:GetParametersByPath\",\"ssm:GetParameter\",\"ssm:GetParameters\"],\"Effect\":\"Allow\",\"Resource\":[\"arn:aws:ssm:us-east-2:199971209548:parameter/playbook_lookup\",\"arn:aws:ssm:us-east-2:199971209548:parameter/playbook_lookup/AWS*\"],\"Sid\":\"WizRemediationSsmParameters20230815\"}],\"Version\":\"2012-10-17\"},\"PolicyName\":\"WizRemediationSsmParameters\"},{\"PolicyDocument\":{\"Statement\":[{\"Action\":[\"iam:CreatePolicyVersion\",\"ec2:ModifyInstanceAttribute\",\"ec2:DescribeImageAttribute\",\"s3:PutBucketLogging\",\"iam:UpdateAccountPasswordPolicy\",\"s3:PutBucketAcl\",\"sts:GetCallerIdentity\",\"ec2:ModifyNetworkInterfaceAttribute\",\"ec2:ModifyImageAttribute\",\"iam:PutUserPolicy\",\"iam:GetAccessKeyLastUsed\",\"ec2:CreateTags\",\"ec2:RevokeSecurityGroupIngress\",\"iam:UpdateAccessKey\",\"ec2:DescribeSnapshots\",\"ec2:CreateSnapshot\",\"rds:ModifyDBSnapshotAttribute\",\"rds:ModifyDBInstance\",\"ec2:DescribeSecurityGroups\",\"rds:DescribeDBSnapshotAttributes\",\"rds:DescribeDBInstances\",\"s3:GetBucketLogging\",\"kms:CancelKeyDeletion\",\"ec2:StopInstances\",\"iam:PutGroupPolicy\",\"ec2:DescribeSnapshotAttribute\",\"s3:PutBucketPublicAccessBlock\",\"ec2:DescribeInstances\",\"ec2:ModifySnapshotAttribute\",\"ec2:DescribeSecurityGroupRules\",\"iam:PutRolePolicy\",\"ec2:ModifyInstanceMetadataOptions\",\"ec2:ModifyInstanceMetadataOptions\",\"s3:CreateBucket\",\"redshift:ModifyCluster\",\"ec2:DisassociateIamInstanceProfile\",\"s3:PutBucketVersioning\",\"s3:GetBucketAcl\",\"redshift:DescribeClusters\",\"ec2:DescribeIamInstanceProfileAssociations\"],\"Effect\":\"Allow\",\"Resource\":\"*\",\"Sid\":\"WizRemediation20230815\"}],\"Version\":\"2012-10-17\"},\"PolicyName\":\"WizRemediation\"}],\"RoleName\":\"Wiz-Test-Remediation-Stack-Role\"}",
+        "ActualProperties": "{\"AssumeRolePolicyDocument\":{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"lambda.amazonaws.com\"},\"Sid\":\"WizRemediationLambda\"}],\"Version\":\"2012-10-17\"},\"ManagedPolicyArns\":[\"arn:aws:iam::aws:policy/service-role/AWSLambdaSQSQueueExecutionRole\"],\"Policies\":[{\"PolicyDocument\":{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"},\"PolicyName\":\"AssumeRole\"},{\"PolicyDocument\":{\"Statement\":[{\"Action\":[\"ssm:GetParametersByPath\",\"ssm:GetParameter\",\"ssm:GetParameters\"],\"Effect\":\"Allow\",\"Resource\":[\"arn:aws:ssm:us-east-2:199971209548:parameter/playbook_lookup\",\"arn:aws:ssm:us-east-2:199971209548:parameter/playbook_lookup/AWS*\"],\"Sid\":\"WizRemediationSsmParameters20230815\"}],\"Version\":\"2012-10-17\"},\"PolicyName\":\"WizRemediationSsmParameters\"},{\"PolicyDocument\":{\"Statement\":[{\"Action\":[\"iam:CreatePolicyVersion\",\"ec2:ModifyInstanceAttribute\",\"ec2:DescribeImageAttribute\",\"s3:PutBucketLogging\",\"iam:UpdateAccountPasswordPolicy\",\"s3:PutBucketAcl\",\"sts:GetCallerIdentity\",\"ec2:ModifyNetworkInterfaceAttribute\",\"ec2:ModifyImageAttribute\",\"iam:PutUserPolicy\",\"iam:GetAccessKeyLastUsed\",\"ec2:CreateTags\",\"ec2:RevokeSecurityGroupIngress\",\"iam:UpdateAccessKey\",\"ec2:DescribeSnapshots\",\"ec2:CreateSnapshot\",\"rds:ModifyDBSnapshotAttribute\",\"rds:ModifyDBInstance\",\"ec2:DescribeSecurityGroups\",\"rds:DescribeDBSnapshotAttributes\",\"rds:DescribeDBInstances\",\"s3:GetBucketLogging\",\"kms:CancelKeyDeletion\",\"ec2:StopInstances\",\"iam:PutGroupPolicy\",\"ec2:DescribeSnapshotAttribute\",\"s3:PutBucketPublicAccessBlock\",\"ec2:DescribeInstances\",\"ec2:ModifySnapshotAttribute\",\"ec2:DescribeSecurityGroupRules\",\"iam:PutRolePolicy\",\"ec2:ModifyInstanceMetadataOptions\",\"ec2:ModifyInstanceMetadataOptions\",\"s3:CreateBucket\",\"redshift:ModifyCluster\",\"ec2:DisassociateIamInstanceProfile\",\"s3:PutBucketVersioning\",\"s3:GetBucketAcl\",\"redshift:DescribeClusters\",\"ec2:DescribeIamInstanceProfileAssociations\",\"s3:PutBucketPolicy\",\"sagemaker:DeleteNotebookInstance\",\"ec2:DeleteInternetGateway\",\"sns:SetTopicAttributes\",\"s3:GetBucketPolicy\",\"ec2:DescribeInternetGateways\",\"redshift:ModifyClusterParameterGroup\",\"kms:EnableKeyRotation\",\"eks:UpdateClusterConfig\",\"ecr-public:SetRepositoryPolicy\",\"ecr-public:DeleteRepositoryPolicy\",\"kms:DescribeKey\",\"sagemaker:StopNotebookInstance\",\"ecr-public:GetRepositoryPolicy\",\"kms:GetKeyRotationStatus\",\"ec2:DetachInternetGateway\",\"es:UpdateElasticsearchDomainConfig\"],\"Effect\":\"Allow\",\"Resource\":\"*\",\"Sid\":\"WizRemediation20230815\"}],\"Version\":\"2012-10-17\"},\"PolicyName\":\"WizRemediation\"}],\"RoleName\":\"Wiz-Test-Remediation-Stack-Role\"}",
+        "PropertyDifferences": [
+          "/Policies/2/PolicyDocument/Statement/0/Action/48",
+          "/Policies/2/PolicyDocument/Statement/0/Action/47",
+          "/Policies/2/PolicyDocument/Statement/0/Action/49",
+          "/Policies/2/PolicyDocument/Statement/0/Action/44",
+          "/Policies/2/PolicyDocument/Statement/0/Action/55",
+          "/Policies/2/PolicyDocument/Statement/0/Action/43",
+          "/Policies/2/PolicyDocument/Statement/0/Action/54",
+          "/Policies/2/PolicyDocument/Statement/0/Action/46",
+          "/Policies/2/PolicyDocument/Statement/0/Action/45",
+          "/Policies/2/PolicyDocument/Statement/0/Action/56",
+          "/Policies/2/PolicyDocument/Statement/0/Action/40",
+          "/Policies/2/PolicyDocument/Statement/0/Action/51",
+          "/Policies/2/PolicyDocument/Statement/0/Action/50",
+          "/Policies/2/PolicyDocument/Statement/0/Action/42",
+          "/Policies/2/PolicyDocument/Statement/0/Action/53",
+          "/Policies/2/PolicyDocument/Statement/0/Action/41",
+          "/Policies/2/PolicyDocument/Statement/0/Action/52"
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-east-2",
+    "Stack Name": "NVSGISEXSBX41-KMS",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::KMS::Key",
+        "LogicalResourceId": "CloudTrailKMS",
+        "PhysicalResourceId": "9176ce41-7ad4-47a0-9968-a2aa07affa1b",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-east-2",
+    "Stack Name": "NVSGISEXSBX41-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:us-east-2:199971209548:NVSGISEXSBX41-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          "/Subscription"
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-west-1",
+    "Stack Name": "NVSGISEXSBX41-KMS",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::KMS::Key",
+        "LogicalResourceId": "CloudTrailKMS",
+        "PhysicalResourceId": "d8cbf35f-ae13-4951-835b-569b5c32b30d",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-west-1",
+    "Stack Name": "NVSGISEXSBX41-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:us-west-1:199971209548:NVSGISEXSBX41-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          "/Subscription"
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-west-2",
+    "Stack Name": "NVSGISEXSBX41-KMS",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::KMS::Key",
+        "LogicalResourceId": "CloudTrailKMS",
+        "PhysicalResourceId": "97f1b6e7-b8d4-4719-94da-20296dd4bbe8",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "us-west-2",
+    "Stack Name": "NVSGISEXSBX41-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:us-west-2:199971209548:NVSGISEXSBX41-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          "/Subscription"
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "ap-south-1",
+    "Stack Name": "NVSGISEXSBX41-KMS",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::KMS::Key",
+        "LogicalResourceId": "CloudTrailKMS",
+        "PhysicalResourceId": "6d0766bc-0eed-4f83-86fa-49e4c862c594",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "ap-south-1",
+    "Stack Name": "NVSGISEXSBX41-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:ap-south-1:199971209548:NVSGISEXSBX41-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          "/Subscription"
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "ap-northeast-3",
+    "Stack Name": "NVSGISEXSBX41-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:ap-northeast-3:199971209548:NVSGISEXSBX41-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          "/Subscription"
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "ap-northeast-2",
+    "Stack Name": "NVSGISEXSBX41-KMS",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::KMS::Key",
+        "LogicalResourceId": "CloudTrailKMS",
+        "PhysicalResourceId": "1d40d1b5-dd1c-478f-8040-14ac559f8338",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "ap-northeast-2",
+    "Stack Name": "NVSGISEXSBX41-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:ap-northeast-2:199971209548:NVSGISEXSBX41-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          "/Subscription"
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "ap-southeast-1",
+    "Stack Name": "NVSGISEXSBX41-KMS",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::KMS::Key",
+        "LogicalResourceId": "CloudTrailKMS",
+        "PhysicalResourceId": "7d768dc2-f11d-4d0b-bcca-f1c66d61d73a",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "ap-southeast-1",
+    "Stack Name": "NVSGISEXSBX41-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:ap-southeast-1:199971209548:NVSGISEXSBX41-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          "/Subscription"
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "ap-southeast-2",
+    "Stack Name": "NVSGISEXSBX41-KMS",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::KMS::Key",
+        "LogicalResourceId": "CloudTrailKMS",
+        "PhysicalResourceId": "a743d494-4e36-4b10-86bc-639c0164949e",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "ap-southeast-2",
+    "Stack Name": "NVSGISEXSBX41-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:ap-southeast-2:199971209548:NVSGISEXSBX41-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          "/Subscription"
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "ca-central-1",
+    "Stack Name": "NVSGISEXSBX41-KMS",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::KMS::Key",
+        "LogicalResourceId": "CloudTrailKMS",
+        "PhysicalResourceId": "53998091-3e86-49bd-a7e3-e14aaf36bda2",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "ca-central-1",
+    "Stack Name": "NVSGISEXSBX41-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:ca-central-1:199971209548:NVSGISEXSBX41-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          "/Subscription"
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "eu-central-1",
+    "Stack Name": "sharma3s-s3-compliant",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::S3::Bucket",
+        "LogicalResourceId": "StorageContainer",
+        "PhysicalResourceId": "sharma3s-s3-compliant",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "eu-central-1",
+    "Stack Name": "sharma3s-s3-non-compliant",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::S3::Bucket",
+        "LogicalResourceId": "StorageContainer",
+        "PhysicalResourceId": "sharma3s-s3-non-compliant",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "eu-central-1",
+    "Stack Name": "NANDAMU1-SNS-BOT-NC",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "ICSbotNonCompliantResource",
+        "PhysicalResourceId": "arn:aws:sns:eu-central-1:199971209548:nandamu1-sns-bot-non-compliant",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "eu-central-1",
+    "Stack Name": "NANDAMU1-SNS-BOT-Compliant",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "ICSbotCompliantResource",
+        "PhysicalResourceId": "arn:aws:sns:eu-central-1:199971209548:nandamu1-sns-bot-compliant",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "eu-central-1",
+    "Stack Name": "Non-Compliance-default-secgrp",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::EC2::Instance",
+        "LogicalResourceId": "BOTTesting",
+        "PhysicalResourceId": "i-011e0ba2fc0807193",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "eu-central-1",
+    "Stack Name": "NG-Non-Compliance-default-secgrp",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::EC2::Instance",
+        "LogicalResourceId": "BOTTesting",
+        "PhysicalResourceId": "i-062da9b9421845287",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": null,
+        "Message": "Drift detection not supported for BOTTesting. Skipping."
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "eu-central-1",
+    "Stack Name": "NG-Compliance-non-default-secgrp",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::EC2::Instance",
+        "LogicalResourceId": "BOTTesting",
+        "PhysicalResourceId": "i-0e155eff9870f7193",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "eu-central-1",
+    "Stack Name": "test",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::EC2::Instance",
+        "LogicalResourceId": "BOTTesting",
+        "PhysicalResourceId": "i-0a625fe8353344812",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "eu-central-1",
+    "Stack Name": "NVSGISEXSBX41-KMS",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::KMS::Key",
+        "LogicalResourceId": "CloudTrailKMS",
+        "PhysicalResourceId": "9fd1037b-cb4c-4d03-9d00-9ff94befe771",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "eu-central-1",
+    "Stack Name": "NVSGISEXSBX41-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:eu-central-1:199971209548:NVSGISEXSBX41-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          "/Subscription"
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "eu-west-1",
+    "Stack Name": "awseb-e-av7ymvammx-stack",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::AutoScaling::AutoScalingGroup",
+        "LogicalResourceId": "AWSEBAutoScalingGroup",
+        "PhysicalResourceId": "awseb-e-av7ymvammx-stack-AWSEBAutoScalingGroup-ameo4xrXV5VD",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      },
+      {
+        "ResourceType": "AWS::EC2::EIP",
+        "LogicalResourceId": "AWSEBEIP",
+        "PhysicalResourceId": "34.242.150.205",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "eu-west-1",
+    "Stack Name": "awseb-e-kqmm2vmk7n-stack",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::AutoScaling::AutoScalingGroup",
+        "LogicalResourceId": "AWSEBAutoScalingGroup",
+        "PhysicalResourceId": "awseb-e-kqmm2vmk7n-stack-AWSEBAutoScalingGroup-fuaT3nphb7YD",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      },
+      {
+        "ResourceType": "AWS::AutoScaling::ScalingPolicy",
+        "LogicalResourceId": "AWSEBAutoScalingScaleDownPolicy",
+        "PhysicalResourceId": "arn:aws:autoscaling:eu-west-1:199971209548:scalingPolicy:5c84cee5-f9f0-4835-b3f6-4468e3a10919:autoScalingGroupName/awseb-e-kqmm2vmk7n-stack-AWSEBAutoScalingGroup-fuaT3nphb7YD:policyName/awseb-e-kqmm2vmk7n-stack-AWSEBAutoScalingScaleDownPolicy-QxdcffJegYu4",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      },
+      {
+        "ResourceType": "AWS::AutoScaling::ScalingPolicy",
+        "LogicalResourceId": "AWSEBAutoScalingScaleUpPolicy",
+        "PhysicalResourceId": "arn:aws:autoscaling:eu-west-1:199971209548:scalingPolicy:eeb77647-45d4-473e-895d-cdce47c2c072:autoScalingGroupName/awseb-e-kqmm2vmk7n-stack-AWSEBAutoScalingGroup-fuaT3nphb7YD:policyName/awseb-e-kqmm2vmk7n-stack-AWSEBAutoScalingScaleUpPolicy-kI2QFOIOtsCr",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      },
+      {
+        "ResourceType": "AWS::CloudWatch::Alarm",
+        "LogicalResourceId": "AWSEBCloudwatchAlarmHigh",
+        "PhysicalResourceId": "awseb-e-kqmm2vmk7n-stack-AWSEBCloudwatchAlarmHigh-xmlTAgfVQNOr",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      },
+      {
+        "ResourceType": "AWS::CloudWatch::Alarm",
+        "LogicalResourceId": "AWSEBCloudwatchAlarmLow",
+        "PhysicalResourceId": "awseb-e-kqmm2vmk7n-stack-AWSEBCloudwatchAlarmLow-AFe6080EhdYn",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      },
+      {
+        "ResourceType": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+        "LogicalResourceId": "AWSEBV2LoadBalancer",
+        "PhysicalResourceId": "arn:aws:elasticloadbalancing:eu-west-1:199971209548:loadbalancer/app/awseb--AWSEB-at4s1cUt1hRs/bca491e3da9f7a48",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      },
+      {
+        "ResourceType": "AWS::ElasticLoadBalancingV2::Listener",
+        "LogicalResourceId": "AWSEBV2LoadBalancerListener",
+        "PhysicalResourceId": "arn:aws:elasticloadbalancing:eu-west-1:199971209548:listener/app/awseb--AWSEB-at4s1cUt1hRs/bca491e3da9f7a48/204158febc21bea6",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "eu-west-1",
+    "Stack Name": "myteststack",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::IAM::Role",
+        "LogicalResourceId": "Role",
+        "PhysicalResourceId": "dut",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"AssumeRolePolicyDocument\":{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Condition\":{\"StringEquals\":{\"sts:ExternalId\":\"52093525-fa19-488f-a5e1-501ce011af19\"}},\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"arn:aws:iam::197171649850:role/prod-eu4-AssumeRoleDelegator\"}}],\"Version\":\"2012-10-17\"},\"ManagedPolicyArns\":[\"arn:aws:iam::aws:policy/job-function/ViewOnlyAccess\",\"arn:aws:iam::aws:policy/SecurityAudit\",\"arn:aws:iam::199971209548:policy/PWIZAWSFULLPOLICYx\",\"arn:aws:iam::199971209548:policy/PWIZAWSDENYWORKLOADSCANNINGPOLICYx\"],\"RoleName\":\"dut\",\"Tags\":[{\"Key\":\"ExceptionList\",\"Value\":\"NVS_IAM_USER_IDENTITY-EXC025\"}]}",
+        "ActualProperties": "{\"AssumeRolePolicyDocument\":{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Condition\":{\"StringEquals\":{\"sts:ExternalId\":\"52093525-fa19-488f-a5e1-501ce011af19\"}},\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"arn:aws:iam::197171649850:role/prod-eu4-AssumeRoleDelegator\"}}],\"Version\":\"2012-10-17\"},\"ManagedPolicyArns\":[\"arn:aws:iam::aws:policy/job-function/ViewOnlyAccess\",\"arn:aws:iam::aws:policy/SecurityAudit\"],\"RoleName\":\"dut\",\"Tags\":[{\"Key\":\"ExceptionList\",\"Value\":\"NVS_IAM_USER_IDENTITY-EXC025\"}]}",
+        "PropertyDifferences": [
+          "/ManagedPolicyArns/3",
+          "/ManagedPolicyArns/2"
+        ],
+        "Message": null
+      },
+      {
+        "ResourceType": "AWS::IAM::ManagedPolicy",
+        "LogicalResourceId": "WizDenyWorkloadScanningPolicy",
+        "PhysicalResourceId": "arn:aws:iam::199971209548:policy/PWIZAWSDENYWORKLOADSCANNINGPOLICYx",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      },
+      {
+        "ResourceType": "AWS::IAM::ManagedPolicy",
+        "LogicalResourceId": "WizFullPolicy",
+        "PhysicalResourceId": "arn:aws:iam::199971209548:policy/PWIZAWSFULLPOLICYx",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "eu-west-1",
+    "Stack Name": "tst",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::EC2::SecurityGroup",
+        "LogicalResourceId": "TestSG",
+        "PhysicalResourceId": "sg-04903ea65c9d26a5e",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"GroupDescription\":\"Security Group of FSx\",\"GroupName\":\"Firewall TestSG\",\"SecurityGroupEgress\":[{\"CidrIp\":\"10.0.0.0/8\",\"FromPort\":0,\"IpProtocol\":\"tcp\",\"ToPort\":65535}],\"SecurityGroupIngress\":[{\"CidrIp\":\"72.21.210.29/32\",\"FromPort\":22,\"IpProtocol\":\"tcp\",\"ToPort\":22},{\"CidrIp\":\"0.0.0.0/0\",\"FromPort\":22,\"IpProtocol\":\"tcp\",\"ToPort\":22},{\"CidrIp\":\"72.21.210.29/32\",\"FromPort\":3389,\"IpProtocol\":\"tcp\",\"ToPort\":3389},{\"CidrIp\":\"0.0.0.0/0\",\"FromPort\":22,\"IpProtocol\":\"tcp\",\"ToPort\":22},{\"CidrIp\":\"72.21.210.28/32\",\"FromPort\":443,\"IpProtocol\":\"tcp\",\"ToPort\":443}],\"VpcId\":\"vpc-02b2b0af96d019918\"}",
+        "ActualProperties": "{\"GroupDescription\":\"Security Group of FSx\",\"GroupName\":\"Firewall TestSG\",\"SecurityGroupEgress\":[{\"CidrIp\":\"10.0.0.0/8\",\"FromPort\":0,\"IpProtocol\":\"tcp\",\"ToPort\":65535}],\"VpcId\":\"vpc-02b2b0af96d019918\"}",
+        "PropertyDifferences": [
+          "/SecurityGroupIngress"
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "eu-west-1",
+    "Stack Name": "PrismaCloudApp",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::IAM::Role",
+        "LogicalResourceId": "PrismaCloudRole",
+        "PhysicalResourceId": "PrismaCloudRole-1101544213017875456",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"AssumeRolePolicyDocument\":{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Condition\":{\"StringEquals\":{\"sts:ExternalId\":\"8b1fdb87-5d41-4249-932e-1a8ce5e1cac9\"}},\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"arn:aws:iam::188619942792:root\"}}],\"Version\":\"2012-10-17\"},\"ManagedPolicyArns\":[\"arn:aws:iam::199971209548:policy/prisma_cloud_5-1101544213017875456-PrismaCloudRole-1101544213017875456\",\"arn:aws:iam::199971209548:policy/prisma_cloud_2-1101544213017875456-PrismaCloudRole-1101544213017875456\",\"arn:aws:iam::199971209548:policy/prisma_cloud_4-1101544213017875456-PrismaCloudRole-1101544213017875456\",\"arn:aws:iam::199971209548:policy/prisma_cloud_1-1101544213017875456-PrismaCloudRole-1101544213017875456\",\"arn:aws:iam::aws:policy/SecurityAudit\",\"arn:aws:iam::199971209548:policy/prisma_cloud_3-1101544213017875456-PrismaCloudRole-1101544213017875456\"],\"MaxSessionDuration\":43200,\"RoleName\":\"PrismaCloudRole-1101544213017875456\"}",
+        "ActualProperties": "{\"AssumeRolePolicyDocument\":{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"arn:aws:iam::199971209548:role/PrismaCloudRole-1101544213017875456\"}}],\"Version\":\"2012-10-17\"},\"ManagedPolicyArns\":[\"arn:aws:iam::199971209548:policy/prisma_cloud_5-1101544213017875456-PrismaCloudRole-1101544213017875456\",\"arn:aws:iam::199971209548:policy/prisma_cloud_2-1101544213017875456-PrismaCloudRole-1101544213017875456\",\"arn:aws:iam::199971209548:policy/prisma_cloud_4-1101544213017875456-PrismaCloudRole-1101544213017875456\",\"arn:aws:iam::199971209548:policy/prisma_cloud_1-1101544213017875456-PrismaCloudRole-1101544213017875456\",\"arn:aws:iam::aws:policy/SecurityAudit\",\"arn:aws:iam::199971209548:policy/prisma_cloud_3-1101544213017875456-PrismaCloudRole-1101544213017875456\"],\"MaxSessionDuration\":43200,\"RoleName\":\"PrismaCloudRole-1101544213017875456\"}",
+        "PropertyDifferences": [
+          "/AssumeRolePolicyDocument/Statement/0/Condition",
+          "/AssumeRolePolicyDocument/Statement/0/Principal/AWS"
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "eu-west-1",
+    "Stack Name": "WIZ-OUTPOSTS-ROLE",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::IAM::Role",
+        "LogicalResourceId": "OrchestratorEKSRole",
+        "PhysicalResourceId": "WizOrchestratorEKSRole",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"AssumeRolePolicyDocument\":{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"eks.amazonaws.com\"}}],\"Version\":\"2012-10-17\"},\"ManagedPolicyArns\":[\"arn:aws:iam::aws:policy/AmazonEKSClusterPolicy\"],\"RoleName\":\"WizOrchestratorEKSRole\",\"Tags\":[{\"Key\":\"WIZ_POC\",\"Value\":true}]}",
+        "ActualProperties": "{\"AssumeRolePolicyDocument\":{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"eks.amazonaws.com\"}}],\"Version\":\"2012-10-17\"},\"ManagedPolicyArns\":[\"arn:aws:iam::aws:policy/AmazonEKSClusterPolicy\",\"arn:aws:iam::aws:policy/AWSDenyAll\"],\"RoleName\":\"WizOrchestratorEKSRole\",\"Tags\":[{\"Key\":\"WIZ_POC\",\"Value\":true}]}",
+        "PropertyDifferences": [
+          "/ManagedPolicyArns/1"
+        ],
+        "Message": null
+      },
+      {
+        "ResourceType": "AWS::IAM::Role",
+        "LogicalResourceId": "OrchestratorNodePoolRole",
+        "PhysicalResourceId": "WizOrchestratorNodePoolRole",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"AssumeRolePolicyDocument\":{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"ec2.amazonaws.com\"}}],\"Version\":\"2012-10-17\"},\"ManagedPolicyArns\":[\"arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly\",\"arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy\",\"arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy\"],\"Policies\":[{\"PolicyDocument\":{\"Statement\":[{\"Action\":[\"ec2:DeleteSnapshot\",\"ec2:DeleteVolume\"],\"Condition\":{\"StringEquals\":{\"ec2:ResourceTag/wiz\":\"auto-gen-volume\"}},\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Resource\":\"arn:aws:iam::*:role/*WizScannerRole*\"},{\"Action\":[\"secretsmanager:GetSecretValue\",\"secretsmanager:DescribeSecret\"],\"Effect\":\"Allow\",\"Resource\":\"arn:aws:secretsmanager:*:*:secret:wiz/*\"},{\"Action\":[\"ec2:GetEbsEncryptionByDefault\",\"ec2:CreateTags\",\"ec2:DescribeSnapshots\",\"ec2:CreateSnapshot\",\"secretsmanager:ListSecrets\",\"ec2:GetEbsDefaultKmsKeyId\",\"kms:ReEncryptFrom\",\"ec2:DetachVolume\",\"ec2:CreateVolume\",\"ec2:AttachVolume\",\"ec2:DescribeInstances\",\"ec2:DescribeVolumes\",\"ebs:*\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"sqs:GetQueueAttributes\",\"sqs:ListQueues\",\"sqs:DeleteMessage\",\"sqs:PurgeQueue\",\"sqs:ReceiveMessage\",\"sqs:ReceiveMessage\",\"sqs:DeleteMessageBatch\",\"sqs:GetQueueUrl\",\"sqs:ListQueueTags\"],\"Effect\":\"Allow\",\"Resource\":\"arn:aws:sqs:*:*:diskanalyzer-scans*\"},{\"Action\":[\"autoscaling:DescribeLaunchConfigurations\",\"autoscaling:DescribeAutoScalingGroups\",\"autoscaling:SetDesiredCapacity\",\"autoscaling:DescribeAutoScalingInstances\",\"ec2:DescribeLaunchTemplateVersions\",\"autoscaling:TerminateInstanceInAutoScalingGroup\",\"autoscaling:DescribeTags\"],\"Effect\":\"Allow\",\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"},\"PolicyName\":\"WizOrchestratorNodePoolPolicy\"},{\"PolicyDocument\":{\"Statement\":[{\"Action\":[\"rds:ModifyDBSubnetGroup\",\"rds:CreateDBSecurityGroup\",\"rds:DescribeDBSubnetGroups\",\"rds:ModifyDBCluster\",\"rds:RestoreDBClusterFromSnapshot\",\"rds:DeleteDBSnapshot\",\"rds:CreateDBInstance\",\"ec2:DescribeAvailabilityZones\",\"rds:DeleteDBSubnetGroup\",\"rds:DescribeDBClusterSnapshots\",\"rds:DescribeDBClusters\",\"rds:CopyDBClusterSnapshot\",\"rds:ModifyDBInstance\",\"rds:DescribeDBInstances\",\"redshift:DeleteCluster\",\"redshift:RestoreFromClusterSnapshot\",\"rds:DeleteDBClusterSnapshot\",\"rds:CreateDBCluster\",\"rds:DeleteDBInstance\",\"rds:CopyDBSnapshot\",\"rds:DescribeOrderableDBInstanceOptions\",\"rds:ListTagsForResource\",\"rds:DescribeDBSnapshots\",\"rds:DeleteDBCluster\",\"redshift:ModifyCluster\",\"rds:RestoreDBInstanceFromDBSnapshot\",\"rds:CreateDBSubnetGroup\",\"rds:CreateDBSubnetGroup\",\"rds:AddTagsToResource\",\"redshift:DescribeClusters\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"kms:ReEncrypt*\",\"kms:CreateGrant\"],\"Condition\":{\"StringLike\":{\"kms:ViaService\":\"rds.*.amazonaws.com\"}},\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":\"iam:CreateServiceLinkedRole\",\"Condition\":{\"StringLike\":{\"iam:AWSServiceName\":\"rds.amazonaws.com\"}},\"Effect\":\"Allow\",\"Resource\":\"arn:aws:iam::*:role/aws-service-role/rds.amazonaws.com/AWSServiceRoleForRDS\"}],\"Version\":\"2012-10-17\"},\"PolicyName\":\"WizOrchestratorNodePoolPolicyData\"}],\"RoleName\":\"WizOrchestratorNodePoolRole\",\"Tags\":[{\"Key\":\"WIZ_POC\",\"Value\":true}]}",
+        "ActualProperties": "{\"AssumeRolePolicyDocument\":{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"ec2.amazonaws.com\"}}],\"Version\":\"2012-10-17\"},\"ManagedPolicyArns\":[\"arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly\",\"arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy\",\"arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy\",\"arn:aws:iam::aws:policy/AWSDenyAll\"],\"Policies\":[{\"PolicyDocument\":{\"Statement\":[{\"Action\":[\"ec2:DeleteSnapshot\",\"ec2:DeleteVolume\"],\"Condition\":{\"StringEquals\":{\"ec2:ResourceTag/wiz\":\"auto-gen-volume\"}},\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Resource\":\"arn:aws:iam::*:role/*WizScannerRole*\"},{\"Action\":[\"secretsmanager:GetSecretValue\",\"secretsmanager:DescribeSecret\"],\"Effect\":\"Allow\",\"Resource\":\"arn:aws:secretsmanager:*:*:secret:wiz/*\"},{\"Action\":[\"ec2:GetEbsEncryptionByDefault\",\"ec2:CreateTags\",\"ec2:DescribeSnapshots\",\"ec2:CreateSnapshot\",\"secretsmanager:ListSecrets\",\"ec2:GetEbsDefaultKmsKeyId\",\"kms:ReEncryptFrom\",\"ec2:DetachVolume\",\"ec2:CreateVolume\",\"ec2:AttachVolume\",\"ec2:DescribeInstances\",\"ec2:DescribeVolumes\",\"ebs:*\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"sqs:GetQueueAttributes\",\"sqs:ListQueues\",\"sqs:DeleteMessage\",\"sqs:PurgeQueue\",\"sqs:ReceiveMessage\",\"sqs:ReceiveMessage\",\"sqs:DeleteMessageBatch\",\"sqs:GetQueueUrl\",\"sqs:ListQueueTags\"],\"Effect\":\"Allow\",\"Resource\":\"arn:aws:sqs:*:*:diskanalyzer-scans*\"},{\"Action\":[\"autoscaling:DescribeLaunchConfigurations\",\"autoscaling:DescribeAutoScalingGroups\",\"autoscaling:SetDesiredCapacity\",\"autoscaling:DescribeAutoScalingInstances\",\"ec2:DescribeLaunchTemplateVersions\",\"autoscaling:TerminateInstanceInAutoScalingGroup\",\"autoscaling:DescribeTags\"],\"Effect\":\"Allow\",\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"},\"PolicyName\":\"WizOrchestratorNodePoolPolicy\"},{\"PolicyDocument\":{\"Statement\":[{\"Action\":[\"rds:ModifyDBSubnetGroup\",\"rds:CreateDBSecurityGroup\",\"rds:DescribeDBSubnetGroups\",\"rds:ModifyDBCluster\",\"rds:RestoreDBClusterFromSnapshot\",\"rds:DeleteDBSnapshot\",\"rds:CreateDBInstance\",\"ec2:DescribeAvailabilityZones\",\"rds:DeleteDBSubnetGroup\",\"rds:DescribeDBClusterSnapshots\",\"rds:DescribeDBClusters\",\"rds:CopyDBClusterSnapshot\",\"rds:ModifyDBInstance\",\"rds:DescribeDBInstances\",\"redshift:DeleteCluster\",\"redshift:RestoreFromClusterSnapshot\",\"rds:DeleteDBClusterSnapshot\",\"rds:CreateDBCluster\",\"rds:DeleteDBInstance\",\"rds:CopyDBSnapshot\",\"rds:DescribeOrderableDBInstanceOptions\",\"rds:ListTagsForResource\",\"rds:DescribeDBSnapshots\",\"rds:DeleteDBCluster\",\"redshift:ModifyCluster\",\"rds:RestoreDBInstanceFromDBSnapshot\",\"rds:CreateDBSubnetGroup\",\"rds:CreateDBSubnetGroup\",\"rds:AddTagsToResource\",\"redshift:DescribeClusters\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"kms:ReEncrypt*\",\"kms:CreateGrant\"],\"Condition\":{\"StringLike\":{\"kms:ViaService\":\"rds.*.amazonaws.com\"}},\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":\"iam:CreateServiceLinkedRole\",\"Condition\":{\"StringLike\":{\"iam:AWSServiceName\":\"rds.amazonaws.com\"}},\"Effect\":\"Allow\",\"Resource\":\"arn:aws:iam::*:role/aws-service-role/rds.amazonaws.com/AWSServiceRoleForRDS\"}],\"Version\":\"2012-10-17\"},\"PolicyName\":\"WizOrchestratorNodePoolPolicyData\"}],\"RoleName\":\"WizOrchestratorNodePoolRole\",\"Tags\":[{\"Key\":\"WIZ_POC\",\"Value\":true}]}",
+        "PropertyDifferences": [
+          "/ManagedPolicyArns/3"
+        ],
+        "Message": null
+      },
+      {
+        "ResourceType": "AWS::IAM::Role",
+        "LogicalResourceId": "OrchestratorRole",
+        "PhysicalResourceId": "WizOrchestratorRole",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"AssumeRolePolicyDocument\":{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Condition\":{\"StringEquals\":{\"sts:ExternalId\":\"52093525-fa19-488f-a5e1-501ce011af19\"}},\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"arn:aws:iam::197171649850:root\"}}],\"Version\":\"2012-10-17\"},\"ManagedPolicyArns\":[\"arn:aws:iam::aws:policy/job-function/ViewOnlyAccess\"],\"Policies\":[{\"PolicyDocument\":{\"Statement\":[{\"Action\":[\"secretsmanager:GetSecretValue\",\"secretsmanager:PutSecretValue\",\"secretsmanager:UpdateSecret\",\"secretsmanager:DeleteSecret\",\"secretsmanager:CreateSecret\"],\"Effect\":\"Allow\",\"Resource\":\"arn:aws:secretsmanager:*:*:secret:wiz/*\"},{\"Action\":[\"eks:ListNodegroups\",\"ec2:GetLaunchTemplateData\",\"sqs:ListDeadLetterSourceQueues\",\"autoscaling:AttachInstances\",\"eks:DeleteFargateProfile\",\"autoscaling:DescribeAutoScalingGroups\",\"ec2:DescribeNetworkInterfaces\",\"ec2:DescribeNetworkInterfaces\",\"ec2:DescribeNetworkInterfaces\",\"autoscaling:SetDesiredCapacity\",\"ec2:DeleteSecurityGroup\",\"ec2:DescribeVpcEndpoints\",\"ec2:DeleteLaunchTemplateVersions\",\"ec2:DescribeDhcpOptions\",\"ec2:DescribeDhcpOptions\",\"autoscaling:DeleteLaunchConfiguration\",\"kms:GetKeyPolicy\",\"ec2:DescribeVpcs\",\"ec2:DescribeVpcs\",\"ec2:CreateTags\",\"ec2:RevokeSecurityGroupIngress\",\"eks:DescribeCluster\",\"autoscaling:DetachInstances\",\"iam:List*\",\"ec2:DescribeNetworkAcls\",\"ec2:DescribeAddresses\",\"ec2:DescribeAddresses\",\"autoscaling:CreateLaunchConfiguration\",\"ec2:DescribeInternetGateways\",\"ec2:DescribeInternetGateways\",\"eks:UpdateNodegroupVersion\",\"sqs:ListQueues\",\"eks:UpdateNodegroupConfig\",\"eks:ListTagsForResource\",\"ec2:DescribeAvailabilityZones\",\"kms:UntagResource\",\"iam:GetPolicy\",\"secretsmanager:ListSecrets\",\"ec2:RunInstances\",\"iam:TagRole\",\"ec2:DescribeSubnets\",\"ec2:DescribeSubnets\",\"eks:CreateFargateProfile\",\"kms:CreateGrant\",\"ec2:DescribeSecurityGroups\",\"ec2:DescribeSecurityGroups\",\"sqs:CreateQueue\",\"ec2:DescribeVolumesModifications\",\"ec2:DescribeLaunchTemplateVersions\",\"iam:GetOpenIDConnectProvider\",\"autoscaling:SuspendProcesses\",\"eks:UntagResource\",\"iam:GetInstanceProfile\",\"autoscaling:CreateAutoScalingGroup\",\"eks:CreateCluster\",\"eks:DescribeFargateProfile\",\"ec2:CreateLaunchTemplateVersion\",\"ec2:AssociateIamInstanceProfile\",\"eks:DescribeUpdate\",\"kms:EnableKeyRotation\",\"ec2:DeleteLaunchTemplate\",\"ec2:DescribeLaunchTemplates\",\"ec2:CreateLaunchTemplate\",\"kms:ScheduleKeyDeletion\",\"iam:GetRole\",\"eks:UpdateClusterConfig\",\"iam:UntagRole\",\"eks:UpdateClusterVersion\",\"ec2:DetachVolume\",\"ec2:CreateVolume\",\"ec2:DescribeInstances\",\"iam:GetPolicyVersion\",\"autoscaling:UpdateAutoScalingGroup\",\"ec2:ModifyLaunchTemplate\",\"ec2:DescribeVolumes\",\"ec2:DescribeAccountAttributes\",\"iam:CreateInstanceProfile\",\"kms:DescribeKey\",\"kms:TagResource\",\"kms:CreateKey\",\"eks:CreateNodegroup\",\"eks:DescribeNodegroup\",\"ec2:AuthorizeSecurityGroupIngress\",\"ec2:CreateRoute\",\"ec2:DeleteRoute\",\"ec2:DeleteVolume\",\"iam:DeleteInstanceProfile\",\"iam:GetRolePolicy\",\"ec2:DescribeRouteTables\",\"eks:TagResource\",\"iam:AddRoleToInstanceProfile\",\"kms:GetKeyRotationStatus\",\"iam:CreateServiceLinkedRole\",\"autoscaling:CreateOrUpdateTags\",\"autoscaling:DeleteAutoScalingGroup\",\"kms:ListResourceTags\",\"eks:ListFargateProfiles\",\"iam:CreateOpenIDConnectProvider\",\"autoscaling:DeleteTags\",\"sqs:ListQueueTags\",\"iam:DeleteOpenIDConnectProvider\",\"eks:ListClusters\",\"ec2:DeleteTags\",\"ec2:CreateSecurityGroup\",\"ec2:DescribeNatGateways\",\"ec2:DescribeNatGateways\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"eks:DeleteNodegroup\",\"eks:DeleteCluster\"],\"Effect\":\"Allow\",\"Resource\":[\"arn:aws:eks:*:*:cluster/wiz-orchestrator*\",\"arn:aws:eks:*:*:nodegroup/wiz-orchestrator*/*/*\"]},{\"Action\":[\"sqs:GetQueueAttributes\",\"sqs:TagQueue\",\"sqs:SendMessage\",\"sqs:UntagQueue\",\"sqs:AddPermission\",\"sqs:SendMessageBatch\",\"sqs:SetQueueAttributes\",\"sqs:ChangeMessageVisibility\",\"sqs:DeleteQueue\",\"sqs:PurgeQueue\",\"sqs:ChangeMessageVisibilityBatch\",\"sqs:ReceiveMessage\",\"sqs:RemovePermission\",\"sqs:GetQueueUrl\"],\"Effect\":\"Allow\",\"Resource\":\"arn:aws:sqs:*:*:diskanalyzer-scans*\"},{\"Action\":\"iam:PassRole\",\"Effect\":\"Allow\",\"Resource\":\"arn:aws:iam::*:role/*WizOrchestrator*\"}],\"Version\":\"2012-10-17\"},\"PolicyName\":\"WizOrchestratorPolicy\"}],\"RoleName\":\"WizOrchestratorRole\",\"Tags\":[{\"Key\":\"WIZ_POC\",\"Value\":true}]}",
+        "ActualProperties": "{\"AssumeRolePolicyDocument\":{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Condition\":{\"StringEquals\":{\"sts:ExternalId\":\"52093525-fa19-488f-a5e1-501ce011af19\"}},\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"arn:aws:iam::197171649850:root\"}}],\"Version\":\"2012-10-17\"},\"ManagedPolicyArns\":[\"arn:aws:iam::aws:policy/job-function/ViewOnlyAccess\",\"arn:aws:iam::aws:policy/AWSDenyAll\"],\"Policies\":[{\"PolicyDocument\":{\"Statement\":[{\"Action\":[\"secretsmanager:GetSecretValue\",\"secretsmanager:PutSecretValue\",\"secretsmanager:UpdateSecret\",\"secretsmanager:DeleteSecret\",\"secretsmanager:CreateSecret\"],\"Effect\":\"Allow\",\"Resource\":\"arn:aws:secretsmanager:*:*:secret:wiz/*\"},{\"Action\":[\"eks:ListNodegroups\",\"ec2:GetLaunchTemplateData\",\"sqs:ListDeadLetterSourceQueues\",\"autoscaling:AttachInstances\",\"eks:DeleteFargateProfile\",\"autoscaling:DescribeAutoScalingGroups\",\"ec2:DescribeNetworkInterfaces\",\"ec2:CreateDefaultSubnet\",\"ec2:DeleteVpcEndpoints\",\"autoscaling:SetDesiredCapacity\",\"ec2:DeleteSecurityGroup\",\"ec2:DescribeVpcEndpoints\",\"ec2:DeleteLaunchTemplateVersions\",\"kms:PutKeyPolicy\",\"ec2:DeleteInternetGateway\",\"autoscaling:DeleteLaunchConfiguration\",\"kms:GetKeyPolicy\",\"ec2:DescribeVpcs\",\"ec2:CreateNatGateway\",\"ec2:CreateTags\",\"ec2:RevokeSecurityGroupIngress\",\"eks:DescribeCluster\",\"autoscaling:DetachInstances\",\"iam:List*\",\"ec2:DescribeNetworkAcls\",\"kms:GenerateDataKeyWithoutPlaintext\",\"ec2:UpdateSecurityGroupRuleDescriptionsIngress\",\"autoscaling:CreateLaunchConfiguration\",\"kms:ListGrants\",\"ec2:CreateInternetGateway\",\"eks:UpdateNodegroupVersion\",\"sqs:ListQueues\",\"eks:UpdateNodegroupConfig\",\"eks:ListTagsForResource\",\"ec2:CreateNetworkAclEntry\",\"kms:UntagResource\",\"iam:GetPolicy\",\"secretsmanager:ListSecrets\",\"ec2:RunInstances\",\"iam:TagRole\",\"ec2:DescribeSubnets\",\"kms:Decrypt\",\"eks:CreateFargateProfile\",\"kms:CreateGrant\",\"ec2:DescribeSecurityGroups\",\"kms:ListKeyPolicies\",\"sqs:CreateQueue\",\"kms:DeleteAlias\",\"ec2:DescribeLaunchTemplateVersions\",\"iam:GetOpenIDConnectProvider\",\"autoscaling:SuspendProcesses\",\"eks:UntagResource\",\"iam:GetInstanceProfile\",\"autoscaling:CreateAutoScalingGroup\",\"eks:CreateCluster\",\"eks:DescribeFargateProfile\",\"ec2:CreateLaunchTemplateVersion\",\"ec2:CreateDhcpOptions\",\"eks:DescribeUpdate\",\"kms:EnableKeyRotation\",\"ec2:DeleteLaunchTemplate\",\"ec2:DescribeLaunchTemplates\",\"ec2:CreateLaunchTemplate\",\"kms:ScheduleKeyDeletion\",\"iam:GetRole\",\"eks:UpdateClusterConfig\",\"iam:UntagRole\",\"eks:UpdateClusterVersion\",\"ec2:DetachVolume\",\"ec2:CreateVolume\",\"ec2:AuthorizeSecurityGroupEgress\",\"iam:GetPolicyVersion\",\"autoscaling:UpdateAutoScalingGroup\",\"ec2:ModifyLaunchTemplate\",\"ec2:CreateRouteTable\",\"kms:UpdatePrimaryRegion\",\"iam:CreateInstanceProfile\",\"kms:DescribeKey\",\"kms:TagResource\",\"kms:CreateKey\",\"eks:CreateNodegroup\",\"eks:DescribeNodegroup\",\"ec2:AuthorizeSecurityGroupIngress\",\"ec2:CreateRoute\",\"ec2:DeleteRoute\",\"ec2:DeleteVolume\",\"iam:DeleteInstanceProfile\",\"iam:GetRolePolicy\",\"kms:Encrypt\",\"eks:TagResource\",\"iam:AddRoleToInstanceProfile\",\"kms:GetKeyRotationStatus\",\"iam:CreateServiceLinkedRole\",\"autoscaling:CreateOrUpdateTags\",\"autoscaling:DeleteAutoScalingGroup\",\"kms:ListResourceTags\",\"eks:ListFargateProfiles\",\"iam:CreateOpenIDConnectProvider\",\"autoscaling:DeleteTags\",\"sqs:ListQueueTags\",\"iam:DeleteOpenIDConnectProvider\",\"eks:ListClusters\",\"ec2:DeleteTags\",\"ec2:CreateSecurityGroup\",\"ec2:DescribeNatGateways\",\"ec2:DeleteNetworkInterface\",\"ec2:ModifyVpcAttribute\",\"ec2:AttachNetworkInterface\",\"ec2:Associate*\",\"ec2:Describe*\",\"ec2:DeleteRouteTable\",\"ec2:AssignPrivateIpAddresses\",\"kms:DisableKeyRotation\",\"ec2:ReleaseAddress\",\"kms:RevokeGrant\",\"kms:ListAliases\",\"ec2:CreateVpc\",\"ec2:ModifySubnetAttribute\",\"ec2:DetachNetworkInterface\",\"ec2:RevokeSecurityGroupEgress\",\"kms:CancelKeyDeletion\",\"ec2:CreateNetworkInterface\",\"kms:EnableKey\",\"ec2:DeleteVpnGateway\",\"kms:GenerateDataKey\",\"ec2:DeleteEgressOnlyInternetGateway\",\"kms:ReEncryptFrom\",\"ec2:AttachInternetGateway\",\"ec2:DeleteDhcpOptions\",\"kms:ReEncryptTo\",\"ec2:Disassociate*\",\"ec2:DeleteNatGateway\",\"kms:ListKeys\",\"ec2:AllocateAddress\",\"ec2:CreateVpcEndpoint\",\"ec2:DeleteVpc\",\"ec2:ModifyVpcEndpoint\",\"ec2:DeleteSubnet\",\"ec2:CreateSubnet\",\"ec2:DetachInternetGateway\",\"ec2:DeleteNetworkAclEntry\",\"kms:ListResourceTags\",\"ec2:CreateEgressOnlyInternetGateway\",\"kms:UpdateAlias\",\"ec2:UpdateSecurityGroupRuleDescriptionsEgress\",\"kms:UpdateKeyDescription\",\"kms:DisableKey\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"eks:DeleteNodegroup\",\"eks:DeleteCluster\"],\"Effect\":\"Allow\",\"Resource\":[\"arn:aws:eks:*:*:cluster/wiz-orchestrator*\",\"arn:aws:eks:*:*:nodegroup/wiz-orchestrator*/*/*\"]},{\"Action\":[\"sqs:GetQueueAttributes\",\"sqs:TagQueue\",\"sqs:SendMessage\",\"sqs:UntagQueue\",\"sqs:AddPermission\",\"sqs:SendMessageBatch\",\"sqs:SetQueueAttributes\",\"sqs:ChangeMessageVisibility\",\"sqs:DeleteQueue\",\"sqs:PurgeQueue\",\"sqs:ChangeMessageVisibilityBatch\",\"sqs:ReceiveMessage\",\"sqs:RemovePermission\",\"sqs:GetQueueUrl\"],\"Effect\":\"Allow\",\"Resource\":\"arn:aws:sqs:*:*:diskanalyzer-scans*\"},{\"Action\":\"iam:PassRole\",\"Effect\":\"Allow\",\"Resource\":\"arn:aws:iam::*:role/*WizOrchestrator*\"}],\"Version\":\"2012-10-17\"},\"PolicyName\":\"WizOrchestratorPolicy\"}],\"RoleName\":\"WizOrchestratorRole\",\"Tags\":[{\"Key\":\"WIZ_POC\",\"Value\":true}]}",
+        "PropertyDifferences": [
+          "/Policies/0/PolicyDocument/Statement/1/Action/74",
+          "/Policies/0/PolicyDocument/Statement/1/Action/75",
+          "/Policies/0/PolicyDocument/Statement/1/Action/70",
+          "/Policies/0/PolicyDocument/Statement/1/Action/34",
+          "/Policies/0/PolicyDocument/Statement/1/Action/130",
+          "/Policies/0/PolicyDocument/Statement/1/Action/131",
+          "/Policies/0/PolicyDocument/Statement/1/Action/136",
+          "/Policies/0/PolicyDocument/Statement/1/Action/137",
+          "/Policies/0/PolicyDocument/Statement/1/Action/138",
+          "/Policies/0/PolicyDocument/Statement/1/Action/139",
+          "/Policies/0/PolicyDocument/Statement/1/Action/132",
+          "/Policies/0/PolicyDocument/Statement/1/Action/133",
+          "/Policies/0/PolicyDocument/Statement/1/Action/134",
+          "/Policies/0/PolicyDocument/Statement/1/Action/135",
+          "/Policies/0/PolicyDocument/Statement/1/Action/8",
+          "/Policies/0/PolicyDocument/Statement/1/Action/129",
+          "/Policies/0/PolicyDocument/Statement/1/Action/26",
+          "/Policies/0/PolicyDocument/Statement/1/Action/28",
+          "/Policies/0/PolicyDocument/Statement/1/Action/29",
+          "/Policies/0/PolicyDocument/Statement/1/Action/25",
+          "/Policies/0/PolicyDocument/Statement/1/Action/120",
+          "/Policies/0/PolicyDocument/Statement/1/Action/125",
+          "/Policies/0/PolicyDocument/Statement/1/Action/126",
+          "/Policies/0/PolicyDocument/Statement/1/Action/127",
+          "/Policies/0/PolicyDocument/Statement/1/Action/7",
+          "/Policies/0/PolicyDocument/Statement/1/Action/128",
+          "/Policies/0/PolicyDocument/Statement/1/Action/121",
+          "/Policies/0/PolicyDocument/Statement/1/Action/122",
+          "/Policies/0/PolicyDocument/Statement/1/Action/123",
+          "/Policies/0/PolicyDocument/Statement/1/Action/124",
+          "/Policies/0/PolicyDocument/Statement/1/Action/118",
+          "/Policies/0/PolicyDocument/Statement/1/Action/119",
+          "/Policies/0/PolicyDocument/Statement/1/Action/18",
+          "/Policies/0/PolicyDocument/Statement/1/Action/13",
+          "/Policies/0/PolicyDocument/Statement/1/Action/57",
+          "/Policies/0/PolicyDocument/Statement/1/Action/14",
+          "/Policies/0/PolicyDocument/Statement/1/Action/114",
+          "/Policies/0/PolicyDocument/Statement/1/Action/115",
+          "/Policies/0/PolicyDocument/Statement/1/Action/116",
+          "/Policies/0/PolicyDocument/Statement/1/Action/117",
+          "/ManagedPolicyArns/1",
+          "/Policies/0/PolicyDocument/Statement/1/Action/110",
+          "/Policies/0/PolicyDocument/Statement/1/Action/111",
+          "/Policies/0/PolicyDocument/Statement/1/Action/112",
+          "/Policies/0/PolicyDocument/Statement/1/Action/113",
+          "/Policies/0/PolicyDocument/Statement/1/Action/41",
+          "/Policies/0/PolicyDocument/Statement/1/Action/107",
+          "/Policies/0/PolicyDocument/Statement/1/Action/108",
+          "/Policies/0/PolicyDocument/Statement/1/Action/109",
+          "/Policies/0/PolicyDocument/Statement/1/Action/88",
+          "/Policies/0/PolicyDocument/Statement/1/Action/45",
+          "/Policies/0/PolicyDocument/Statement/1/Action/47",
+          "/Policies/0/PolicyDocument/Statement/1/Action/140",
+          "/Policies/0/PolicyDocument/Statement/1/Action/141",
+          "/Policies/0/PolicyDocument/Statement/1/Action/142",
+          "/Policies/0/PolicyDocument/Statement/1/Action/105",
+          "/Policies/0/PolicyDocument/Statement/1/Action/106",
+          "/Policies/0/PolicyDocument/Statement/1/Action/143",
+          "/Policies/0/PolicyDocument/Statement/1/Action/144",
+          "/Policies/0/PolicyDocument/Statement/1/Action/145",
+          "/Policies/0/PolicyDocument/Statement/1/Action/146"
+        ],
+        "Message": null
+      },
+      {
+        "ResourceType": "AWS::S3::Bucket",
+        "LogicalResourceId": "StateBucket",
+        "PhysicalResourceId": "wiz-outpost-gitops-state-bucket-40bad2b0",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      },
+      {
+        "ResourceType": "AWS::KMS::Key",
+        "LogicalResourceId": "StateBucketKey",
+        "PhysicalResourceId": "mrk-b43325229c02478c8072e445bb5f6f9f",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "eu-west-1",
+    "Stack Name": "StackSet-NVSGISGLB-IAM-EXSBXAPPADMPOLICY-TST01-001-46efdfb2-2cf6-4f23-b8b3-326f4bfd2a98",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::IAM::ManagedPolicy",
+        "LogicalResourceId": "IDYAppPolicy01",
+        "PhysicalResourceId": "arn:aws:iam::199971209548:policy/PIDYAWSEXSBXAPPADMID01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"ManagedPolicyName\":\"PIDYAWSEXSBXAPPADMID01\",\"PolicyDocument\":{\"Version\":\"2012-10-17\",\"Statement\":[{\"Action\":\"s3:CreateBucket\",\"Effect\":\"Deny\",\"Sid\":\"VisaualEditor0\",\"NotResource\":[\"arn:aws:s3:::novartis*\",\"arn:aws:s3:::cf-template*\"]},{\"Action\":[\"iam:Attach*\",\"iam:Remove*\",\"cloudformation:CreateStack\",\"cloudformation:DeleteStack\",\"cloudformation:UpdateStack\"],\"Resource\":[\"arn:aws:cloudformation:*:*:stack/NVSGISEXSBX*\",\"arn:aws:cloudformation:*:*:stack/StackSet-NVSGISGLB*\",\"arn:aws:iam::*:role/RADT_AWS_*\",\"arn:aws:iam::*:role/RBCK_AWS_*\",\"arn:aws:iam::*:role/RCTR_AWS_*\",\"arn:aws:iam::*:role/RRCC_AWS_*\",\"arn:aws:iam::*:role/RRSB_AWS_*\",\"arn:aws:iam::*:role/RIDY_AWS_*\",\"arn:aws:iam::*:role/RKMS_AWS_*\",\"arn:aws:iam::*:role/REXSBX??_AWS_APPADM\",\"arn:aws:iam::*:role/REXSBX??_AWS_APPUSR\",\"arn:aws:iam::*:role/REXSBX??_AWS_AWSADM\",\"arn:aws:iam::*:role/REXSBX??_AWS_BUDGETLMF\",\"arn:aws:iam::*:role/REXSBX??_AWS_EC2APPROLE1\",\"arn:aws:iam::*:role/REXSBX??_AWS_FLOWRW\",\"arn:aws:iam::*:role/REXSBX??_AWS_S3INFRA\",\"arn:aws:iam::*:policy/PADTAWS*\",\"arn:aws:iam::*:policy/PBCKAWS*\",\"arn:aws:iam::*:policy/PCTRAWS*\",\"arn:aws:iam::*:policy/PRCCAWS*\",\"arn:aws:iam::*:policy/PRSBAWS*\",\"arn:aws:iam::*:policy/PIDYAWS*\",\"arn:aws:iam::*:policy/PKMSAWS*\",\"arn:aws:iam::*:policy/PEXSBX??AWSAPPADM\",\"arn:aws:iam::*:policy/PEXSBX??AWSAPPUSR\",\"arn:aws:iam::*:policy/PEXSBX??AWSAWSADM\",\"arn:aws:iam::*:policy/PEXSBX??AWSBUDGETLMF\",\"arn:aws:iam::*:policy/PEXSBX??AWSEC2APPROLE\",\"arn:aws:iam::*:policy/PEXSBX??AWSFLOWRW\",\"arn:aws:iam::*:policy/PEXSBX??AWSS3INFRA\"],\"Effect\":\"Deny\",\"Sid\":\"VisualEditor2\"},{\"Action\":\"logs:Delete*\",\"Resource\":\"*\",\"Effect\":\"Deny\",\"Sid\":\"VisualEditor3\"},{\"Action\":[\"iam:Update*\",\"iam:Create*\",\"iam:De*\"],\"Resource\":[\"arn:aws:iam::*:role/RADT_AWS_*\",\"arn:aws:iam::*:role/RBCK_AWS_*\",\"arn:aws:iam::*:role/RCTR_AWS_*\",\"arn:aws:iam::*:role/RRCC_AWS_*\",\"arn:aws:iam::*:role/RRSB_AWS_*\",\"arn:aws:iam::*:role/RIDY_AWS_*\",\"arn:aws:iam::*:role/RKMS_AWS_*\",\"arn:aws:iam::*:role/REXSBX??_AWS_APPADM\",\"arn:aws:iam::*:role/REXSBX??_AWS_APPUSR\",\"arn:aws:iam::*:role/REXSBX??_AWS_AWSADM\",\"arn:aws:iam::*:role/REXSBX??_AWS_BUDGETLMF\",\"arn:aws:iam::*:role/REXSBX??_AWS_EC2APPROLE\",\"arn:aws:iam::*:role/REXSBX??_AWS_FLOWRW\",\"arn:aws:iam::*:role/REXSBX??_AWS_S3INFRA\",\"arn:aws:iam::*:policy/PADTAWS*\",\"arn:aws:iam::*:policy/PBCKAWS*\",\"arn:aws:iam::*:policy/PCTRAWS*\",\"arn:aws:iam::*:policy/PRCCAWS*\",\"arn:aws:iam::*:policy/PRSBAWS*\",\"arn:aws:iam::*:policy/PIDYAWS*\",\"arn:aws:iam::*:policy/PKMSAWS*\",\"arn:aws:iam::*:policy/PEXSBX??AWSAPPADM\",\"arn:aws:iam::*:policy/PEXSBX??AWSAPPUSR\",\"arn:aws:iam::*:policy/PEXSBX??AWSAWSADM\",\"arn:aws:iam::*:policy/PEXSBX??AWSBUDGETLMF\",\"arn:aws:iam::*:policy/PEXSBX??AWSEC2APPROLE\",\"arn:aws:iam::*:policy/PEXSBX??AWSFLOWRW\",\"arn:aws:iam::*:policy/PEXSBX??AWSS3INFRA\"],\"Effect\":\"Deny\",\"Sid\":\"VisualEditor4\"},{\"Condition\":{\"StringNotEquals\":{\"aws:RequestedRegion\":[\"us-east-1\",\"eu-west-1\"]}},\"Action\":[\"*\"],\"Resource\":[\"*\"],\"Effect\":\"Deny\",\"Sid\":\"RegionEnforcement\"}]},\"Roles\":[\"RIDY_AWS_EXSBX41_APPADM\"]}",
+        "ActualProperties": "{\"ManagedPolicyName\":\"PIDYAWSEXSBXAPPADMID01\",\"Roles\":[],\"PolicyDocument\":{\"Version\":\"2012-10-17\",\"Statement\":[{\"Action\":[\"iam:Attach*\",\"iam:Remove*\",\"cloudformation:CreateStack\",\"cloudformation:DeleteStack\",\"cloudformation:UpdateStack\"],\"Resource\":[\"arn:aws:cloudformation:*:*:stack/NVSGISEXSBX*\",\"arn:aws:cloudformation:*:*:stack/StackSet-NVSGISGLB*\",\"arn:aws:iam::*:role/RADT_AWS_*\",\"arn:aws:iam::*:role/RBCK_AWS_*\",\"arn:aws:iam::*:role/RCTR_AWS_*\",\"arn:aws:iam::*:role/RRCC_AWS_*\",\"arn:aws:iam::*:role/RRSB_AWS_*\",\"arn:aws:iam::*:role/RIDY_AWS_*\",\"arn:aws:iam::*:role/RKMS_AWS_*\",\"arn:aws:iam::*:role/REXSBX??_AWS_APPADM\",\"arn:aws:iam::*:role/REXSBX??_AWS_APPUSR\",\"arn:aws:iam::*:role/REXSBX??_AWS_AWSADM\",\"arn:aws:iam::*:role/REXSBX??_AWS_BUDGETLMF\",\"arn:aws:iam::*:role/REXSBX??_AWS_EC2APPROLE1\",\"arn:aws:iam::*:role/REXSBX??_AWS_FLOWRW\",\"arn:aws:iam::*:role/REXSBX??_AWS_S3INFRA\",\"arn:aws:iam::*:policy/PADTAWS*\",\"arn:aws:iam::*:policy/PBCKAWS*\",\"arn:aws:iam::*:policy/PCTRAWS*\",\"arn:aws:iam::*:policy/PRCCAWS*\",\"arn:aws:iam::*:policy/PRSBAWS*\",\"arn:aws:iam::*:policy/PIDYAWS*\",\"arn:aws:iam::*:policy/PKMSAWS*\",\"arn:aws:iam::*:policy/PEXSBX??AWSAPPADM\",\"arn:aws:iam::*:policy/PEXSBX??AWSAPPUSR\",\"arn:aws:iam::*:policy/PEXSBX??AWSAWSADM\",\"arn:aws:iam::*:policy/PEXSBX??AWSBUDGETLMF\",\"arn:aws:iam::*:policy/PEXSBX??AWSEC2APPROLE\",\"arn:aws:iam::*:policy/PEXSBX??AWSFLOWRW\",\"arn:aws:iam::*:policy/PEXSBX??AWSS3INFRA\"],\"Effect\":\"Deny\",\"Sid\":\"VisualEditor2\"},{\"Action\":\"logs:Delete*\",\"Resource\":\"*\",\"Effect\":\"Deny\",\"Sid\":\"VisualEditor3\"},{\"Action\":[\"iam:Update*\",\"iam:Create*\",\"iam:De*\"],\"Resource\":[\"arn:aws:iam::*:role/RADT_AWS_*\",\"arn:aws:iam::*:role/RBCK_AWS_*\",\"arn:aws:iam::*:role/RCTR_AWS_*\",\"arn:aws:iam::*:role/RRCC_AWS_*\",\"arn:aws:iam::*:role/RRSB_AWS_*\",\"arn:aws:iam::*:role/RIDY_AWS_*\",\"arn:aws:iam::*:role/RKMS_AWS_*\",\"arn:aws:iam::*:role/REXSBX??_AWS_APPADM\",\"arn:aws:iam::*:role/REXSBX??_AWS_APPUSR\",\"arn:aws:iam::*:role/REXSBX??_AWS_AWSADM\",\"arn:aws:iam::*:role/REXSBX??_AWS_BUDGETLMF\",\"arn:aws:iam::*:role/REXSBX??_AWS_EC2APPROLE\",\"arn:aws:iam::*:role/REXSBX??_AWS_FLOWRW\",\"arn:aws:iam::*:role/REXSBX??_AWS_S3INFRA\",\"arn:aws:iam::*:policy/PADTAWS*\",\"arn:aws:iam::*:policy/PBCKAWS*\",\"arn:aws:iam::*:policy/PCTRAWS*\",\"arn:aws:iam::*:policy/PRCCAWS*\",\"arn:aws:iam::*:policy/PRSBAWS*\",\"arn:aws:iam::*:policy/PIDYAWS*\",\"arn:aws:iam::*:policy/PKMSAWS*\",\"arn:aws:iam::*:policy/PEXSBX??AWSAPPADM\",\"arn:aws:iam::*:policy/PEXSBX??AWSAPPUSR\",\"arn:aws:iam::*:policy/PEXSBX??AWSAWSADM\",\"arn:aws:iam::*:policy/PEXSBX??AWSBUDGETLMF\",\"arn:aws:iam::*:policy/PEXSBX??AWSEC2APPROLE\",\"arn:aws:iam::*:policy/PEXSBX??AWSFLOWRW\",\"arn:aws:iam::*:policy/PEXSBX??AWSS3INFRA\"],\"Effect\":\"Deny\",\"Sid\":\"VisualEditor4\"},{\"Condition\":{\"StringNotEquals\":{\"aws:RequestedRegion\":[\"us-east-1\",\"eu-west-1\"]}},\"Action\":[\"*\"],\"Resource\":[\"*\"],\"Effect\":\"Deny\",\"Sid\":\"RegionEnforcement\"}]}}",
+        "PropertyDifferences": [
+          "/Roles/0"
+        ],
+        "Message": null
+      },
+      {
+        "ResourceType": "AWS::IAM::ManagedPolicy",
+        "LogicalResourceId": "IDYAppPolicy02",
+        "PhysicalResourceId": "arn:aws:iam::199971209548:policy/PIDYAWSEXSBXAPPADMID02",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"ManagedPolicyName\":\"PIDYAWSEXSBXAPPADMID02\",\"PolicyDocument\":{\"Version\":\"2012-10-17\",\"Statement\":[{\"Action\":[\"apigateway:*\",\"access-analyzer:Get*\",\"access-analyzer:List*\",\"a4b:*\",\"amplify:*\",\"appmesh:*\",\"appmesh-preview:*\",\"appconfig:*\",\"appsync:*\",\"application-autoscaling:*\",\"artifact:*\",\"athena:*\",\"autoscaling-plans:*\",\"batch:*\",\"aws-portal:ViewAccount\",\"aws-portal:ViewBilling\",\"aws-portal:ViewPaymentMethods\",\"aws-portal:ViewUsage\",\"budgets:ViewBudget\",\"acm:*\",\"acm-pca:*\",\"chatbot:*\",\"cloud9:*\",\"cloudformation:*\",\"cloudsearch:*\",\"cloudtrail:Describe*\",\"cloudtrail:Get*\",\"cloudtrail:List*\",\"cloudtrail:LookupEvents\",\"cloudwatch:*\",\"applicationinsights:*\",\"logs:*\",\"synthetics:*\",\"codebuild:*\",\"codecommit:*\",\"codedeploy:*\",\"codeguru-profiler:*\",\"codeguru-reviewer:*\",\"codepipeline:*\",\"codestar:*\",\"codestar-notifications:*\",\"cognito-identity:*\",\"cognito-sync:*\",\"cognito-idp:*\",\"comprehend:*\",\"comprehendmedical:*\",\"compute-optimizer:*\",\"config:BatchGet*\",\"config:BatchGet*\",\"config:Describe*\",\"config:Get*\",\"config:List*\",\"config:SelectResourceConfig\",\"dbqms:*\",\"datapipeline:*\",\"datasync:*\",\"deepracer:*\",\"detective:Get*\",\"detective:List*\",\"detective:SearchGraph\",\"devicefarm:*\",\"dynamodb:*\",\"dax:*\",\"ec2:Describe*\",\"ec2:Get*\",\"ec2:List*\",\"autoscaling:*\",\"imagebuilder:*\",\"ec2-instance-connect:*\",\"ec2messages:*\",\"elasticfilesystem:*\",\"elastic-inference:*\",\"eks:*\",\"elasticloadbalancing:*\",\"elasticloadbalancing:*\",\"elasticmapreduce:*\",\"elasticache:*\",\"elasticbeanstalk:*\",\"ebs:*\",\"ecr:*\",\"ecs:*\",\"elastictranscoder:*\",\"es:*\",\"events:*\",\"schemas:*\",\"execute-api:*\",\"fsx:*\",\"firehose:*\",\"fms:*\",\"forecast:*\",\"frauddetector:*\",\"glue:*\",\"guardduty:Describe*\",\"guardduty:Get*\",\"guardduty:List*\",\"health:*\",\"iam:Get*\",\"iam:List*\",\"inspector:*\",\"iot:*\",\"iot1click:*\",\"iotanalytics:*\",\"iot-device-tester:*\",\"iotevents:*\",\"greengrass:*\",\"iotsitewise:*\",\"iotthingsgraph:*\",\"kms:Decrypt\",\"kms:DescribeKey\",\"kms:Encrypt\",\"kms:GenerateDataKey\",\"kms:ReEncrypt*\",\"kms:PutKeyPolicy\",\"kms:GetKeyPolicy\",\"kendra:*\",\"kinesis:*\",\"kinesisanalytics:*\",\"kinesisanalytics:*\",\"kinesisvideo:*\",\"lakeformation:*\",\"lambda:*\",\"launchwizard:*\",\"lex:*\",\"license-manager:*\",\"cassandra:*\",\"mq:*\",\"kafka:*\",\"machinelearning:*\",\"macie:*\",\"managedblockchain:*\",\"mediaconnect:*\",\"mediaconvert:*\",\"medialive:*\",\"mediapackage:*\",\"mediapackage-vod:*\",\"mediastore:*\",\"mediatailor:*\",\"mobileanalytics:*\",\"mobilehub:*\",\"neptune-db:*\",\"opsworks:*\",\"opsworks-cm:*\",\"pi:*\",\"personalize:*\",\"mobiletargeting:*\",\"ses:*\",\"sms-voice:*\",\"polly:*\",\"pricing:*\",\"qldb:*\",\"quicksight:*\",\"rds:*\",\"rds-data:*\",\"rds-db:*\",\"redshift:*\",\"rekognition:*\",\"tag:*\",\"resource-groups:*\",\"robomaker:*\",\"s3:*\",\"ses:*\",\"sns:*\",\"sqs:*\",\"ssmmessages:*\",\"sso:*\",\"sso-directory:*\",\"swf:*\",\"sagemaker:*\",\"secretsmanager:*\",\"securityhub:Describe*\",\"securityhub:GetMembers\",\"securityhub:List*\",\"serverlessrepo:*\",\"servicecatalog:*\",\"servicequotas:*\",\"states:*\",\"support:*\",\"ssm:*\",\"textract:*\",\"transcribe:*\",\"translate:*\",\"trustedadvisor:Describe*\",\"waf:*\",\"waf-regional:*\",\"wafv2:*\",\"wellarchitected:*\",\"xray:*\",\"braket:*\",\"airflow:*\"],\"Resource\":\"*\",\"Effect\":\"Allow\",\"Sid\":\"AllowedServices\"}]},\"Roles\":[\"RIDY_AWS_EXSBX41_APPADM\"]}",
+        "ActualProperties": "{\"ManagedPolicyName\":\"PIDYAWSEXSBXAPPADMID02\",\"Roles\":[],\"PolicyDocument\":{\"Version\":\"2012-10-17\",\"Statement\":[{\"Action\":[\"apigateway:*\",\"access-analyzer:Get*\",\"access-analyzer:List*\",\"a4b:*\",\"amplify:*\",\"appmesh:*\",\"appmesh-preview:*\",\"appconfig:*\",\"appsync:*\",\"application-autoscaling:*\",\"artifact:*\",\"athena:*\",\"autoscaling-plans:*\",\"batch:*\",\"aws-portal:ViewAccount\",\"aws-portal:ViewBilling\",\"aws-portal:ViewPaymentMethods\",\"aws-portal:ViewUsage\",\"budgets:ViewBudget\",\"acm:*\",\"acm-pca:*\",\"chatbot:*\",\"cloud9:*\",\"cloudformation:*\",\"cloudsearch:*\",\"cloudtrail:Describe*\",\"cloudtrail:Get*\",\"cloudtrail:List*\",\"cloudtrail:LookupEvents\",\"cloudwatch:*\",\"applicationinsights:*\",\"logs:*\",\"synthetics:*\",\"codebuild:*\",\"codecommit:*\",\"codedeploy:*\",\"codeguru-profiler:*\",\"codeguru-reviewer:*\",\"codepipeline:*\",\"codestar:*\",\"codestar-notifications:*\",\"cognito-identity:*\",\"cognito-sync:*\",\"cognito-idp:*\",\"comprehend:*\",\"comprehendmedical:*\",\"compute-optimizer:*\",\"config:BatchGet*\",\"config:BatchGet*\",\"config:Describe*\",\"config:Get*\",\"config:List*\",\"config:SelectResourceConfig\",\"dbqms:*\",\"datapipeline:*\",\"datasync:*\",\"deepracer:*\",\"detective:Get*\",\"detective:List*\",\"detective:SearchGraph\",\"devicefarm:*\",\"dynamodb:*\",\"dax:*\",\"ec2:Describe*\",\"ec2:Get*\",\"ec2:List*\",\"autoscaling:*\",\"imagebuilder:*\",\"ec2-instance-connect:*\",\"ec2messages:*\",\"elasticfilesystem:*\",\"elastic-inference:*\",\"eks:*\",\"elasticloadbalancing:*\",\"elasticloadbalancing:*\",\"elasticmapreduce:*\",\"elasticache:*\",\"elasticbeanstalk:*\",\"ebs:*\",\"ecr:*\",\"ecs:*\",\"elastictranscoder:*\",\"es:*\",\"events:*\",\"schemas:*\",\"execute-api:*\",\"fsx:*\",\"firehose:*\",\"fms:*\",\"forecast:*\",\"frauddetector:*\",\"glue:*\",\"guardduty:Describe*\",\"guardduty:Get*\",\"guardduty:List*\",\"health:*\",\"iam:Get*\",\"iam:List*\",\"inspector:*\",\"iot:*\",\"iot1click:*\",\"iotanalytics:*\",\"iot-device-tester:*\",\"iotevents:*\",\"greengrass:*\",\"iotsitewise:*\",\"iotthingsgraph:*\",\"kms:Decrypt\",\"kms:DescribeKey\",\"kms:Encrypt\",\"kms:GenerateDataKey\",\"kms:ReEncrypt*\",\"kms:PutKeyPolicy\",\"kms:GetKeyPolicy\",\"kendra:*\",\"kinesis:*\",\"kinesisanalytics:*\",\"kinesisanalytics:*\",\"kinesisvideo:*\",\"lakeformation:*\",\"lambda:*\",\"launchwizard:*\",\"lex:*\",\"license-manager:*\",\"cassandra:*\",\"mq:*\",\"kafka:*\",\"machinelearning:*\",\"macie:*\",\"managedblockchain:*\",\"mediaconnect:*\",\"mediaconvert:*\",\"medialive:*\",\"mediapackage:*\",\"mediapackage-vod:*\",\"mediastore:*\",\"mediatailor:*\",\"mobileanalytics:*\",\"mobilehub:*\",\"neptune-db:*\",\"opsworks:*\",\"opsworks-cm:*\",\"pi:*\",\"personalize:*\",\"mobiletargeting:*\",\"ses:*\",\"sms-voice:*\",\"polly:*\",\"pricing:*\",\"qldb:*\",\"quicksight:*\",\"rds:*\",\"rds-data:*\",\"rds-db:*\",\"redshift:*\",\"rekognition:*\",\"tag:*\",\"resource-groups:*\",\"robomaker:*\",\"s3:*\",\"ses:*\",\"sns:*\",\"sqs:*\",\"ssmmessages:*\",\"sso:*\",\"sso-directory:*\",\"swf:*\",\"sagemaker:*\",\"secretsmanager:*\",\"securityhub:Describe*\",\"securityhub:GetMembers\",\"securityhub:List*\",\"serverlessrepo:*\",\"servicecatalog:*\",\"servicequotas:*\",\"states:*\",\"support:*\",\"ssm:*\",\"textract:*\",\"transcribe:*\",\"translate:*\",\"trustedadvisor:Describe*\",\"waf:*\",\"waf-regional:*\",\"wafv2:*\",\"wellarchitected:*\",\"xray:*\",\"braket:*\",\"airflow:*\"],\"Resource\":\"*\",\"Effect\":\"Allow\",\"Sid\":\"AllowedServices\"}]}}",
+        "PropertyDifferences": [
+          "/Roles/0"
+        ],
+        "Message": null
+      },
+      {
+        "ResourceType": "AWS::IAM::ManagedPolicy",
+        "LogicalResourceId": "IDYAppPolicy03",
+        "PhysicalResourceId": "arn:aws:iam::199971209548:policy/PIDYAWSEXSBXAPPADMID03",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"ManagedPolicyName\":\"PIDYAWSEXSBXAPPADMID03\",\"PolicyDocument\":{\"Version\":\"2012-10-17\",\"Statement\":[{\"Action\":[\"iam:CreatePolicyVersion\",\"iam:DeletePolicyVersion\",\"iam:CreatePolicy\",\"iam:DeletePolicy\"],\"Resource\":\"arn:aws:iam::*:policy/PEXSBX??AWS*\",\"Effect\":\"Allow\",\"Sid\":\"AllowPolicy\"},{\"Condition\":{\"StringEquals\":{\"iam:PermissionsBoundary\":\"arn:aws:iam::199971209548:policy/PEXSBXAWSIAMPERMBOUNDARYID01\"}},\"Action\":[\"iam:CreateRole\",\"iam:AttachRolePolicy\",\"iam:UpdateRole\",\"iam:PutRolePermissionsBoundary\",\"iam:AddRoleToInstanceProfile\"],\"Resource\":[\"arn:aws:iam::*:role/REXSBX??_AWS_*\",\"arn:aws:iam::*:instance-profile/REXSBX??_AWS_*\"],\"Effect\":\"Allow\",\"Sid\":\"AllowRoles1\"},{\"Action\":[\"iam:PassRole\",\"iam:DeleteRole\",\"iam:DetachRolePolicy\",\"iam:DeleteRolePolicy\",\"iam:DeleteInstanceProfile\",\"iam:RemoveRoleFromInstanceProfile\",\"iam:UpdateRole\",\"iam:CreateInstanceProfile\",\"iam:AddRoleToInstanceProfile\"],\"Resource\":[\"arn:aws:iam::*:role/REXSBX??_AWS_*\",\"arn:aws:iam::*:instance-profile/REXSBX??_AWS_*\"],\"Effect\":\"Allow\",\"Sid\":\"AllowRolePolicy\"},{\"Action\":[\"ec2:RunInstances\"],\"Resource\":[\"arn:aws:ec2:*:*:network-interface/*\",\"arn:aws:ec2:*:*:volume/*\",\"arn:aws:ec2:*:*:key-pair/*\",\"arn:aws:ec2:*:*:security-group/*\",\"arn:aws:ec2:*:*:subnet/subnet-*\",\"arn:aws:ec2:*::image/ami-*\",\"arn:aws:ec2:*:*:instance/*\"],\"Effect\":\"Allow\",\"Sid\":\"ServiceBoundariec2\"},{\"Action\":[\"ec2:AttachVolume\",\"ec2:UnmonitorInstances\",\"ec2:MonitorInstances\",\"ec2:CreateKeyPair\",\"ec2:ReplaceIamInstanceProfileAssociation\",\"ec2:DeleteVolume\",\"ec2:StartInstances\",\"ec2:DetachVolume\",\"ec2:RebootInstances\",\"ec2:CreateVolume\",\"ec2:Describe*\",\"ec2:GetPasswordData\",\"ec2:TerminateInstances\",\"ec2:CreateTags\",\"ec2:AssociateIamInstanceProfile\",\"ec2:StopInstances\",\"ec2:DeleteTags\",\"ec2:ModifyVolume\",\"iam:List*\",\"iam:Get*\",\"ec2:ModifyVolumeAttribute\",\"ec2:ModifyInstanceAttribute\"],\"Resource\":\"*\",\"Effect\":\"Allow\",\"Sid\":\"VisualEditor0\"}]},\"Roles\":[\"RIDY_AWS_EXSBX41_APPADM\"]}",
+        "ActualProperties": "{\"ManagedPolicyName\":\"PIDYAWSEXSBXAPPADMID03\",\"Roles\":[],\"PolicyDocument\":{\"Version\":\"2012-10-17\",\"Statement\":[{\"Action\":\"ec2:RunInstances\",\"Resource\":[\"arn:aws:ec2:*::image/ami-*\",\"arn:aws:ec2:*:*:key-pair/*\",\"arn:aws:ec2:*:*:instance/*\",\"arn:aws:ec2:*:*:subnet/subnet-*\",\"arn:aws:ec2:*:*:volume/*\",\"arn:aws:ec2:*:*:security-group/*\",\"arn:aws:ec2:*:*:network-interface/*\"],\"Effect\":\"Allow\",\"Sid\":\"VisualEditor0\"},{\"Condition\":{\"StringEquals\":{\"iam:PermissionsBoundary\":\"arn:aws:iam::199971209548:policy/PEXSBXAWSIAMPERMBOUNDARYID01\"}},\"Action\":[\"iam:PutRolePermissionsBoundary\",\"iam:CreateRole\",\"iam:AttachRolePolicy\"],\"Resource\":\"arn:aws:iam::*:role/REXSBX??_AWS_*\",\"Effect\":\"Allow\",\"Sid\":\"VisualEditor1\"},{\"Action\":[\"iam:CreatePolicy\",\"iam:DeletePolicy\",\"iam:CreatePolicyVersion\",\"iam:DeletePolicyVersion\"],\"Resource\":\"arn:aws:iam::*:policy/PEXSBX??AWS*\",\"Effect\":\"Allow\",\"Sid\":\"VisualEditor2\"},{\"Action\":[\"iam:UpdateRole\",\"iam:AddRoleToInstanceProfile\"],\"Resource\":[\"arn:aws:iam::*:role/REXSBX??_AWS_*\",\"arn:aws:iam::*:instance-profile/REXSBX??_AWS_*\"],\"Effect\":\"Allow\",\"Sid\":\"VisualEditor3\"},{\"Action\":[\"iam:CreateInstanceProfile\",\"iam:DeleteInstanceProfile\",\"iam:PassRole\",\"iam:DetachRolePolicy\",\"iam:DeleteRolePolicy\",\"iam:RemoveRoleFromInstanceProfile\",\"iam:DeleteRole\",\"iam:UpdateRole\",\"iam:AddRoleToInstanceProfile\"],\"Resource\":[\"arn:aws:iam::*:role/REXSBX??_AWS_*\",\"arn:aws:iam::*:instance-profile/REXSBX??_AWS_*\"],\"Effect\":\"Allow\",\"Sid\":\"VisualEditor4\"},{\"Action\":[\"ec2:DetachVolume\",\"ec2:AttachVolume\",\"ec2:RebootInstances\",\"ec2:ModifyVolume\",\"iam:List*\",\"ec2:ModifyVolumeAttribute\",\"ec2:UnmonitorInstances\",\"ec2:TerminateInstances\",\"ec2:DeleteTags\",\"ec2:MonitorInstances\",\"s3:*\",\"ec2:CreateKeyPair\",\"ec2:CreateTags\",\"ec2:StopInstances\",\"ec2:ReplaceIamInstanceProfileAssociation\",\"ec2:CreateVolume\",\"ec2:DeleteVolume\",\"iam:Get*\",\"ec2:Describe*\",\"ec2:GetPasswordData\",\"ec2:StartInstances\",\"ec2:ModifyInstanceAttribute\",\"ec2:AssociateIamInstanceProfile\"],\"Resource\":\"*\",\"Effect\":\"Allow\",\"Sid\":\"VisualEditor5\"}]}}",
+        "PropertyDifferences": [
+          "/Roles/0"
+        ],
+        "Message": null
+      },
+      {
+        "ResourceType": "AWS::IAM::ManagedPolicy",
+        "LogicalResourceId": "IDYAppPolicy04",
+        "PhysicalResourceId": "arn:aws:iam::199971209548:policy/PIDYAWSEXSBXAPPADMID04",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"ManagedPolicyName\":\"PIDYAWSEXSBXAPPADMID04\",\"PolicyDocument\":{\"Version\":\"2012-10-17\",\"Statement\":[{\"Condition\":{\"StringLike\":{\"iam:AWSServiceName\":[\"elasticloadbalancing.amazonaws.com\",\"lambda.application-autoscaling.amazonaws.com\",\"replicator.lambda.amazonaws.com\",\"ecs.amazonaws.com\",\"ecs.application-autoscaling.amazonaws.com\",\"elasticbeanstalk.amazonaws.com\",\"maintenance.elasticbeanstalk.amazonaws.com\",\"dynamodb.application-autoscaling.amazonaws.com\",\"dax.amazonaws.com\",\"cloud9.amazonaws.com\",\"codestar-notifications.amazonaws.com\",\"email.cognito-idp.amazonaws.com\",\"sso.amazonaws.com\",\"wafv2.amazonaws.com\",\"lex.amazonaws.com\",\"firehose.amazonaws.com\",\"cloudwatch-crossaccount.amazonaws.com\",\"events.amazonaws.com\",\"autoscaling.amazonaws.com\",\"eks.amazonaws.com\",\"eks-nodegroup.amazonaws.com\",\"elasticfilesystem.amazonaws.com\",\"fsx.amazonaws.com\",\"elasticache.amazonaws.com\",\"redshift.amazonaws.com\",\"rds.amazonaws.com\",\"fms.amazonaws.com\",\"guardduty.amazonaws.com\",\"access-analyzer.amazonaws.com\",\"inspector.amazonaws.com\",\"macie.amazonaws.com\",\"securityhub.amazonaws.com\",\"codeguru-review.amazonaws.com\",\"management.chatbot.amazonaws.com\",\"compute-optimizer.amazonaws.com\",\"config.amazonaws.com\",\"organizations.amazonaws.com\",\"ssm.amazonaws.com\",\"accountdiscovery.ssm.amazonaws.com\",\"trustedadvisor.amazonaws.com\",\"appmesh.amazonaws.com\",\"replicator.lambda.amazonaws.com\",\"es.amazonaws.com\",\"elasticmapreduce.amazonaws.com\",\"lakeformation.amazonaws.com\",\"robomaker.amazonaws.com\",\"support.amazonaws.com\",\"spot.amazonaws.com\",\"spotfleet.amazonaws.com\",\"beta.rds.amazonaws.com\",\"rds.application-autoscaling.amazonaws.com\",\"braket.amazonaws.com\",\"airflow.amazonaws.com\",\"airflow.application-autoscaling.amazonaws.com\",\"cassandra.amazonaws.com\",\"cassandra.application-autoscaling.amazonaws.com\"]}},\"Action\":\"iam:CreateServiceLinkedRole\",\"Resource\":\"*\",\"Effect\":\"Allow\",\"Sid\":\"AllowserviceRoleCreation\"},{\"Condition\":{\"StringLike\":{\"iam:AWSServiceName\":[\"continuousexport.discovery.amazonaws.com\",\"voiceconnector.chime.amazonaws.com\",\"chime.amazonaws.com\",\"cloudhsm.amazonaws.com\",\"connect.amazonaws.com\",\"globalaccelerator.amazonaws.com\",\"sms.amazonaws.com\",\"worklink.amazonaws.com\",\"events.workmail.amazonaws.com\",\"networkmanager.amazonaws.com\",\"transitgateway.amazonaws.com\",\"logger.cloudfront.amazonaws.com\"]}},\"Action\":\"iam:CreateServiceLinkedRole\",\"Resource\":\"*\",\"Effect\":\"Deny\",\"Sid\":\"DenyserviceRoleCreation\"}]},\"Roles\":[\"RIDY_AWS_EXSBX41_APPADM\"]}",
+        "ActualProperties": "{\"ManagedPolicyName\":\"PIDYAWSEXSBXAPPADMID04\",\"Roles\":[],\"PolicyDocument\":{\"Version\":\"2012-10-17\",\"Statement\":[{\"Condition\":{\"StringLike\":{\"iam:AWSServiceName\":[\"elasticloadbalancing.amazonaws.com\",\"lambda.application-autoscaling.amazonaws.com\",\"replicator.lambda.amazonaws.com\",\"ecs.amazonaws.com\",\"ecs.application-autoscaling.amazonaws.com\",\"elasticbeanstalk.amazonaws.com\",\"maintenance.elasticbeanstalk.amazonaws.com\",\"dynamodb.application-autoscaling.amazonaws.com\",\"dax.amazonaws.com\",\"cloud9.amazonaws.com\",\"codestar-notifications.amazonaws.com\",\"email.cognito-idp.amazonaws.com\",\"sso.amazonaws.com\",\"wafv2.amazonaws.com\",\"lex.amazonaws.com\",\"firehose.amazonaws.com\",\"cloudwatch-crossaccount.amazonaws.com\",\"events.amazonaws.com\",\"autoscaling.amazonaws.com\",\"eks.amazonaws.com\",\"eks-nodegroup.amazonaws.com\",\"elasticfilesystem.amazonaws.com\",\"fsx.amazonaws.com\",\"elasticache.amazonaws.com\",\"redshift.amazonaws.com\",\"rds.amazonaws.com\",\"fms.amazonaws.com\",\"guardduty.amazonaws.com\",\"access-analyzer.amazonaws.com\",\"inspector.amazonaws.com\",\"macie.amazonaws.com\",\"securityhub.amazonaws.com\",\"codeguru-review.amazonaws.com\",\"management.chatbot.amazonaws.com\",\"compute-optimizer.amazonaws.com\",\"config.amazonaws.com\",\"organizations.amazonaws.com\",\"ssm.amazonaws.com\",\"accountdiscovery.ssm.amazonaws.com\",\"trustedadvisor.amazonaws.com\",\"appmesh.amazonaws.com\",\"replicator.lambda.amazonaws.com\",\"es.amazonaws.com\",\"elasticmapreduce.amazonaws.com\",\"lakeformation.amazonaws.com\",\"robomaker.amazonaws.com\",\"support.amazonaws.com\",\"spot.amazonaws.com\",\"spotfleet.amazonaws.com\",\"beta.rds.amazonaws.com\",\"rds.application-autoscaling.amazonaws.com\",\"braket.amazonaws.com\",\"airflow.amazonaws.com\",\"airflow.application-autoscaling.amazonaws.com\",\"cassandra.amazonaws.com\",\"cassandra.application-autoscaling.amazonaws.com\"]}},\"Action\":\"iam:CreateServiceLinkedRole\",\"Resource\":\"*\",\"Effect\":\"Allow\",\"Sid\":\"AllowserviceRoleCreation\"},{\"Condition\":{\"StringLike\":{\"iam:AWSServiceName\":[\"continuousexport.discovery.amazonaws.com\",\"voiceconnector.chime.amazonaws.com\",\"chime.amazonaws.com\",\"cloudhsm.amazonaws.com\",\"connect.amazonaws.com\",\"globalaccelerator.amazonaws.com\",\"sms.amazonaws.com\",\"worklink.amazonaws.com\",\"events.workmail.amazonaws.com\",\"networkmanager.amazonaws.com\",\"transitgateway.amazonaws.com\",\"logger.cloudfront.amazonaws.com\"]}},\"Action\":\"iam:CreateServiceLinkedRole\",\"Resource\":\"*\",\"Effect\":\"Deny\",\"Sid\":\"DenyserviceRoleCreation\"}]}}",
+        "PropertyDifferences": [
+          "/Roles/0"
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "eu-west-1",
+    "Stack Name": "RKH1-NonCompliant-testdrift",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::KMS::Key",
+        "LogicalResourceId": "KmsKey",
+        "PhysicalResourceId": "274b34c5-665e-4de0-9b3a-492bf5f6487a",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "eu-west-1",
+    "Stack Name": "RKH1-KMS-Noncompliant",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::KMS::Key",
+        "LogicalResourceId": "KmsKey",
+        "PhysicalResourceId": "8628f6de-8b36-4724-ab30-2947e48bbb29",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "eu-west-1",
+    "Stack Name": "RKH1-KMS-Compliant",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::KMS::Key",
+        "LogicalResourceId": "KmsKey",
+        "PhysicalResourceId": "dd63cc11-bcc2-4996-a231-9766000abc8c",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "eu-west-1",
+    "Stack Name": "NVSGISEXSBX41-S3PUBACCESSLMF",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::Lambda::Function",
+        "LogicalResourceId": "S3BlockPublicAccessLambda",
+        "PhysicalResourceId": "NVSGISEXSBX41-S3PubAccessLMF",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "eu-west-1",
+    "Stack Name": "NVSGISEXSBX41-KMS",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::KMS::Key",
+        "LogicalResourceId": "CloudTrailKMS",
+        "PhysicalResourceId": "ea3c5d69-131b-4627-b5a1-4c345564b188",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "eu-west-1",
+    "Stack Name": "NVSGISEXSBX41-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:eu-west-1:199971209548:NVSGISEXSBX41-AWSConfigSNS01",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "eu-west-2",
+    "Stack Name": "NVSGISEXSBX41-KMS",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::KMS::Key",
+        "LogicalResourceId": "CloudTrailKMS",
+        "PhysicalResourceId": "a71c9d15-f914-448a-b692-44da0e31e8f3",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "eu-west-2",
+    "Stack Name": "NVSGISEXSBX41-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:eu-west-2:199971209548:NVSGISEXSBX41-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          "/Subscription"
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "eu-west-3",
+    "Stack Name": "NVSGISEXSBX41-KMS",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::KMS::Key",
+        "LogicalResourceId": "CloudTrailKMS",
+        "PhysicalResourceId": "198b84d7-e8b5-44bd-8968-04acc59e3ae0",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "eu-west-3",
+    "Stack Name": "NVSGISEXSBX41-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:eu-west-3:199971209548:NVSGISEXSBX41-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          "/Subscription"
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "eu-north-1",
+    "Stack Name": "NVSGISEXSBX41-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:eu-north-1:199971209548:NVSGISEXSBX41-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          "/Subscription"
+        ],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "sa-east-1",
+    "Stack Name": "NVSGISEXSBX41-KMS",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::KMS::Key",
+        "LogicalResourceId": "CloudTrailKMS",
+        "PhysicalResourceId": "e767db7a-56f5-4f13-80c9-03df661033a9",
+        "StackResourceDriftStatus": "DELETED",
+        "ExpectedProperties": null,
+        "ActualProperties": null,
+        "PropertyDifferences": [],
+        "Message": null
+      }
+    ]
+  },
+  {
+    "Account ID": 199971209548,
+    "AWS Region": "sa-east-1",
+    "Stack Name": "NVSGISEXSBX41-CONFIG",
+    "Drift Status": "DRIFTED",
+    "Resources": [
+      {
+        "ResourceType": "AWS::SNS::Topic",
+        "LogicalResourceId": "SnsTopicARN",
+        "PhysicalResourceId": "arn:aws:sns:sa-east-1:199971209548:NVSGISEXSBX41-AWSConfigSNS01",
+        "StackResourceDriftStatus": "MODIFIED",
+        "ExpectedProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Subscription\":[{\"Endpoint\":\"public.exploratory@novartis.com\",\"Protocol\":\"email\"}],\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "ActualProperties": "{\"KmsMasterKeyId\":\"alias/aws/sns\",\"DisplayName\":\"NVSGISEXSBX41-AWSConfigSNS01\",\"Tags\":[{\"Key\":\"Owner\",\"Value\":\"TIS\"},{\"Key\":\"ClarityID\",\"Value\":\"42846\"},{\"Key\":\"CostCenter\",\"Value\":\"868914\"},{\"Key\":\"Component\",\"Value\":\"Foundation\"},{\"Key\":\"BillingContact\",\"Value\":\"NOEBARU1\"},{\"Key\":\"AccountOwner\",\"Value\":\"NOEBARU1\"}],\"TopicName\":\"NVSGISEXSBX41-AWSConfigSNS01\"}",
+        "PropertyDifferences": [
+          "/Subscription"
+        ],
+        "Message": null
+      }
+    ]
+  }
+]
