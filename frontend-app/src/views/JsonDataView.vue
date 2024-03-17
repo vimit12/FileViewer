@@ -20,7 +20,7 @@
                         <v-dialog v-model="dialog" persistent width="auto">
                             <template v-slot:activator="{ props }">
                                
-                                <v-btn light v-bind="props" @click="change_view()">
+                                <v-btn light v-bind="props" @click="export_data()">
                                     Export Data
                                 </v-btn>
                                 <v-btn light v-bind="props" @click="dialog = true">
@@ -104,8 +104,8 @@
             </v-data-table>
         </div>
 
-        <div>
-            <!-- This section is to view recursive data -->
+        <!-- This section is to view recursive data -->
+        <div> 
             <v-row justify="space-around">
 
                 <v-col cols="auto">
@@ -126,7 +126,39 @@
                         <v-card-text>
                           <div class="">
 
-                                <v-data-table v-if="columnArrayObj" :headers="recursiveHeadersData" :items="recursiveJsonData" :items-per-page="itemPerPageRec" :sort-by="sortColumnDataBy" :fixed-header="true" class="custom-table">  
+                                <v-data-table v-if="columnArrayObj" :headers="recursiveHeadersData" :items="recursiveJsonData" :items-per-page="itemPerPageRec" :sort-by="sortColumnDataBy" :fixed-header="true" class="custom-table">
+
+                                    <!-- eslint-disable-next-line -->
+                                    <template v-slot:item="{ item }">
+                                        <tr>
+                                            <td v-for="key in secondLeveldynamicKeys" :key="key">
+                                                
+                                                <template v-if="Array.isArray(castValue(item[key])) && castValue(item[key]).length !== 0">
+                                                    <v-btn variant="plain" prepend-icon="mdi-expand-all" stacked @click="secondLevelButtonClick(castValue(item[key]), key)" :color="success">
+                                                        <template v-slot:prepend>
+                                                            <v-icon color="success"></v-icon>
+                                                        </template>Expand</v-btn>
+                                                </template>
+                                                <template v-else-if="key == 'Message'">
+                                                    null
+                                                </template>
+
+                                                <template v-else-if="typeof castValue(item[key]) === 'object'">
+                                                    <v-btn variant="plain" prepend-icon="mdi-expand-all" stacked @click="secondLevelButtonClick(castValue(item[key]), key)">                                                  <template v-slot:prepend>
+                                                            <v-icon color="success"></v-icon>
+                                                        </template>Expand</v-btn>
+                                                </template>
+
+                                                <template v-else-if="Array.isArray(castValue(item[key])) && item[key].length === 0">
+                                                    {{ item[key] }}
+                                                </template>
+                                                <template v-else>{{ item[key] }}</template>
+                                            </td>
+                                        </tr>
+                                        
+
+                                        
+                                    </template>
                                         
                                 </v-data-table>
 
@@ -152,6 +184,55 @@
             </v-row>
         </div>
 
+        <!-- This section is for second Level recursive Data -->
+        
+        <div> 
+            <v-row justify="space-around">
+
+                <v-col cols="auto">
+                  <v-dialog v-model="secondLevelPreviewDialogVisble" transition="dialog-top-transition" width="auto">
+                
+                    <template v-slot:default="{ isActive }">
+                      <v-card>
+                        <v-toolbar v-bind:color="colorcode" >
+                            <v-row>
+                                <v-col cols="8">
+                                    <v-toolbar-title style="padding: 2em;">Data for column : {{ keyColumn }}   </v-toolbar-title>
+                                </v-col>
+
+                            </v-row>
+                            
+
+                        </v-toolbar>
+                        <v-card-text>
+                          <div class="">
+
+                                <v-data-table v-if="secondLevelColumnArrayObj" :headers="secondLevelRecursiveHeadersData" :items="secondLevelRecursiveJsonData" :items-per-page="itemPerPageRec" :sort-by="secondLevelSortColumnDataBy" :fixed-header="true" class="custom-table">
+                                </v-data-table>
+
+                                <v-table fixed-header v-if="secondLevelColumnArrayArr">
+                                    
+                                    <tbody>
+                                    <tr v-for="value in secondLevelRecursiveJsonData" :key="value">
+                                        <td >{{ value }}</td>
+                                    </tr>
+                                    </tbody>
+                                </v-table>
+                          </div>
+                        </v-card-text>
+                        <v-card-actions class="justify-end">
+                          <v-btn variant="text" @click="isActive.value = false">Close</v-btn>
+                        </v-card-actions>
+                      </v-card>
+                    </template>
+                  </v-dialog>
+                </v-col>
+
+                
+            </v-row>
+        </div>
+
+        <!-- END -->
         <div>
             <!-- This section is for Color Picket -->
             <v-dialog v-model="colorDialog" transition="dialog-top-transition" width="auto">
@@ -264,6 +345,7 @@ export default {
             columnArrayObj: false,
             columnArrayArr: false,
             previewDialogVisible:false,
+            secondLevelPreviewDialogVisble:false,
             dialog: false,
             jsonEditdialog:false,
             jsonEdit: false,
@@ -295,6 +377,17 @@ export default {
             this.keys.push("Action")
             return this.keys
         },
+        secondLeveldynamicKeys() {
+            this.secondLevelKeys = Array()
+
+            if (Array.isArray(this.recursiveJsonData)) {
+
+                this.secondLevelKeys = Object.keys(this.recursiveJsonData[0]).map(head => (head));
+            } else {
+                this.secondLevelKeys  = Object.keys(this.recursiveJsonData).map(head => (head));
+            }
+            return this.secondLevelKeys
+        },
         formTitle() {
             return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
         },
@@ -305,6 +398,11 @@ export default {
         },
         dialogDelete(val) {
             val || this.closeDelete()
+        },
+        colorcode(newValue, oldValue) {
+        
+            localStorage.setItem("colorcode", newValue)
+
         }
     },
     mounted() {
@@ -316,6 +414,56 @@ export default {
 
     },
     methods: {
+        castValue(value) {
+            // Check if the value is a string
+            if (typeof value === 'string') {
+                if (value === 'null') {
+                    return null;
+                }
+            try {
+                // Try parsing the string as JSON
+                const parsedValue = JSON.parse(value);
+                // Check if the parsed value is an array
+                if (Array.isArray(parsedValue)) {
+                return parsedValue; // Return the parsed array
+                } else if (typeof parsedValue === 'object') {
+                return parsedValue; // Return the parsed object
+                } else {
+                return value; // Return the original string if parsing fails
+                }
+            } catch (error) {
+                return value; // Return the original string if parsing fails
+            }
+            } else {
+            return value; // Return the original value if it's not a string
+            }
+        },
+        secondLevelButtonClick(columnArray, key) {
+            this.keyColumn = key
+            console.log(this.keyColumn)
+            console.log(columnArray, typeof columnArray)
+            this.secondLevelPreviewDialogVisble = true
+            // Access and process the array data here
+            let type_of_array = this.identifyArrayType(columnArray)
+            console.log(type_of_array)
+
+            if (type_of_array == 'Not an array' && (typeof columnArray == "object") && columnArray){
+                console.log("HERE")
+                this.second_level_recursive_data_prep(Array(columnArray))
+                this.secondLevelColumnArrayObj = true
+                this.secondLevelColumnArrayArr = false
+                return
+            }
+
+            if (type_of_array == 'Array of objects'){
+                this.second_level_recursive_data_prep(columnArray)
+                this.secondLevelColumnArrayObj = true
+                this.secondLevelColumnArrayArr = false
+            } else {
+                this.recursiveJsonData = columnArray
+                this.secondLevelColumnArrayArr = true
+            }
+        },
         handleInputChange() {
             console.log('Input value changed:', this.searchInputValue);
             // Call your function here
@@ -369,6 +517,7 @@ export default {
         handleColorPick() {
             // Access the picked color from the 'colorcode' variable
             console.log('Picked Color:', this.colorcode);
+            
             // You can perform any additional logic with the picked color here
         },
         searchByKey(array, key, searchText) {
@@ -405,17 +554,28 @@ export default {
                     name: 'home'
                 })
         },
-        change_view(){
-            this.$router.push(
-                {
-                    name: 'jsonedit',
-                    query:
-                    {
-                        data: this.rawJsonData,
-                        file_name: this.file_name,
-                        file_type: this.file_type
-                    }
-                })
+        export_data(){
+            
+            this.dialog = false
+            // Convert JSON data to a string
+            const jsonString = JSON.stringify(this.rawJsonData, null, 2);
+
+            // Create a Blob object
+            const blob = new Blob([jsonString], { type: 'application/json' });
+
+            // Create a link element
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+
+            // Set the filename
+            link.download = this.file_name;
+
+            // Simulate a click on the link to trigger the download
+            link.click();
+
+            // Cleanup
+            window.URL.revokeObjectURL(link.href);
+            
         },
         identifyArrayType(arr) {
             if (!Array.isArray(arr)) {
@@ -487,17 +647,43 @@ export default {
                 }));
                 this.recursiveJsonData = Array(this.recursiveJsonData)
             }
-
+            console.log("REC DATA ===>", this.recursiveJsonData)
+            console.log("REC HEADER DATA ===>", this.recursiveHeadersData)
             this.sortColumnDataBy = [{ key: Object.keys(this.recursiveJsonData[0])[0], order: 'asc' }]
+
+        },
+        second_level_recursive_data_prep(data) {
+
+            this.secondLevelRecursiveJsonData = data
+            if (Array.isArray(this.secondLevelRecursiveJsonData)) {
+
+                this.secondLevelRecursiveHeadersData = Object.keys(this.secondLevelRecursiveJsonData[0]).map(head => ({
+                    title: head,
+                    align: 'start',
+                    sortable: true,
+                    key: head,
+                }));
+
+            } else {
+                this.secondLevelRecursiveHeadersData = Object.keys(this.secondLevelRecursiveJsonData).map(head => ({
+                    title: head,
+                    align: 'start',
+                    sortable: true,
+                    key: head,
+                }));
+                this.secondLevelRecursiveJsonData = Array(this.secondLevelRecursiveJsonData)
+            }
+            console.log("REC DATA ===>", this.secondLevelRecursiveJsonData)
+            console.log("REC HEADER DATA ===>", this.secondLevelRecursiveHeadersData)
+            this.secondLevelSortColumnDataBy = [{ key: Object.keys(this.secondLevelRecursiveJsonData[0])[0], order: 'asc' }]
 
         },
         handleButtonClick(columnArray, key) {
             this.keyColumn = key
             this.previewDialogVisible = true
+            this.secondLevelPreviewDialogVisble = false
             // Access and process the array data here
-
             let type_of_array = this.identifyArrayType(columnArray)
-            console.log(type_of_array)
 
             if (type_of_array == 'Not an array' && (typeof columnArray == "object") && columnArray){
                 this.recursive_data_prep(Array(columnArray))
@@ -507,8 +693,6 @@ export default {
             }
 
             if (type_of_array == 'Array of objects'){
-                // this.recursiveJsonData = columnArray
-                // this.recursiveHeadersData = this.columnDataPopulate(columnArray)
                 this.recursive_data_prep(columnArray)
                 this.columnArrayObj = true
                 this.columnArrayArr = false
@@ -516,15 +700,12 @@ export default {
                 this.recursiveJsonData = columnArray
                 this.columnArrayArr = true
             }
-
-            console.log(this.recursiveJsonData)
-            console.log(this.recursiveHeadersData)
-            
         },
         data_prep(data){
             
             this.jsonData = data
             this.previewDialogVisible = false
+            this.secondLevelPreviewDialogVisble = false
             if (Array.isArray(this.jsonData)) {
                 
                 this.headersData = Object.keys(this.jsonData[0]).map(head => ({
@@ -633,7 +814,11 @@ export default {
         localStorage.setItem('jsonData', this.$route.query.data);
 
         this.rawJsonData = JSON.parse(this.$route.query.data);
-        console.log(this.rawJsonData)
+        
+        const colorcode = localStorage.getItem('colorcode');
+        if (colorcode){
+          this.colorcode = colorcode
+        }
         // this.jsonData = this.rawJsonData
         this.file_name = this.$route.query.file_name;
         this.file_type = this.$route.query.file_type;

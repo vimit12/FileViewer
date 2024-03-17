@@ -6,7 +6,7 @@
                 
                 <template v-slot:default="{ isActive }">
                   <v-card>
-                    <v-toolbar color="black" title="Choose Action : "></v-toolbar>
+                    <v-toolbar v-bind:color="colorcode" title="Choose Action : "></v-toolbar>
                     <v-card-text>
                       <div class="">
                             <v-row justify="center">
@@ -34,7 +34,7 @@
             
                 <template v-slot:default="{ isActive }">
                   <v-card>
-                    <v-toolbar color="black" title="File Upload : "></v-toolbar>
+                    <v-toolbar v-bind:color="colorcode" title="File Upload : "></v-toolbar>
                     <v-card-text>
                             <v-row justify="center">
 
@@ -70,11 +70,17 @@ export default {
     data() {
         return {
             dialogVisible: true,
-            viewDialog: false
+            viewDialog: false,
+            colorcode: "black"
         }
     },
     mounted() {
         document.title = "Action";
+        const colorcode = localStorage.getItem('colorcode');
+        if (colorcode){
+          this.colorcode = colorcode
+        }
+        
     },
     beforeUnmount() {
         
@@ -85,65 +91,170 @@ export default {
             this.viewDialog = true;
         },
         
-        local_view(){
+        // local_view(){
             
-            const fileInput = document.getElementById('file_input');
-            const file = fileInput.files[0];
+        //     const fileInput = document.getElementById('file_input');
+        //     const file = fileInput.files[0];
 
-            if (!file) {
-                console.error('No file selected');
-                return;
-            }
+        //     if (!file) {
+        //         console.error('No file selected');
+        //         return;
+        //     }
 
-            const formData = new FormData();
-            formData.append('file', file);
+        //     const formData = new FormData();
+        //     formData.append('file', file);
 
             
-            axios.post(`${process.env.BASE_API_URL}upload/`, formData)
-                .then(response => {
-                    // Handle API response data
-                    var resp = response.data;
-                    if (resp.status_code == 200) {
-                        if (resp.file_type == 'json' || resp.file_type == 'xlsx'){
-                            this.$router.push(
-                              { name: 'json' , 
-                                query: 
-                                {
-                                  data: resp.data,
-                                  file_name: resp.file_name,
-                                  file_type: resp.file_type
+        //     axios.post(`${process.env.BASE_API_URL}upload/`, formData)
+        //         .then(response => {
+        //             // Handle API response data
+        //             var resp = response.data;
+        //             if (resp.status_code == 200) {
+        //                 if (resp.file_type == 'json' || resp.file_type == 'xlsx'){
+        //                     this.$router.push(
+        //                       { name: 'json' , 
+        //                         query: 
+        //                         {
+        //                           data: resp.data,
+        //                           file_name: resp.file_name,
+        //                           file_type: resp.file_type
+        //                         }
+        //                       })
+        //                 } else {
+
+        //                 }
+        //             } else {
+        //                 createToast(JSON.stringify(resp.error),
+        //                     {
+        //                         showIcon: 'true',
+        //                         hideProgressBar: 'false',
+        //                         type: 'danger',
+        //                         showCloseButton: 'true',
+        //                         transition: 'slide',
+        //                         position: 'bottom-center',
+        //                     })
+        //             }
+        //         })
+        //         .catch(error => {
+        //             // alert(JSON.stringify(error))
+
+        //             createToast(JSON.stringify(error),
+        //                 {
+        //                     showIcon: 'true',
+        //                     hideProgressBar: 'false',
+        //                     type: 'danger',
+        //                     showCloseButton: 'true',
+        //                     transition: 'slide',
+        //                     position: 'bottom-center',
+        //                 })
+        //         });
+
+        // },
+          
+        // local_view() {
+        //   //this function is without API call just to view file details.
+        //     const fileInput = document.getElementById('file_input');
+        //     const file = fileInput.files[0];
+        //     if (file) {
+        //         const fileName = file.name; // Extract file name
+        //         const fileType = file.type; // Extract file type
+        //         const reader = new FileReader();
+
+        //         reader.onload = (event) => {
+        //             const fileContent = event.target.result; // Extract file content
+        //             // Now you have fileName, fileType, and fileContent available for further processing
+        //             console.log('File Name:', fileName);
+        //             console.log('File Type:', fileType);
+        //             console.log('File Content:', fileContent);
+                    
+        //             // Check if file type is JSON
+        //             if (fileType === 'application/json') {
+        //                 // Parse JSON content
+        //                 try {
+        //                     const jsonData = JSON.parse(fileContent);
+        //                     console.log('JSON Data:', jsonData);
+        //                     // You can now use jsonData for further processing
+        //                     this.$router.push({
+        //                         name: 'json',
+        //                         query: {
+        //                             data: fileContent,
+        //                             file_name: fileName,
+        //                             file_type: fileType
+        //                         }
+        //                     });
+        //                 } catch (error) {
+        //                     console.error('Error parsing JSON:', error);
+        //                 }
+        //             }
+        //         };
+
+        //         reader.readAsText(file); // Read file as text
+        //     }
+        // }
+
+
+        local_view() {
+        const fileInput = document.getElementById('file_input');
+        const file = fileInput.files[0];
+        if (file) {
+            const fileName = file.name; // Extract file name
+            const fileType = file.type; // Extract file type
+            const chunkSize = 1024 * 1024; // 1 MB chunk size
+            let offset = 0;
+            let fileContent = ''; // Initialize file content
+
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                // Process chunk
+                const chunk = event.target.result;
+                fileContent += chunk; // Append chunk to fileContent
+
+                // Update offset
+                offset += chunk.length;
+
+                // Read the next chunk
+                if (offset < file.size) {
+                    readNextChunk();
+                } else {
+                    // Finished reading the entire file
+                    console.log('File processing completed.');
+                    // Check if file type is JSON
+                    if (fileType === 'application/json') {
+                        // Parse JSON content
+                        try {
+                            const jsonData = JSON.parse(fileContent);
+                            console.log('JSON Data:', jsonData);
+                            // You can now use jsonData for further processing
+                            this.$router.push({
+                                name: 'json',
+                                query: {
+                                    data: fileContent,
+                                    file_name: fileName,
+                                    file_type: fileType
                                 }
-                              })
-                        } else {
-
+                            });
+                        } catch (error) {
+                            console.error('Error parsing JSON:', error);
                         }
-                    } else {
-                        createToast(JSON.stringify(resp.error),
-                            {
-                                showIcon: 'true',
-                                hideProgressBar: 'false',
-                                type: 'danger',
-                                showCloseButton: 'true',
-                                transition: 'slide',
-                                position: 'bottom-center',
-                            })
                     }
-                })
-                .catch(error => {
-                    // alert(JSON.stringify(error))
+                }
+            };
 
-                    createToast(JSON.stringify(error),
-                        {
-                            showIcon: 'true',
-                            hideProgressBar: 'false',
-                            type: 'danger',
-                            showCloseButton: 'true',
-                            transition: 'slide',
-                            position: 'bottom-center',
-                        })
-                });
+            reader.onerror = (event) => {
+                console.error('Error reading file:', event.target.error);
+            };
 
+            const readNextChunk = () => {
+                const blob = file.slice(offset, offset + chunkSize);
+                reader.readAsText(blob);
+            };
+
+            // Start reading the first chunk
+            readNextChunk();
         }
+    }
+
 
     }
 }
