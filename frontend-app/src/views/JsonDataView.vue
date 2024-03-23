@@ -2,7 +2,8 @@
 
     <div>
         <div>
-            <v-data-table :headers="headersData" :items="jsonData" :items-per-page="itemPerPage" :sort-by="sortBy" :fixed-header="true" class="custom-table">  
+            <v-data-table :headers="headersData" :items="jsonData" :items-per-page="itemPerPage" :sort-by="sortBy"
+                :fixed-header="true" class="custom-table">
                 <template v-slot:top>
                     <v-toolbar flat v-bind:color="colorcode">
                         <v-toolbar-title>
@@ -14,24 +15,24 @@
                                 <v-col justify="end">
                                     {{ file_name }}
                                 </v-col>
-                            </v-row>  </v-toolbar-title>
+                            </v-row> </v-toolbar-title>
                         <v-divider class="mx-4" inset vertical></v-divider>
                         <v-spacer></v-spacer>
                         <v-dialog v-model="dialog" persistent width="auto">
                             <template v-slot:activator="{ props }">
-                               
+
                                 <v-btn light v-bind="props" @click="export_data()">
                                     Export Data
                                 </v-btn>
                                 <v-btn light v-bind="props" @click="dialog = true">
                                     Add New
                                 </v-btn>
-                                
+
                             </template>
 
 
                             <v-card>
-                                
+
                                 <v-card-title v-bind:color="colorcode">
                                     <span class="text-h5">{{ formTitle }}</span>
                                     <v-divider></v-divider>
@@ -40,8 +41,10 @@
                                 <v-card-text>
                                     <v-container>
                                         <v-row>
-                                            <v-col  cols="12" sm="6" md="4" v-for="key in dynamicKeys" :key="key" >
-                                                <v-textarea v-if="key !== 'Action'" clearable :label="key" prepend-icon="mdi-ruler-square-compass" variant="outlined" v-model="formData[key]"></v-textarea>
+                                            <v-col cols="12" sm="6" md="4" v-for="key in dynamicKeys" :key="key">
+                                                <v-textarea v-if="key !== 'Action'" clearable :label="key"
+                                                    prepend-icon="mdi-ruler-square-compass" variant="outlined"
+                                                    v-model="formData[key]"></v-textarea>
                                             </v-col>
                                         </v-row>
                                     </v-container>
@@ -53,40 +56,48 @@
                                     <v-btn color="blue-darken-1" variant="text" @click="save()">Save</v-btn>
                                 </v-card-actions>
                             </v-card>
-                            
-   
+
+
                         </v-dialog>
-                        
+
                     </v-toolbar>
                 </template>
 
                 <template v-slot:item="{ item }">
-                    
+
                     <tr>
                         <td v-for="key in dynamicKeys" :key="key">
-                            <template v-if="Array.isArray(item[key]) && item[key].length !== 0">
-                                <v-btn variant="tonal" prepend-icon="mdi-unfold-more-vertical" append-icon="mdi-dots-horizontal-circle-outline" @click="handleButtonClick(item[key], key)">view</v-btn>
+                            <template v-if="item[key] === null"> <!-- New condition for null value -->
+                                null
+                            </template>
+                            <template v-else-if="Array.isArray(item[key]) && item[key].length !== 0">
+                                <v-btn variant="tonal" prepend-icon="mdi-unfold-more-vertical"
+                                    append-icon="mdi-dots-horizontal-circle-outline"
+                                    @click="handleButtonClick(item[key], key)">view</v-btn>
                             </template>
                             <template v-else-if="typeof item[key] === 'object' && Object.keys(item[key]).length === 0">
-                                    {{ item[key] }}
+                                {{ item[key] }}
                             </template>
                             <template v-else-if="Array.isArray(item[key]) && item[key].length === 0">
                                 {{ item[key] }}
                             </template>
                             <template v-else-if="typeof item[key] === 'object'">
-                                <v-btn variant="tonal" prepend-icon="mdi-unfold-more-vertical" append-icon="mdi-dots-horizontal-circle-outline" @click="handleButtonClick(item[key], key)">View</v-btn>
+                                <v-btn variant="tonal" prepend-icon="mdi-unfold-more-vertical"
+                                    append-icon="mdi-dots-horizontal-circle-outline"
+                                    @click="handleButtonClick(item[key], key)">View</v-btn>
                             </template>
-                            
                             <template v-else>{{ item[key] }}</template>
-                                <v-icon size="small" class="me-2" @click="editItem(item)" v-if="key=='Action'">mdi-pencil</v-icon>
-                                <v-icon size="small" class="me-2" @click="deleteItem(item)" v-if="key == 'Action'">mdi-delete</v-icon>
+                            <v-icon size="small" class="me-2" @click="editItem(item)"
+                                v-if="key=='Action'">mdi-pencil</v-icon>
+                            <v-icon size="small" class="me-2" @click="deleteItem(item)"
+                                v-if="key == 'Action'">mdi-delete</v-icon>
                         </td>
                     </tr>
 
-                    
+
                 </template>
 
-                
+
 
                 <!-- eslint-disable -->
                 <template v-slot:tfoot="{ item }">
@@ -94,141 +105,156 @@
                     <tr>
                         <td v-for="key in dynamicKeys" :key="key">
                             <v-text-field v-model="searchText[key]" v-if="key != 'Action'"
-                            @input="handleSearch(key, searchText[key])" hide-details :placeholder="`Search ${key}`" variant="underlined" clearable></v-text-field>
+                                @input="handleSearch(key, searchText[key])" hide-details :placeholder="`Search ${key}`"
+                                variant="underlined" clearable></v-text-field>
                         </td>
-                    </tr>   
+                    </tr>
 
-                    
+
                 </template>
                 <!-- eslint-enable -->
             </v-data-table>
         </div>
 
         <!-- This section is to view recursive data -->
-        <div> 
+        <div>
             <v-row justify="space-around">
 
                 <v-col cols="auto">
-                  <v-dialog v-model="previewDialogVisible" transition="dialog-top-transition" width="auto">
-                
-                    <template v-slot:default="{ isActive }">
-                      <v-card>
-                        <v-toolbar v-bind:color="colorcode" >
-                            <v-row>
-                                <v-col cols="8">
-                                    <v-toolbar-title style="padding: 2em;">Data for column : {{ keyColumn }}   </v-toolbar-title>
-                                </v-col>
+                    <v-dialog v-model="previewDialogVisible" transition="dialog-top-transition" width="auto">
 
-                            </v-row>
-                            
+                        <template v-slot:default="{ isActive }">
+                            <v-card>
+                                <v-toolbar v-bind:color="colorcode">
+                                    <v-row>
+                                        <v-col cols="8">
+                                            <v-toolbar-title style="padding: 2em;">Data for column : {{ keyColumn }}
+                                            </v-toolbar-title>
+                                        </v-col>
 
-                        </v-toolbar>
-                        <v-card-text>
-                          <div class="">
+                                    </v-row>
 
-                                <v-data-table v-if="columnArrayObj" :headers="recursiveHeadersData" :items="recursiveJsonData" :items-per-page="itemPerPageRec" :sort-by="sortColumnDataBy" :fixed-header="true" class="custom-table">
 
-                                    <!-- eslint-disable-next-line -->
-                                    <template v-slot:item="{ item }">
-                                        <tr>
-                                            <td v-for="key in secondLeveldynamicKeys" :key="key">
-                                                
-                                                <template v-if="Array.isArray(castValue(item[key])) && castValue(item[key]).length !== 0">
-                                                    <v-btn variant="plain" prepend-icon="mdi-expand-all" stacked @click="secondLevelButtonClick(castValue(item[key]), key)" :color="success">
-                                                        <template v-slot:prepend>
-                                                            <v-icon color="success"></v-icon>
-                                                        </template>Expand</v-btn>
-                                                </template>
-                                                <template v-else-if="key == 'Message'">
-                                                    null
-                                                </template>
+                                </v-toolbar>
+                                <v-card-text>
+                                    <div class="">
 
-                                                <template v-else-if="typeof castValue(item[key]) === 'object'">
-                                                    <v-btn variant="plain" prepend-icon="mdi-expand-all" stacked @click="secondLevelButtonClick(castValue(item[key]), key)">                                                  <template v-slot:prepend>
-                                                            <v-icon color="success"></v-icon>
-                                                        </template>Expand</v-btn>
-                                                </template>
+                                        <v-data-table v-if="columnArrayObj" :headers="recursiveHeadersData"
+                                            :items="recursiveJsonData" :items-per-page="itemPerPageRec"
+                                            :sort-by="sortColumnDataBy" :fixed-header="true" class="custom-table">
 
-                                                <template v-else-if="Array.isArray(castValue(item[key])) && item[key].length === 0">
-                                                    {{ item[key] }}
-                                                </template>
-                                                <template v-else>{{ item[key] }}</template>
-                                            </td>
-                                        </tr>
-                                        
+                                            <!-- eslint-disable-next-line -->
+                                            <template v-slot:item="{ item }">
+                                                <tr>
+                                                    <td v-for="key in secondLeveldynamicKeys" :key="key">
 
-                                        
-                                    </template>
-                                        
-                                </v-data-table>
+                                                        <template
+                                                            v-if="Array.isArray(castValue(item[key])) && castValue(item[key]).length !== 0">
+                                                            <v-btn variant="plain" prepend-icon="mdi-expand-all" stacked
+                                                                @click="secondLevelButtonClick(castValue(item[key]), key)"
+                                                                :color="success">
+                                                                <template v-slot:prepend>
+                                                                    <v-icon color="success"></v-icon>
+                                                                </template>Expand</v-btn>
+                                                        </template>
+                                                        <template v-else-if="key == 'Message'">
+                                                            null
+                                                        </template>
 
-                                <v-table fixed-header v-if="columnArrayArr">
-                                    
-                                    <tbody>
-                                    <tr v-for="value in recursiveJsonData" :key="value">
-                                        <td >{{ value }}</td>
-                                    </tr>
-                                    </tbody>
-                                </v-table>
-                          </div>
-                        </v-card-text>
-                        <v-card-actions class="justify-end">
-                          <v-btn variant="text" @click="isActive.value = false">Close</v-btn>
-                        </v-card-actions>
-                      </v-card>
-                    </template>
-                  </v-dialog>
+                                                        <template v-else-if="typeof castValue(item[key]) === 'object'">
+                                                            <v-btn variant="plain" prepend-icon="mdi-expand-all" stacked
+                                                                @click="secondLevelButtonClick(castValue(item[key]), key)">
+                                                                <template v-slot:prepend>
+                                                                    <v-icon color="success"></v-icon>
+                                                                </template>Expand</v-btn>
+                                                        </template>
+
+                                                        <template
+                                                            v-else-if="Array.isArray(castValue(item[key])) && item[key].length === 0">
+                                                            {{ item[key] }}
+                                                        </template>
+                                                        <template v-else>{{ item[key] }}</template>
+                                                    </td>
+                                                </tr>
+
+
+
+                                            </template>
+
+                                        </v-data-table>
+
+                                        <v-table fixed-header v-if="columnArrayArr">
+
+                                            <tbody>
+                                                <tr v-for="value in recursiveJsonData" :key="value">
+                                                    <td>{{ value }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </v-table>
+                                    </div>
+                                </v-card-text>
+                                <v-card-actions class="justify-end">
+                                    <v-btn variant="text" @click="isActive.value = false">Close</v-btn>
+                                </v-card-actions>
+                            </v-card>
+                        </template>
+                    </v-dialog>
                 </v-col>
 
-                
+
             </v-row>
         </div>
 
         <!-- This section is for second Level recursive Data -->
-        
-        <div> 
+
+        <div>
             <v-row justify="space-around">
 
                 <v-col cols="auto">
-                  <v-dialog v-model="secondLevelPreviewDialogVisble" transition="dialog-top-transition" width="auto">
-                
-                    <template v-slot:default="{ isActive }">
-                      <v-card>
-                        <v-toolbar v-bind:color="colorcode" >
-                            <v-row>
-                                <v-col cols="8">
-                                    <v-toolbar-title style="padding: 2em;">Data for column : {{ keyColumn }}   </v-toolbar-title>
-                                </v-col>
+                    <v-dialog v-model="secondLevelPreviewDialogVisble" transition="dialog-top-transition" width="auto">
 
-                            </v-row>
-                            
+                        <template v-slot:default="{ isActive }">
+                            <v-card>
+                                <v-toolbar v-bind:color="colorcode">
+                                    <v-row>
+                                        <v-col cols="8">
+                                            <v-toolbar-title style="padding: 2em;">Data for column : {{ keyColumn }}
+                                            </v-toolbar-title>
+                                        </v-col>
 
-                        </v-toolbar>
-                        <v-card-text>
-                          <div class="">
+                                    </v-row>
 
-                                <v-data-table v-if="secondLevelColumnArrayObj" :headers="secondLevelRecursiveHeadersData" :items="secondLevelRecursiveJsonData" :items-per-page="itemPerPageRec" :sort-by="secondLevelSortColumnDataBy" :fixed-header="true" class="custom-table">
-                                </v-data-table>
 
-                                <v-table fixed-header v-if="secondLevelColumnArrayArr">
-                                    
-                                    <tbody>
-                                    <tr v-for="value in secondLevelRecursiveJsonData" :key="value">
-                                        <td >{{ value }}</td>
-                                    </tr>
-                                    </tbody>
-                                </v-table>
-                          </div>
-                        </v-card-text>
-                        <v-card-actions class="justify-end">
-                          <v-btn variant="text" @click="isActive.value = false">Close</v-btn>
-                        </v-card-actions>
-                      </v-card>
-                    </template>
-                  </v-dialog>
+                                </v-toolbar>
+                                <v-card-text>
+                                    <div class="">
+
+                                        <v-data-table v-if="secondLevelColumnArrayObj"
+                                            :headers="secondLevelRecursiveHeadersData"
+                                            :items="secondLevelRecursiveJsonData" :items-per-page="itemPerPageRec"
+                                            :sort-by="secondLevelSortColumnDataBy" :fixed-header="true"
+                                            class="custom-table">
+                                        </v-data-table>
+
+                                        <v-table fixed-header v-if="secondLevelColumnArrayArr">
+
+                                            <tbody>
+                                                <tr v-for="value in secondLevelRecursiveJsonData" :key="value">
+                                                    <td>{{ value }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </v-table>
+                                    </div>
+                                </v-card-text>
+                                <v-card-actions class="justify-end">
+                                    <v-btn variant="text" @click="isActive.value = false">Close</v-btn>
+                                </v-card-actions>
+                            </v-card>
+                        </template>
+                    </v-dialog>
                 </v-col>
 
-                
+
             </v-row>
         </div>
 
@@ -236,58 +262,49 @@
         <div>
             <!-- This section is for Color Picket -->
             <v-dialog v-model="colorDialog" transition="dialog-top-transition" width="auto">
-                
-                        <template v-slot:default="{ isActive }">
-                          <v-card>
-                            <v-toolbar v-bind:color="colorcode" >
-                                <v-toolbar-title style="padding: 1em;">Color Picker</v-toolbar-title>
 
-                            </v-toolbar>
-                            <v-card-text>
-                              <div class="">
-                                    <v-color-picker show-swatches v-model="colorcode"></v-color-picker>
-                              </div>
-                            </v-card-text>
-                            <v-card-actions class="justify-end">
-                                <!-- <v-btn variant="text" @click="handleColorPick">Pick</v-btn> -->
-                              <v-btn variant="text" @click="isActive.value = false">Close</v-btn>
-                            </v-card-actions>
-                          </v-card>
-                        </template>
+                <template v-slot:default="{ isActive }">
+                    <v-card>
+                        <v-toolbar v-bind:color="colorcode">
+                            <v-toolbar-title style="padding: 1em;">Color Picker</v-toolbar-title>
+
+                        </v-toolbar>
+                        <v-card-text>
+                            <div class="">
+                                <v-color-picker show-swatches v-model="colorcode"></v-color-picker>
+                            </div>
+                        </v-card-text>
+                        <v-card-actions class="justify-end">
+                            <!-- <v-btn variant="text" @click="handleColorPick">Pick</v-btn> -->
+                            <v-btn variant="text" @click="isActive.value = false">Close</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </template>
             </v-dialog>
         </div>
 
         <div>
             <!-- This section is for Edit JSON Object -->
             <v-row justify="center">
-                <v-dialog
-                v-model="jsonEditdialog"
-                persistent
-                width="1024"
-                >
-                
-                <v-card>
-                    <v-card-title>
-                    <span class="text-h5">Edit Item</span>
-                    </v-card-title>
-                    <v-card-text>
-                    <v-container>
-                        <v-textarea
-                            v-model="jsonEditPerData"
-                            label="JSON Data"
-                            prepend-icon="mdi-json"
-                            solo-inverted
-                            rows="10"
-                        ></v-textarea>
-                    </v-container>
-                    
-                    </v-card-text>
-                    <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="blue-darken-1" variant="text" @click="jsonEditdialog = false">Close</v-btn>
-                    <v-btn color="blue-darken-1" variant="text" @click="saveEditJson">Save</v-btn>
-                    </v-card-actions>
-                </v-card>
+                <v-dialog v-model="jsonEditdialog" persistent width="1024">
+
+                    <v-card>
+                        <v-card-title>
+                            <span class="text-h5">Edit Item</span>
+                        </v-card-title>
+                        <v-card-text>
+                            <v-container>
+                                <v-textarea v-model="jsonEditPerData" label="JSON Data" prepend-icon="mdi-json"
+                                    solo-inverted rows="10"></v-textarea>
+                            </v-container>
+
+                        </v-card-text>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn color="blue-darken-1" variant="text" @click="jsonEditdialog = false">Close</v-btn>
+                            <v-btn color="blue-darken-1" variant="text" @click="saveEditJson">Save</v-btn>
+                        </v-card-actions>
+                    </v-card>
                 </v-dialog>
             </v-row>
 
@@ -299,19 +316,21 @@
                 <v-card>
                     <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
                     <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="blue-darken-1" variant="text" @click="closeDelete">Cancel</v-btn>
-                    <v-btn color="blue-darken-1" variant="text" @click="deleteItemConfirm">OK</v-btn>
-                    <v-spacer></v-spacer>
+                        <v-spacer></v-spacer>
+                        <v-btn color="blue-darken-1" variant="text" @click="closeDelete">Cancel</v-btn>
+                        <v-btn color="blue-darken-1" variant="text" @click="deleteItemConfirm">OK</v-btn>
+                        <v-spacer></v-spacer>
                     </v-card-actions>
                 </v-card>
             </v-dialog>
         </div>
 
-        <div id="toast"><v-icon id="img">{{ iconImage }}</v-icon><div id="desc"></div></div>
-        
+        <div id="toast"><v-icon id="img">{{ iconImage }}</v-icon>
+            <div id="desc"></div>
+        </div>
+
     </div>
-    
+
 </template>
 
 <script>
@@ -725,8 +744,8 @@ export default {
                 this.jsonData = Array(this.jsonData)
             }
             this.headersData.push({ title: 'Actions', key: 'actions', sortable: false },)
+            console.log("HEADER",this.headersData)
             this.sortBy = [{ key: Object.keys(this.jsonData[0])[0], order: 'asc' }]
-
         },
 
         editItem(item) {
