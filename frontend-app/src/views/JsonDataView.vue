@@ -21,6 +21,13 @@
                         <v-dialog v-model="dialog" persistent width="auto">
                             <template v-slot:activator="{ props }">
 
+                                <v-btn v-if="analyse_flag" light v-bind="props" @click="otp_view()">
+                                    Access
+                                </v-btn>
+                                <v-btn v-else light v-bind="props" @click="analyse_json()">
+                                    Analyse
+                                </v-btn>
+
                                 <v-btn light v-bind="props" @click="export_data()">
                                     Export Data
                                 </v-btn>
@@ -56,7 +63,6 @@
                                     <v-btn color="blue-darken-1" variant="text" @click="save()">Save</v-btn>
                                 </v-card-actions>
                             </v-card>
-
 
                         </v-dialog>
 
@@ -157,11 +163,13 @@
                                                                     <v-icon color="success"></v-icon>
                                                                 </template>Expand</v-btn>
                                                         </template>
-                                                        <template v-else-if="key == 'Message'">
-                                                            null
+                                                        <template
+                                                            v-else-if="item[key] == null || item[key] == [] || item[key] == {}">
+                                                            {{item[key]}}
                                                         </template>
 
-                                                        <template v-else-if="typeof castValue(item[key]) === 'object'">
+                                                        <template
+                                                            v-else-if="typeof castValue(item[key]) === 'object' && item[key] !== null && castValue(item[key]).length !== 0">
                                                             <v-btn variant="plain" prepend-icon="mdi-expand-all" stacked
                                                                 @click="secondLevelButtonClick(castValue(item[key]), key)">
                                                                 <template v-slot:prepend>
@@ -329,6 +337,23 @@
             <div id="desc"></div>
         </div>
 
+        <!-- This section if for OTP based admin permission for to view Analysis page -->
+        <div>
+            <v-dialog v-model="otp_flag" transition="dialog-top-transition" width="auto">
+                <v-card class="py-12 px-8 text-center mx-auto ma-4" max-width="420" width="100%">
+                    <h3 class="text-h6 mb-2">
+                        Please enter the Access Password to view Analyse section
+                    </h3>
+
+                    <v-otp-input v-model="otp" :disabled="validating" variant="solo" type="password" focus-all focused
+                        :length="4"></v-otp-input>
+
+                    <v-btn :loading="validating" class="mt-6 text-none bg-surface-variant" height="40" text="Validate"
+                        variant="plain" width="135" border rounded @click="onClick"></v-btn>
+                </v-card>
+            </v-dialog>
+        </div>
+
     </div>
 
 </template>
@@ -381,6 +406,10 @@ export default {
             searchText: {},
             filteredData: [],
             formData: {},
+            otp_flag: false,
+            otp: '',
+            validating: false,
+            analyse_flag: true,
         }
     },
     computed: {
@@ -405,6 +434,7 @@ export default {
             } else {
                 this.secondLevelKeys  = Object.keys(this.recursiveJsonData).map(head => (head));
             }
+            console.log("SECOND LEVEL ===>", this.secondLevelKeys)
             return this.secondLevelKeys
         },
         formTitle() {
@@ -433,7 +463,29 @@ export default {
 
     },
     methods: {
+        onClick() {
+            this.validating = true;
+
+            setTimeout(() => {
+                // Proceed with the rest of your logic here
+                if (this.otp == "1234") {
+                    this.otp_flag = false;
+                    this.analyse_flag = false;
+                }
+
+                // Set validating to false after processing
+                setTimeout(() => {
+                    this.validating = false;
+                }, 2000);
+            }, 2000); // Wait for 2 seconds
+        },
+        otp_view(){
+            this.dialog = false
+            this.otp_flag = true
+        },
         castValue(value) {
+            
+            console.log("FROM CAST VALUE ==>", value)
             // Check if the value is a string
             if (typeof value === 'string') {
                 if (value === 'null') {
@@ -446,6 +498,7 @@ export default {
                 if (Array.isArray(parsedValue)) {
                 return parsedValue; // Return the parsed array
                 } else if (typeof parsedValue === 'object') {
+                    console.log("HEY")
                 return parsedValue; // Return the parsed object
                 } else {
                 return value; // Return the original string if parsing fails
@@ -454,6 +507,7 @@ export default {
                 return value; // Return the original string if parsing fails
             }
             } else {
+                console.log("HI")
             return value; // Return the original value if it's not a string
             }
         },
@@ -698,12 +752,15 @@ export default {
 
         },
         handleButtonClick(columnArray, key) {
+            console.log("REC DATA from BTN ===>", columnArray)
+            console.log("REC KEY from BTN ===>", key)
             this.keyColumn = key
             this.previewDialogVisible = true
             this.secondLevelPreviewDialogVisble = false
             // Access and process the array data here
             let type_of_array = this.identifyArrayType(columnArray)
-
+            console.log("COLUMN TYPE ===>", type_of_array)
+            
             if (type_of_array == 'Not an array' && (typeof columnArray == "object") && columnArray){
                 this.recursive_data_prep(Array(columnArray))
                 this.columnArrayObj = true
@@ -825,12 +882,22 @@ export default {
             var imgIcon = document.getElementById("img")
             imgIcon.style.backgroundColor = iconColor;
             setTimeout(function () { x.className = x.className.replace("show", ""); }, 5000);
+        },
+        analyse_json(){
+            this.$router.push({
+                name: 'json_analyse',
+                query: {
+                    data: JSON.stringify(this.rawJsonData),
+                    file_name: this.file_name,
+                    file_type: this.file_type
+                }
+            });
         }
 
     },
     created() {
 
-        localStorage.setItem('jsonData', this.$route.query.data);
+        // localStorage.setItem('jsonData', this.$route.query.data);
 
         this.rawJsonData = JSON.parse(this.$route.query.data);
         

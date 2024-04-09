@@ -5,20 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="080c2b53-1eed-40da-b945-1ba293749170" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_server/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_server/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_server/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/app_server/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_server/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/app_server/pyproject.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_server/requirement.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app_server/requirement.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_server/templates/template.html" beforeDir="false" afterPath="$PROJECT_DIR$/app_server/templates/template.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_server/uploads/sample.json" beforeDir="false" afterPath="$PROJECT_DIR$/app_server/uploads/sample.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_server/uploads/sample1.json" beforeDir="false" afterPath="$PROJECT_DIR$/app_server/uploads/sample1.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_server/utility/file_read.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_server/utility/file_read.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_server/uploads/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_server/uploads/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-app/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-app/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-app/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-app/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-app/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-app/src/router/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend-app/src/views/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-app/src/views/HomeView.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend-app/src/views/JsonDataView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-app/src/views/JsonDataView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-app/src/views/JsonEditView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-app/src/views/JsonEditView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-app/src/views/JsonEditView.vue" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

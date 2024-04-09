@@ -11,11 +11,11 @@ const routes = [
     name: 'json',
     component: () => import(/* webpackChunkName: "about" */ '../views/JsonDataView.vue')
   },
-  // {
-  //   path: '/',
-  //   name: 'jsonedit',
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/JsonEditView.vue')
-  // },
+  {
+    path: '/',
+    name: 'json_analyse',
+    component: () => import(/* webpackChunkName: "about" */ '../views/JsonAnalyseView.vue')
+  },
   
 ]
 

@@ -224,7 +224,7 @@ export default {
                         // Parse JSON content
                         try {
                             const jsonData = JSON.parse(fileContent);
-                            console.log('JSON Data:', jsonData);
+                            console.log('JSON Data:', jsonData.length);
                             // You can now use jsonData for further processing
                             this.$router.push({
                                 name: 'json',

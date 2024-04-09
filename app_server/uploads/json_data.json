@@ -1,0 +1,458 @@
+[
+  {
+    "Job Name": "Backend_server",
+    "Last Build Status": {
+      "build_url": "http://localhost:8080/job/Backend_server/6",
+      "build_result": "FAILURE",
+      "user": "Vimit",
+      "timestamp": "2023-10-05 14:01:32"
+    },
+    "Last Successful Build Status": {
+      "timestamp": null
+    },
+    "Last Failed Build Status": {
+      "timestamp": "2023-10-05 14:01:32"
+    },
+    "Build Number": "6",
+    "color": "red",
+    "Health Report": "Build stability: All recent builds failed.",
+    "Message": null
+  },
+  {
+    "Job Name": "Devproject1",
+    "Last Build Status": {
+      "build_url": null,
+      "build_result": null,
+      "user": null,
+      "timestamp": null
+    },
+    "Last Successful Build Status": {
+      "timestamp": null
+    },
+    "Last Failed Build Status": {
+      "timestamp": null
+    },
+    "Build Number": "0",
+    "color": "notbuilt",
+    "Health Report": null,
+    "Message": null
+  },
+  {
+    "Job Name": "Git-Project-with-Maven",
+    "Last Build Status": {
+      "build_url": "http://localhost:8080/job/Git-Project-with-Maven/7",
+      "build_result": "FAILURE",
+      "user": "Vimit",
+      "timestamp": "2023-09-23 17:05:24"
+    },
+    "Last Successful Build Status": {
+      "timestamp": "2023-09-23 15:57:09"
+    },
+    "Last Failed Build Status": {
+      "timestamp": "2023-09-23 17:05:24"
+    },
+    "Build Number": "7",
+    "color": "red",
+    "Health Report": "Build stability: 1 out of the last 5 builds failed.",
+    "Message": null
+  },
+  {
+    "Job Name": "Jenkins First Project",
+    "Last Build Status": {
+      "build_url": "http://localhost:8080/job/Jenkins First Project/9",
+      "build_result": "SUCCESS",
+      "user": null,
+      "timestamp": "2023-09-23 13:43:31"
+    },
+    "Last Successful Build Status": {
+      "timestamp": "2023-09-23 13:43:31"
+    },
+    "Last Failed Build Status": {
+      "timestamp": "2023-09-22 17:13:01"
+    },
+    "Build Number": "9",
+    "color": "blue",
+    "Health Report": "Build stability: No recent builds failed.",
+    "Message": null
+  },
+  {
+    "Job Name": "Jenkins Second Project",
+    "Last Build Status": {
+      "build_url": "http://localhost:8080/job/Jenkins Second Project/3",
+      "build_result": "SUCCESS",
+      "user": "Vimit",
+      "timestamp": "2023-09-22 17:35:15"
+    },
+    "Last Successful Build Status": {
+      "timestamp": "2023-09-22 17:35:15"
+    },
+    "Last Failed Build Status": {
+      "timestamp": "2023-09-22 17:30:36"
+    },
+    "Build Number": "3",
+    "color": "blue",
+    "Health Report": "Build stability: 1 out of the last 3 builds failed.",
+    "Message": null
+  },
+  {
+    "Job Name": "JOB-A",
+    "Last Build Status": {
+      "build_url": "http://localhost:8080/job/JOB-A/3",
+      "build_result": "FAILURE",
+      "user": "Vimit",
+      "timestamp": "2023-09-23 17:06:00"
+    },
+    "Last Successful Build Status": {
+      "timestamp": "2023-09-23 15:46:40"
+    },
+    "Last Failed Build Status": {
+      "timestamp": "2023-09-23 17:06:00"
+    },
+    "Build Number": "3",
+    "color": "red",
+    "Health Report": "Build stability: 2 out of the last 3 builds failed.",
+    "Message": null
+  },
+  {
+    "Job Name": "JOB-Y",
+    "Last Build Status": {
+      "build_url": "http://localhost:8080/job/JOB-Y/1",
+      "build_result": "SUCCESS",
+      "user": "Vimit",
+      "timestamp": "2023-09-23 15:56:58"
+    },
+    "Last Successful Build Status": {
+      "timestamp": "2023-09-23 15:56:58"
+    },
+    "Last Failed Build Status": {
+      "timestamp": null
+    },
+    "Build Number": "1",
+    "color": "blue",
+    "Health Report": "Build stability: No recent builds failed.",
+    "Message": null
+  },
+  {
+    "Job Name": "Python-git-integration",
+    "Last Build Status": {
+      "build_url": "http://localhost:8080/job/Python-git-integration/7",
+      "build_result": "SUCCESS",
+      "user": "Vimit",
+      "timestamp": "2023-10-05 13:50:46"
+    },
+    "Last Successful Build Status": {
+      "timestamp": "2023-10-05 13:50:46"
+    },
+    "Last Failed Build Status": {
+      "timestamp": "2023-09-25 15:35:18"
+    },
+    "Build Number": "7",
+    "color": "blue",
+    "Health Report": "Build stability: 1 out of the last 5 builds failed.",
+    "Message": null
+  },
+  {
+    "Job Name": "python-piple",
+    "Last Build Status": {
+      "build_url": "http://localhost:8080/job/python-piple/3",
+      "build_result": "SUCCESS",
+      "user": "Vimit",
+      "timestamp": "2023-11-08 17:01:00"
+    },
+    "Last Successful Build Status": {
+      "timestamp": "2023-11-08 17:01:00"
+    },
+    "Last Failed Build Status": {
+      "timestamp": "2023-11-08 17:00:09"
+    },
+    "Build Number": "3",
+    "color": "blue",
+    "Health Report": "Build stability: 2 out of the last 3 builds failed.",
+    "Message": null
+  },
+  {
+    "Job Name": "scripted-pipeline",
+    "Last Build Status": {
+      "build_url": "http://localhost:8080/job/scripted-pipeline/2",
+      "build_result": "SUCCESS",
+      "user": "Vimit",
+      "timestamp": "2023-09-25 10:08:35"
+    },
+    "Last Successful Build Status": {
+      "timestamp": "2023-09-25 10:08:35"
+    },
+    "Last Failed Build Status": {
+      "timestamp": null
+    },
+    "Build Number": "2",
+    "color": "blue",
+    "Health Report": "Build stability: No recent builds failed.",
+    "Message": null
+  },
+  {
+    "Job Name": "Test1",
+    "Last Build Status": {
+      "build_url": null,
+      "build_result": null,
+      "user": null,
+      "timestamp": null
+    },
+    "Last Successful Build Status": {
+      "timestamp": null
+    },
+    "Last Failed Build Status": {
+      "timestamp": null
+    },
+    "Build Number": "0",
+    "color": "notbuilt",
+    "Health Report": null,
+    "Message": null
+  },
+  {
+    "Job Name": "Third Jenkins Project",
+    "Last Build Status": {
+      "build_url": "http://localhost:8080/job/Third Jenkins Project/3",
+      "build_result": "SUCCESS",
+      "user": "Vimit",
+      "timestamp": "2023-09-22 17:35:23"
+    },
+    "Last Successful Build Status": {
+      "timestamp": "2023-09-22 17:35:23"
+    },
+    "Last Failed Build Status": {
+      "timestamp": null
+    },
+    "Build Number": "3",
+    "color": "blue",
+    "Health Report": "Build stability: No recent builds failed.",
+    "Message": null
+  },
+  {
+    "Job Name": "Backend_server",
+    "Last Build Status": {
+      "build_url": "http://localhost:8080/job/Backend_server/6",
+      "build_result": "FAILURE",
+      "user": "Vimit",
+      "timestamp": "2023-10-05 14:01:32"
+    },
+    "Last Successful Build Status": {
+      "timestamp": null
+    },
+    "Last Failed Build Status": {
+      "timestamp": "2023-10-05 14:01:32"
+    },
+    "Build Number": "6",
+    "color": "red",
+    "Health Report": "Build stability: All recent builds failed.",
+    "Message": null
+  },
+  {
+    "Job Name": "Devproject1",
+    "Last Build Status": {
+      "build_url": null,
+      "build_result": null,
+      "user": null,
+      "timestamp": null
+    },
+    "Last Successful Build Status": {
+      "timestamp": null
+    },
+    "Last Failed Build Status": {
+      "timestamp": null
+    },
+    "Build Number": "0",
+    "color": "notbuilt",
+    "Health Report": null,
+    "Message": null
+  },
+  {
+    "Job Name": "Git-Project-with-Maven",
+    "Last Build Status": {
+      "build_url": "http://localhost:8080/job/Git-Project-with-Maven/7",
+      "build_result": "FAILURE",
+      "user": "Vimit",
+      "timestamp": "2023-09-23 17:05:24"
+    },
+    "Last Successful Build Status": {
+      "timestamp": "2023-09-23 15:57:09"
+    },
+    "Last Failed Build Status": {
+      "timestamp": "2023-09-23 17:05:24"
+    },
+    "Build Number": "7",
+    "color": "red",
+    "Health Report": "Build stability: 1 out of the last 5 builds failed.",
+    "Message": null
+  },
+  {
+    "Job Name": "Jenkins First Project",
+    "Last Build Status": {
+      "build_url": "http://localhost:8080/job/Jenkins First Project/9",
+      "build_result": "SUCCESS",
+      "user": null,
+      "timestamp": "2023-09-23 13:43:31"
+    },
+    "Last Successful Build Status": {
+      "timestamp": "2023-09-23 13:43:31"
+    },
+    "Last Failed Build Status": {
+      "timestamp": "2023-09-22 17:13:01"
+    },
+    "Build Number": "9",
+    "color": "blue",
+    "Health Report": "Build stability: No recent builds failed.",
+    "Message": null
+  },
+  {
+    "Job Name": "Jenkins Second Project",
+    "Last Build Status": {
+      "build_url": "http://localhost:8080/job/Jenkins Second Project/3",
+      "build_result": "SUCCESS",
+      "user": "Vimit",
+      "timestamp": "2023-09-22 17:35:15"
+    },
+    "Last Successful Build Status": {
+      "timestamp": "2023-09-22 17:35:15"
+    },
+    "Last Failed Build Status": {
+      "timestamp": "2023-09-22 17:30:36"
+    },
+    "Build Number": "3",
+    "color": "blue",
+    "Health Report": "Build stability: 1 out of the last 3 builds failed.",
+    "Message": null
+  },
+  {
+    "Job Name": "JOB-A",
+    "Last Build Status": {
+      "build_url": "http://localhost:8080/job/JOB-A/3",
+      "build_result": "FAILURE",
+      "user": "Vimit",
+      "timestamp": "2023-09-23 17:06:00"
+    },
+    "Last Successful Build Status": {
+      "timestamp": "2023-09-23 15:46:40"
+    },
+    "Last Failed Build Status": {
+      "timestamp": "2023-09-23 17:06:00"
+    },
+    "Build Number": "3",
+    "color": "red",
+    "Health Report": "Build stability: 2 out of the last 3 builds failed.",
+    "Message": null
+  },
+  {
+    "Job Name": "JOB-Y",
+    "Last Build Status": {
+      "build_url": "http://localhost:8080/job/JOB-Y/1",
+      "build_result": "SUCCESS",
+      "user": "Vimit",
+      "timestamp": "2023-09-23 15:56:58"
+    },
+    "Last Successful Build Status": {
+      "timestamp": "2023-09-23 15:56:58"
+    },
+    "Last Failed Build Status": {
+      "timestamp": null
+    },
+    "Build Number": "1",
+    "color": "blue",
+    "Health Report": "Build stability: No recent builds failed.",
+    "Message": null
+  },
+  {
+    "Job Name": "Python-git-integration",
+    "Last Build Status": {
+      "build_url": "http://localhost:8080/job/Python-git-integration/7",
+      "build_result": "SUCCESS",
+      "user": "Vimit",
+      "timestamp": "2023-10-05 13:50:46"
+    },
+    "Last Successful Build Status": {
+      "timestamp": "2023-10-05 13:50:46"
+    },
+    "Last Failed Build Status": {
+      "timestamp": "2023-09-25 15:35:18"
+    },
+    "Build Number": "7",
+    "color": "blue",
+    "Health Report": "Build stability: 1 out of the last 5 builds failed.",
+    "Message": null
+  },
+  {
+    "Job Name": "python-piple",
+    "Last Build Status": {
+      "build_url": "http://localhost:8080/job/python-piple/3",
+      "build_result": "SUCCESS",
+      "user": "Vimit",
+      "timestamp": "2023-11-08 17:01:00"
+    },
+    "Last Successful Build Status": {
+      "timestamp": "2023-11-08 17:01:00"
+    },
+    "Last Failed Build Status": {
+      "timestamp": "2023-11-08 17:00:09"
+    },
+    "Build Number": "3",
+    "color": "blue",
+    "Health Report": "Build stability: 2 out of the last 3 builds failed.",
+    "Message": null
+  },
+  {
+    "Job Name": "scripted-pipeline",
+    "Last Build Status": {
+      "build_url": "http://localhost:8080/job/scripted-pipeline/2",
+      "build_result": "SUCCESS",
+      "user": "Vimit",
+      "timestamp": "2023-09-25 10:08:35"
+    },
+    "Last Successful Build Status": {
+      "timestamp": "2023-09-25 10:08:35"
+    },
+    "Last Failed Build Status": {
+      "timestamp": null
+    },
+    "Build Number": "2",
+    "color": "blue",
+    "Health Report": "Build stability: No recent builds failed.",
+    "Message": null
+  },
+  {
+    "Job Name": "Test1",
+    "Last Build Status": {
+      "build_url": null,
+      "build_result": null,
+      "user": null,
+      "timestamp": null
+    },
+    "Last Successful Build Status": {
+      "timestamp": null
+    },
+    "Last Failed Build Status": {
+      "timestamp": null
+    },
+    "Build Number": "0",
+    "color": "notbuilt",
+    "Health Report": null,
+    "Message": null
+  },
+  {
+    "Job Name": "Third Jenkins Project",
+    "Last Build Status": {
+      "build_url": "http://localhost:8080/job/Third Jenkins Project/3",
+      "build_result": "SUCCESS",
+      "user": "Vimit",
+      "timestamp": "2023-09-22 17:35:23"
+    },
+    "Last Successful Build Status": {
+      "timestamp": "2023-09-22 17:35:23"
+    },
+    "Last Failed Build Status": {
+      "timestamp": null
+    },
+    "Build Number": "3",
+    "color": "blue",
+    "Health Report": "Build stability: No recent builds failed.",
+    "Message": null
+  }
+]
