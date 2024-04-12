@@ -215,18 +215,20 @@ export default {
             
         },
         findKeyLevelOne(key) {
-            this.resultrec = [];
+            // console.log("key is ==>", key)
+            let resultrec = [];
             this.rawJsonData.forEach(obj => {
                 for (let k in obj[key]) {
-                    this.resultrec.push(...Object.keys(obj[key][k]));
+                    resultrec.push(...Object.keys(obj[key][k]));
                 }
             });
 
             // Convert the array to a Set to remove duplicates, then convert it back to an array
-            this.resultrec = Array.from(new Set(this.resultrec));
-            return this.resultrec
-
+            resultrec = Array.from(new Set(resultrec));
+            // console.log(resultrec);
+            return resultrec;
         }
+
 
         
     },
