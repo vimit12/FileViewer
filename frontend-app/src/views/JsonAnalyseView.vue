@@ -6,6 +6,8 @@
             <v-layout>
                 <v-list nav style="background-color: black; color: aliceblue;">
                     <v-list-item prepend-icon="mdi-home" title="Home" @click="go_back()"></v-list-item>
+                    <v-list-item prepend-icon="mdi-view-dashboard" title="Dashboard"
+                        @click="dashboard_view()"></v-list-item>
 
                     <template v-for="(value, key) in data_type">
 
@@ -13,7 +15,8 @@
                             <v-list-item :key="key" :prepend-icon="getIcon(key)" :title="key" :value="key"
                                 @click="evaluate_key(key)"></v-list-item>
                         </template>
-                        <template v-else-if="value === 'object' || value ==='array'">
+                        <template
+                            v-else-if="(value === 'object' || value ==='array') && (value != null || value != 'null')">
                             <v-list-group :key="key" :value="key">
                                 <template v-slot:activator="{ props }">
                                     <v-list-item v-bind="props" :prepend-icon="getIcon(key)" :title="key"
@@ -26,11 +29,15 @@
 
                             </v-list-group>
                         </template>
+                        <template v-else>
+                            <v-list-item :key="key" :prepend-icon="getIcon(key)" :title="key" :value="key"
+                                @click="evaluate_key(key)"></v-list-item>
+                        </template>
                     </template>
                 </v-list>
 
                 <v-main class="main-container">
-                    <v-container>
+                    <v-container v-if="dashboard == true">
 
                         <v-row>
                             <v-col cols="12" md="4">
@@ -147,6 +154,37 @@
 
 
                     </v-container>
+                    <v-container v-else>
+                        <v-row>
+                            <v-col cols="12" md="12">
+                                <v-card elevation="16"
+                                    :title="`Create your analysis view utilizing ${individual_element}.`">
+                                    <v-divider class="border-opacity-25" color="warning"></v-divider>
+
+                                    <v-card-text elevation="24">
+                                        <v-radio-group inline label="Change View : " v-model="selectedView">
+                                            <v-radio label="Tabular View" value="table" color="red-darken-3">
+                                                <template v-slot:label>
+                                                    <div><strong class="text-success">Tabular View</strong></div>
+                                                </template>
+                                            </v-radio>
+                                            <v-radio label="Bar Chart" value="bar" color="red-darken-3">
+                                                <template v-slot:label>
+                                                    <div><strong class="text-success">Bar Chart View</strong></div>
+                                                </template>
+                                            </v-radio>
+                                            <v-radio label="Pie Chart" value="pie" color="red-darken-3">
+                                                <template v-slot:label>
+                                                    <div><strong class="text-success">Pie Chart View</strong></div>
+                                                </template>
+                                            </v-radio>
+                                        </v-radio-group>
+                                    </v-card-text>
+                                </v-card>
+                            </v-col>
+
+                        </v-row>
+                    </v-container>
                 </v-main>
             </v-layout>
         </v-card>
@@ -212,7 +250,8 @@ export default {
             secondLevelResult: null,
             allKeys: [],
             countsObj: {},
-        
+            dashboard: true,
+            individual_element: "Account ID"
             
         }
     },
@@ -243,6 +282,9 @@ export default {
                     name: 'home'
                 })
         },
+        dashboard_view(){
+            this.dashboard = true;
+        },
         changeoptions(key, type) {
             let flag = false;
             const value = this.countsObj[key];
@@ -255,7 +297,10 @@ export default {
                         id: 'Bar Chart'
                     },
                     xaxis: {
-                        categories: keysArray
+                        categories: keysArray,
+                        labels: {
+                            show: false // Switch off x-axis labels
+                        }
                     },
                     plotOptions: {
                         bar: {
@@ -456,7 +501,7 @@ export default {
             return Array.from(keysSet);
         },
         evaluate_key(key){
-            // alert(key);
+            this.dashboard = false;
         },
         extractAllKeys(data) {
             const keys = [];
