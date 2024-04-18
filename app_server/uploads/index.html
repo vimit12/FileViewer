@@ -1,648 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dynamic Table with Bootstrap</title>
-  <!-- Include Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
+  <title>Fixed Header Table with Bootstrap</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    /* Add custom styles here */
-    .wrap-text {
-      word-wrap: break-word;
+    /* Set the height of the table container to make it big */
+    .table-container {
+      /*height: 400px; !* Adjust as needed *!*/
+      height: 80vh; /* Adjust as needed */
+      overflow: auto;
     }
+
+    /* Set the width of the table to make it big */
     .table-responsive {
+      width: 1000px; /* Adjust as needed */
       overflow-x: auto;
+      overflow-y: auto;
     }
 
-    .table td {
-      max-width: 300px; /* Example maximum width */
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      cursor: pointer;
-
-    }
-
-    .sort-icon {
-      display: inline-block;
-      width: 0;
-      height: 0;
-      vertical-align: middle;
-      transition: transform 0.2s ease;
-    }
-    .asc {
-      border-left: 5px solid transparent;
-      border-right: 5px solid transparent;
-      border-bottom: 5px solid;
-    }
-    .desc {
-      border-left: 5px solid transparent;
-      border-right: 5px solid transparent;
-      border-top: 5px solid;
+    /* Fix the header of the table */
+    .fixed-header thead {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background-color: #343a40; /* Dark background color for the header */
     }
   </style>
-
 </head>
+<body>
 
-<body class="bg-light">
-  <div class="container py-4">
-    <!-- Search Bar -->
-    <div class="mb-4">
-      <input id="searchInput" type="text" placeholder="Search..." class="form-control">
+<div class="container mt-5">
+  <div class="table-container">
+    <div >
+      <table id="myTable" class="table table-bordered table-striped fixed-header">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Header 1</th>
+            <th scope="col">Header 2</th>
+            <th scope="col">Header 3</th>
+            <th scope="col">Header 4</th>
+            <th scope="col">Header 5</th>
+            <th scope="col">Header 6</th>
+            <th scope="col">Header 7</th>
+            <th scope="col">Header 8</th>
+            <th scope="col">Header 9</th>
+            <th scope="col">Header 10</th>
+            <th scope="col">Header 11</th>
+            <th scope="col">Header 12</th>
+            <th scope="col">Header 13</th>
+            <th scope="col">Header 14</th>
+            <th scope="col">Header 15</th>
+            <!-- Add more headers if needed -->
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <!-- Data will be populated here by JavaScript -->
+        </tbody>
+      </table>
     </div>
-    <!-- Table Container -->
-    <div id="tableContainer" class="bg-white rounded-md shadow-md overflow-x-auto table-responsive"></div>
   </div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Column Name</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body" id="nestedTableContainer">
-          <!-- <p id="modalContent">Content here...</p> -->
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- <canvas id="myChart" width="400" height="100"></canvas> -->
+</div>
 
-  
+<!-- Bootstrap JS (optional, for some features like dropdowns, modals, etc.) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
 
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-
-  <!-- JavaScript -->
-  <script>
-    let currentSortColumn = null;
-    let isAscending = true;
-    
-    // JSON data variable
-    const jsonData = [
-        {
-          "ID": 1,
-          "Name": "John Doe",
-          "Age": 30,
-          "Address": {
-            "Street": "123 Main Street",
-            "City": "Anytown",
-            "Country": "USA"
-          },
-          "Emails": ["johndoe@example.com", "john.doe@gmail.com"],
-          "PhoneNumbers": {
-            "Mobile": "+1-234-567-8901",
-            "Home": "+1-345-678-9012"
-          },
-          "Status": "Active",
-          "Roles": ["Developer", "Manager"],
-          "Projects": [
-            {
-              "Name": "Project A",
-              "StartDate": "2020-01-15",
-              "EndDate": "2021-06-30"
-            },
-            {
-              "Name": "Project B",
-              "StartDate": "2019-03-20",
-              "EndDate": "2022-02-28"
-            }
-          ]
-        },
-        {
-          "ID": 2,
-          "Name": "Jane Smith",
-          "Age": 35,
-          "Address": {
-            "Street": "456 Elm Street",
-            "City": "Otherville",
-            "Country": "Canada"
-          },
-          "Emails": ["janesmith@example.com"],
-          "PhoneNumbers": {
-            "Mobile": "+1-456-789-0123",
-            "Work": "+1-567-890-1234"
-          },
-          "Status": "Inactive",
-          "Roles": ["Manager"],
-          "Projects": [
-            {
-              "Name": "Project C",
-              "StartDate": "2018-05-10",
-              "EndDate": "2020-11-15"
-            }
-          ]
-        },
-        {
-          "ID": 3,
-          "Name": "Michael Johnson",
-          "Age": 40,
-          "Address": {
-            "Street": "789 Oak Avenue",
-            "City": "Sunnydale",
-            "Country": "Australia"
-          },
-          "Emails": ["michael@example.com"],
-          "PhoneNumbers": {
-            "Mobile": "+1-789-012-3456",
-            "Home": "+1-890-123-4567"
-          },
-          "Status": "Active",
-          "Roles": ["Senior Developer"],
-          "Projects": [
-            {
-              "Name": "Project D",
-              "StartDate": "2019-08-01",
-              "EndDate": "2023-01-30"
-            },
-            {
-              "Name": "Project E",
-              "StartDate": "2022-03-15",
-              "EndDate": "2024-12-31"
-            }
-          ]
-        },
-        {
-          "ID": 4,
-          "Name": "Emily Brown",
-          "Age": 32,
-          "Address": {
-            "Street": "101 Pine Road",
-            "City": "Greenvale",
-            "Country": "New Zealand"
-          },
-          "Emails": ["emilybrown@example.com"],
-          "PhoneNumbers": {
-            "Mobile": "+1-901-234-5678",
-            "Work": "+1-012-345-6789"
-          },
-          "Status": "Active",
-          "Roles": ["Product Manager"],
-          "Projects": [
-            {
-              "Name": "Project F",
-              "StartDate": "2017-10-20",
-              "EndDate": "2019-12-31"
-            }
-          ]
-        },
-        {
-          "ID": 5,
-          "Name": "David Wilson",
-          "Age": 45,
-          "Address": {
-            "Street": "246 Cedar Lane",
-            "City": "Hillside",
-            "Country": "UK"
-          },
-          "Emails": ["davidwilson@example.com"],
-          "PhoneNumbers": {
-            "Mobile": "+1-234-567-8901",
-            "Home": "+1-678-901-2345"
-          },
-          "Status": "Active",
-          "Roles": ["QA Engineer"],
-          "Projects": [
-            {
-              "Name": "Project G",
-              "StartDate": "2016-02-10",
-              "EndDate": "2018-11-30"
-            }
-          ]
-        },
-        {
-          "ID": 6,
-          "Name": "Sarah Clark",
-          "Age": 28,
-          "Address": {
-            "Street": "369 Maple Street",
-            "City": "Riverdale",
-            "Country": "USA"
-          },
-          "Emails": ["sarahclark@example.com"],
-          "PhoneNumbers": {
-            "Mobile": "+1-345-678-9012",
-            "Work": "+1-789-012-3456"
-          },
-          "Status": "Active",
-          "Roles": ["UI/UX Designer"],
-          "Projects": [
-            {
-              "Name": "Project H",
-              "StartDate": "2020-06-05",
-              "EndDate": "2022-09-15"
-            }
-          ]
-        },
-        {
-          "ID": 7,
-          "Name": "Robert Jones",
-          "Age": 38,
-          "Address": {
-            "Street": "777 Walnut Avenue",
-            "City": "Springfield",
-            "Country": "USA"
-          },
-          "Emails": ["robertjones@example.com"],
-          "PhoneNumbers": {
-            "Mobile": "+1-456-789-0123",
-            "Home": "+1-890-123-4567"
-          },
-          "Status": "Active",
-          "Roles": ["Business Analyst"],
-          "Projects": [
-            {
-              "Name": "Project I",
-              "StartDate": "2018-12-10",
-              "EndDate": "2021-03-31"
-            }
-          ]
-        },
-        {
-          "ID": 8,
-          "Name": "Olivia Martinez",
-          "Age": 42,
-          "Address": {
-            "Street": "532 Oakwood Drive",
-            "City": "Gotham",
-            "Country": "USA"
-          },
-          "Emails": ["oliviamartinez@example.com"],
-          "PhoneNumbers": {
-            "Mobile": "+1-678-901-2345",
-            "Work": "+1-901-234-5678"
-          },
-          "Status": "Active",
-          "Roles": ["HR Manager"],
-          "Projects": [
-            {
-              "Name": "Project J",
-              "StartDate": "2015-07-20",
-              "EndDate": "2017-12-31"
-            }
-          ]
-        },
-        {
-          "ID": 9,
-          "Name": "William Taylor",
-          "Age": 29,
-          "Address": {
-            "Street": "808 Pinecrest Drive",
-            "City": "Metroville",
-            "Country": "USA"
-          },
-          "Emails": ["williamtaylor@example.com"],
-          "PhoneNumbers": {
-            "Mobile": "+1-012-345-6789",
-            "Work": "+1-234-567-8901"
-          },
-          "Status": "Active",
-          "Roles": ["System Administrator"],
-          "Projects": [
-            {
-              "Name": "Project K",
-              "StartDate": "2019-01-30",
-              "EndDate": "2020-08-15"
-            }
-          ]
-        },
-        {
-          "ID": 10,
-          "Name": "Sophia Brown",
-          "Age": 33,
-          "Address": {
-            "Street": "909 Elm Street",
-            "City": "Riverside",
-            "Country": "USA"
-          },
-          "Emails": ["sophiabrown@example.com"],
-          "PhoneNumbers": {
-            "Mobile": "+1-345-678-9012",
-            "Work": "+1-456-789-0123"
-          },
-          "Status": "Inactive",
-          "Roles": ["Financial Analyst"],
-          "Projects": [
-            {
-              "Name": "Project L",
-              "StartDate": "2016-11-12",
-              "EndDate": "2019-02-28"
-            }
-          ]
-        }
-      ];
-
-    function renderTable(jsonData) {
-      const tableContainer = document.getElementById('tableContainer');
-      tableContainer.innerHTML = '';
-
-      try {
-        const data = jsonData;
-        const keys = Object.keys(data[0]);
-
-        // Create table element
-        const table = document.createElement('table');
-        table.className = 'table table-bordered table-striped align-middle';
-
-        // Create table header
-        const thead = document.createElement('thead');
-        const headerRow = document.createElement('tr');
-        keys.forEach(key => {
-          const th = document.createElement('th');
-          th.textContent = key;
-          th.className = "table-info"
-          // Add sorting icons
-          const icon = document.createElement('span');
-          icon.className = 'sort-icon';
-
-          th.appendChild(icon);
-          headerRow.appendChild(th);
-          th.addEventListener('click', () => {
-            sortTable(key);
-          });
-        });
-        thead.appendChild(headerRow);
-        table.appendChild(thead);
-
-        // Create table body
-        const tbody = document.createElement('tbody');
-        data.forEach(item => {
-          const row = document.createElement('tr');
-          keys.forEach(key => {
-            const td = document.createElement('td');
-            const content = typeof item[key] === 'string' ? item[key] : JSON.stringify(item[key]);
-            td.textContent = content;
-            // if (content.length > 50) {
-            //   td.className = 'wrap-text'; // Apply wrap-text class for long content
-            // }
-            if (content.length > 50) {
-              
-              td.classList.add('wrap-text');
-            }
-            td.addEventListener('click', () => {
-              handleClick(td, key); // Call the handleClick function on click
-            });
-            row.appendChild(td);
-          });
-          tbody.appendChild(row);
-        });
-        table.appendChild(tbody);
-
-        // Append table to container
-        tableContainer.appendChild(table);
-      } catch (error) {
-        tableContainer.textContent = 'No Record Found!!';
+<script>
+  // Function to populate the table with dummy data
+  function populateTable() {
+    var tableBody = document.getElementById("tableBody");
+    for (var i = 0; i < 30; i++) {
+      var row = document.createElement("tr");
+      for (var j = 0; j < 15; j++) {
+        var cell = document.createElement("td");
+        cell.textContent = "Row " + (i + 1) + " Data " + (j + 1);
+        row.appendChild(cell);
       }
+      tableBody.appendChild(row);
     }
+  }
 
-    // Initial render
-    renderTable(jsonData);
+  // Call the populateTable function when the page is loaded
+  window.onload = function() {
+    populateTable();
+  };
+</script>
 
-    // Search functionality
-    // Recursive function to search for a term in the data object
-      function searchInData(data, term) {
-        return Object.values(data).some(value => {
-          if (typeof value === 'object' && value !== null) {
-            // If value is an object or array, recursively search inside it
-            return searchInData(value, term);
-          } else if (typeof value === 'string' && value.toLowerCase().includes(term)) {
-            // If value is a string and contains the search term, return true
-            return true;
+<script>
+    // Data for the chart
+    var data = {
+      labels: ["January", "February", "March", "April", "May", "June", "July"],
+      datasets: [{
+        label: "Sales",
+        data: [65, 59, 80, 81, 56, 55, 40],
+        borderColor: "rgba(75, 192, 192, 1)",
+        fill: false
+      }]
+    };
+
+    // Options for the chart
+    var options = {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
           }
-          return false;
-        });
+        }]
       }
+    };
 
-      // Update search input event listener
-      searchInput.addEventListener('input', () => {
-        const searchTerm = searchInput.value.trim().toLowerCase(); // Trim whitespace and convert to lowercase
-        const filteredData = jsonData.filter(item => {
-          // Check if any value in the item contains the search term
-          return searchInData(item, searchTerm);
-        });
-        renderTable(filteredData);
-      });
+    // Get the canvas element
+    var ctx = document.getElementById('myChart').getContext('2d');
 
-
-    //Cast Value Function
-    function castValue(value) {
-      console.log("FROM CAST VALUE ==>", value)
-      // Check if the value is a string
-      if (typeof value === 'string') {
-        if (value === 'null') {
-          return null;
-        }
-        try {
-          // Try parsing the string as JSON
-          const parsedValue = JSON.parse(value);
-          // Check if the parsed value is an array
-          if (Array.isArray(parsedValue)) {
-            return parsedValue; // Return the parsed array
-          } else if (typeof parsedValue === 'object') {
-            console.log("HEY")
-            return parsedValue; // Return the parsed object
-          } else {
-            return value; // Return the original string if parsing fails
-          }
-        } catch (error) {
-          return value; // Return the original string if parsing fails
-        }
-      } else {
-        console.log("HI")
-        return value; // Return the original value if it's not a string
-      }
-    }
-    
-    //Identify Array
-    function identifyArrayType(arr) {
-        if (typeof arr === 'object' && arr !== null && !Array.isArray(arr)) {
-          return "objects"
-        }
-        // Check if string
-        if (typeof arr === 'string' && arr !== null && !Array.isArray(arr)) {
-          return "string";
-        }
-
-        // Check if numbers
-        if (typeof arr === 'number' && arr !== null && !Array.isArray(arr)) {
-          return "numbers";
-        }
-
-        // Check if array is empty
-        if (arr.length === 0) {
-          return "Empty array";
-        }
-
-        // Check if array of arrays
-        if (arr.every(innerArr => Array.isArray(innerArr))) {
-          return "Array of arrays";
-        }
-
-        // Check if array of objects
-        if (arr.every(item => typeof item === 'object' && item !== null && !Array.isArray(item))) {
-          return "Array of objects";
-        }
-
-        // Check if array of strings
-        if (arr.every(item => typeof item === 'string')) {
-          return "Array of strings";
-        }
-
-        // Check if array of numbers
-        if (arr.every(item => typeof item === 'number')) {
-          return "Array of numbers";
-        }
-
-        // Check if array of booleans
-        if (arr.every(item => typeof item === 'boolean')) {
-          return "Array of booleans";
-        }
-
-        // If none of the above, return "Mixed array"
-        return "Mixed array";
-      }
-
-    
-    // Function to handle text wrapping behavior
-    function handleClick(td, columnKey) {
-        const modalTitle = document.getElementById('exampleModalLabel');
-        modalTitle.textContent = columnKey + " : "; // Set modal title to column key
-
-        const modalContent = document.getElementById('nestedTableContainer');
-        
-
-        const content = td.textContent;
-
-        let parsedContent;
-        try {
-            // Try parsing content as JSON
-            parsedContent = JSON.parse(content);
-        } catch (error) {
-          // If parsing fails, assume content is a string
-          parsedContent = content;
-        }
-        let value = identifyArrayType(parsedContent)
-        
-        if (value === "Array of objects" || value === "objects") {
-          renderNestedTable(parsedContent, modalContent, value);
-        }
-        else {
-          modalContent.textContent = td.textContent; // Set modal content to clicked cell content
-        }
-        
-        const modal = new bootstrap.Modal(document.getElementById('exampleModal')); // Create modal instance
-        modal.show(); // Show the modal
-      }
-    
-    // Sorting function
-    function sortTable(column) {
-      if (currentSortColumn === column) {
-        isAscending = !isAscending;
-      } else {
-        currentSortColumn = column;
-        isAscending = true;
-      }
-
-      const sortedData = jsonData.slice().sort((a, b) => {
-        const valueA = typeof a[column] === 'string' ? a[column].toLowerCase() : a[column];
-        const valueB = typeof b[column] === 'string' ? b[column].toLowerCase() : b[column];
-
-        if (isAscending) {
-          return valueA > valueB ? 1 : -1;
-        } else {
-          return valueA < valueB ? 1 : -1;
-        }
-      });
-
-      renderTable(sortedData);
-      updateSortIcons(column);
-    }
-
-    // Update sort icons
-    function updateSortIcons(column) {
-      const headers = document.querySelectorAll('th');
-      headers.forEach(th => {
-        const icon = th.querySelector('.sort-icon');
-        if (th.textContent === column) {
-          icon.classList.remove('asc', 'desc');
-          icon.classList.add(isAscending ? 'asc' : 'desc');
-        } else {
-          icon.classList.remove('asc', 'desc');
-        }
-      });
-    }
-    
-    function renderNestedTable(data, modalContent, type) {
-        const nestedData = type === "objects" ? [data] : data;
-        modalContent.innerHTML = '';
-
-        try {
-          const nestedKeys = Object.keys(nestedData[0]);
-
-          // Create table element
-          const nestedTable = document.createElement('table');
-          nestedTable.className = 'table table-bordered table-striped align-middle';
-
-          // Create table header
-          const nestedThead = document.createElement('thead');
-          const nestedHeaderRow = document.createElement('tr');
-
-          nestedKeys.forEach(key => {
-            const nestedTh = document.createElement('th');
-            nestedTh.textContent = key;
-            nestedTh.className = "table-primary";
-
-            nestedHeaderRow.appendChild(nestedTh);
-          });
-          nestedThead.appendChild(nestedHeaderRow);
-          nestedTable.appendChild(nestedThead);
-
-          // Create table body
-          const nestedTbody = document.createElement('tbody');
-
-          nestedData.forEach(item => {
-            const nestedRow = document.createElement('tr');
-
-            nestedKeys.forEach(key => {
-              const nestedTd = document.createElement('td');
-
-              let nestedContent = item[key];
-              // Check if content is object or array
-              if (typeof nestedContent === 'object') {
-                nestedContent = JSON.stringify(nestedContent);
-                // Add an onclick event to show modal
-                nestedTd.classList.add('nested-data');
-                nestedTd.addEventListener('click', () => {
-                  handleClick(nestedTd, key);
-                });
-              }
-
-              nestedTd.textContent = nestedContent;
-              nestedRow.appendChild(nestedTd);
-            });
-            nestedTbody.appendChild(nestedRow);
-          });
-          nestedTable.appendChild(nestedTbody);
-
-          // Append table to container
-          modalContent.appendChild(nestedTable);
-        } catch (error) {
-          modalContent.textContent = 'No Record Found!!';
-        }
-      }
-
-
+    // Create the chart
+    var myChart = new Chart(ctx, {
+      type: 'line',
+      data: data,
+      options: options
+    });
   </script>
 </body>
-
 </html>
