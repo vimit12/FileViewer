@@ -476,8 +476,8 @@ export default {
                 // Set validating to false after processing
                 setTimeout(() => {
                     this.validating = false;
-                }, 2000);
-            }, 2000); // Wait for 2 seconds
+                }, 400);
+            }, 400); // Wait for 2 seconds
         },
         otp_view(){
             this.dialog = false

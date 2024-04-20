@@ -95,7 +95,7 @@
                         </v-row>
 
                         <v-row v-if="selectedView === 'table'">
-                            <v-col v-for="(key, index) in Object.keys(this.data_type)" :key="index" cols="6">
+                            <v-col v-for="(key, index) in Object.keys(this.data_type)" :key="index" cols="12">
                                 <v-card :hover="true" :variant="outline">
                                     <v-card-title>{{ key }}</v-card-title>
                                     <v-card-text>
@@ -122,11 +122,11 @@
                             </v-col>
                         </v-row>
                         <v-row v-else-if="selectedView === 'bar'">
-                            <v-col v-for="(key, index) in Object.keys(this.data_type) " :key="index" cols="6">
+                            <v-col v-for="(key, index) in Object.keys(this.data_type) " :key="index" cols="12">
                                 <v-card :hover="true" :variant="outline">
                                     <v-card-title>{{ key }}</v-card-title>
                                     <v-card-text v-if="changeoptions(key,'bar').flag == false">
-                                        <apexchart width="500" type="bar" :options="changeoptions(key, 'bar').options"
+                                        <apexchart width="100%" type="bar" :options="changeoptions(key, 'bar').options"
                                             :series="changeoptions(key, 'bar').series"></apexchart>
                                     </v-card-text>
                                     <v-card-text v-else>
@@ -136,12 +136,12 @@
                                 </v-card>
                             </v-col>
                         </v-row>
-                        <v-row v-else-if="selectedView === 'pie'">
-                            <v-col v-for="(key, index) in Object.keys(this.data_type)  " :key="index" cols="6">
+                        <v-row v-else-if="selectedView === 'pie'" align="center">
+                            <v-col v-for="(key, index) in Object.keys(this.data_type)  " :key="index" cols="12" align="center">
                                 <v-card :hover="true" :variant="outline">
                                     <v-card-title>{{ key }}</v-card-title>
                                     <v-card-text v-if="changeoptions(key, 'bar').flag == false">
-                                        <apexchart width="500" type="pie" :options="changeoptions(key, 'pie').options"
+                                        <apexchart  type="pie" :options="changeoptions(key, 'pie').options"
                                             :series="changeoptions(key, 'pie').series">
                                         </apexchart>
                                     </v-card-text>
@@ -154,6 +154,7 @@
 
 
                     </v-container>
+
                     <v-container v-else>
                         <v-row>
                             <v-col cols="12" md="12">
@@ -162,23 +163,41 @@
                                     <v-divider class="border-opacity-25" color="warning"></v-divider>
 
                                     <v-card-text elevation="24">
-                                        <v-radio-group inline label="Change View : " v-model="selectedView">
-                                            <v-radio label="Tabular View" value="table" color="red-darken-3">
-                                                <template v-slot:label>
-                                                    <div><strong class="text-success">Tabular View</strong></div>
-                                                </template>
-                                            </v-radio>
-                                            <v-radio label="Bar Chart" value="bar" color="red-darken-3">
-                                                <template v-slot:label>
-                                                    <div><strong class="text-success">Bar Chart View</strong></div>
-                                                </template>
-                                            </v-radio>
-                                            <v-radio label="Pie Chart" value="pie" color="red-darken-3">
-                                                <template v-slot:label>
-                                                    <div><strong class="text-success">Pie Chart View</strong></div>
-                                                </template>
-                                            </v-radio>
-                                        </v-radio-group>
+                                        <v-row>
+                                            <v-col cols="12" sm="3">
+
+
+                                                <v-select v-model="selectedKeyValue" :items="keyValues" clearable
+                                                    variant="outlined" label="Select Item" multiple>
+                                                    <template v-slot:selection="{ item, index }">
+                                                        <v-chip v-if="index < 2">
+                                                            <span>{{ item.title }}</span>
+                                                        </v-chip>
+                                                        <span v-if="index === 2 && keyValues.length > 3"
+                                                            class="text-grey text-caption align-self-center">
+                                                            (+{{ keyValues.length - 2 }} others)
+                                                        </span>
+                                                    </template>
+                                                </v-select>
+
+
+                                            </v-col>
+                                            <v-col cols="12" sm="3">
+                                                <v-select v-model="selectedItem" :items="allItem" variant="outlined"
+                                                    clearable chips label="Select Key"></v-select>
+                                            </v-col>
+                                            <v-col cols="12" sm="3">
+                                                <v-select v-model="selectedChartType" :items="Charts" variant="outlined"
+                                                    clearable chips label="Select Chart Type"></v-select>
+                                            </v-col>
+                                            <v-col cols="12" sm="3" class="justify-center align-center">
+                                                <v-btn prepend-icon="mdi-wrench-outline" append-icon="mdi-creation"
+                                                    color="#5865f2" rounded variant="outlined"
+                                                    :style="{ margin: '10px', width: '80%' }">
+                                                    Build
+                                                </v-btn>
+                                            </v-col>
+                                        </v-row>
                                     </v-card-text>
                                 </v-card>
                             </v-col>
@@ -251,7 +270,13 @@ export default {
             allKeys: [],
             countsObj: {},
             dashboard: true,
-            individual_element: "Account ID"
+            individual_element: "",
+            selectedChartType: "Line Chart",
+            Charts: ['Line Chart', 'Area Chart', 'Bar Chart', 'Pie Chart', 'Radar Chart'],
+            selectedItem: '',
+            allItem: [],
+            keyValues: [],
+            selectedKeyValue: ""
             
         }
     },
@@ -304,7 +329,8 @@ export default {
                     },
                     plotOptions: {
                         bar: {
-                            distributed: true
+                            distributed: true,
+                            customScale: 0.6,
                         }
                     }
                 };
@@ -313,15 +339,15 @@ export default {
                     data: valuesArray
                 }];
 
-                if (options.xaxis.categories.length > 20 || series[0].data.length > 20) {
-                    flag = true;
-                }
+                // if (options.xaxis.categories.length > 20 || series[0].data.length > 20) {
+                //     flag = true;
+                // }
 
                 return { options: options, series: series, flag: flag };
             } else {
-                if (keysArray.length > 20 || valuesArray.length > 20) {
-                    flag = true;
-                }
+                // if (keysArray.length > 20 || valuesArray.length > 20) {
+                //     flag = true;
+                // }
                 const chartOptions = {
                     chart: {
                         type: 'donut',
@@ -502,6 +528,10 @@ export default {
         },
         evaluate_key(key){
             this.dashboard = false;
+            this.individual_element = key;
+            this.allItem = this.allKeys.filter(item => item !== key);
+            this.selectedItem = this.allItem[0]
+            this.keyValues = Array.from(new Set(this.extractValuesForKey(key)));
         },
         extractAllKeys(data) {
             const keys = [];
@@ -540,7 +570,29 @@ export default {
             });
 
             return counts;
-        }
+        },
+        extractValuesForKey(key) {
+            const values = [];
+
+            this.rawJsonData.forEach(item => {
+                let value;
+
+                // Check if item[key] is an object or an array
+                if (Array.isArray(item[key]) || typeof item[key] === 'object') {
+                    // Handle this case based on your requirements
+                    // For example, if you want to stringify the object:
+                    // value = JSON.stringify(item[key]);
+                } else {
+                    value = item[key];
+                }
+
+                if (value !== undefined || value != null || value != "null" || value != "") {
+                    values.push(value);
+                }
+            });
+
+            return values;
+        },
 
         
     },
